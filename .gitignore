@@ -1,0 +1,7 @@
+.vs/
+Debug/
+obj/
+*.userprefs
+*.user
+workspace.xml
+out/
