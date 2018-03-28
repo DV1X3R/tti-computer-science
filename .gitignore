@@ -5,3 +5,5 @@ obj/
 *.user
 workspace.xml
 out/
+*.VC.db
+*.VC.VC.opendb
