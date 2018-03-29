@@ -23,14 +23,11 @@ public class Bakery {
     }
 
     synchronized int get(int amount) {
-        int available;
-
         if (muffins < amount) {
-            available = muffins;
+            int available = muffins;
             muffins = 0;
             return available;
         } else {
-            available = amount;
             muffins -= amount;
             return amount;
         }
@@ -38,7 +35,6 @@ public class Bakery {
 
     synchronized void put(int amount) {
         muffins += amount;
-
     }
 
 }

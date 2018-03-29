@@ -24,12 +24,14 @@ public class Baker extends Thread {
 
         try {
             while (muffinsToBake > 0) {
+                if (bakery.getMuffins() == 0) {
 
-                int baked = random.nextInt(maxMuffinsPerBake) + 1;
-                bakery.put(baked);
-                muffinsToBake -= baked;
+                    int baked = random.nextInt(maxMuffinsPerBake) + 1;
+                    bakery.put(baked);
+                    muffinsToBake -= baked;
 
-                System.out.println("Baker baked: " + baked);
+                    System.out.println("Baker baked: " + baked);
+                }
 
                 sleep(random.nextInt(maxInterval));
             }
