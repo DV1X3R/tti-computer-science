@@ -69,7 +69,7 @@ public class CDate {
     public String toString() {
         String sMonth = month > 9 ? String.valueOf(month) : "0" + month;
         String sDay = day > 9 ? String.valueOf(day) : "0" + day;
-        return sDay + "" + sMonth + "." + year;
+        return sDay + "." + sMonth + "." + year;
     }
 
     public void addDays(int daysAmount) {

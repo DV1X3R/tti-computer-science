@@ -9,8 +9,6 @@ public class Homework1 {
         System.out.print("Enter a year: ");
         CDate date = GetProgrammersDate(scanner.nextInt());
         System.out.println("Programmers day will be on: " + date.toString());
-        System.out.println("Gregorian calendar: " + date.isGregorian());
-        System.out.println("Leap year: " + date.isLeap());
     }
 
     private static CDate GetProgrammersDate(int Year) {
