@@ -12,7 +12,7 @@
 
 ### III. Third Year
 * [Functional Programming (Haskell)](https://github.com/DV1X3R/tti-projects/tree/master/haskell-functional-programming)
-* System Modelling (Python) - TBP
+* [Systems Modelling (Python)](https://github.com/DV1X3R/tti-projects/tree/master/python-systems-modelling])
 * [System Programming (C++)](https://github.com/DV1X3R/tti-projects/tree/master/cpp-system-programming)
 * [Software Engineering (Java)](https://github.com/DV1X3R/tti-projects/tree/master/java-software-engineering)
 * [Application development with Java](https://github.com/DV1X3R/tti-projects/tree/master/java-application-development)
