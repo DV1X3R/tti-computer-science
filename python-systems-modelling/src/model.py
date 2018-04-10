@@ -85,13 +85,13 @@ class Model:
                 self.time = float(min(self.req1_gen_time, self.req2_gen_time))
 
         # End of the simulation. Results.
+        if t != max_table_t:
+            print("...\nWarning: Only first " + str(max_table_t) + " records were shown in the table!")
+
         print("\nServer work coefficient: %.2f \nServer idle coefficient: %.2f \n"
               "Max queue length: %d \nAvg queue length: %d"
               % ((self.server_work_time / t), (1 - self.server_work_time / t)
                  , max(self.queue_len_history), (sum(self.queue_len_history) / len(self.queue_len_history))))
-
-        if t != max_table_t:
-            print("\nWarning: Only first " + str(max_table_t) + " records were shown in the table!")
 
         # Build plot
         plt.plot(self.queue_history[0], self.queue_history[1], color='C0', label='Type 1')
