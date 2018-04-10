@@ -90,6 +90,9 @@ class Model:
               % ((self.server_work_time / t), (1 - self.server_work_time / t)
                  , max(self.queue_len_history), (sum(self.queue_len_history) / len(self.queue_len_history))))
 
+        if t != max_table_t:
+            print("\nWarning: Only first " + str(max_table_t) + " records were shown in the table!")
+
         # Build plot
         plt.plot(self.queue_history[0], self.queue_history[1], color='C0', label='Type 1')
         plt.plot(self.queue_history[0], self.queue_history[2], color='C1', label='Type 2')
