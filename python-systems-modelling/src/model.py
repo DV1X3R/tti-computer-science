@@ -93,6 +93,7 @@ class Model:
         # Build plot
         plt.plot(self.queue_history[0], self.queue_history[1], color='C0', label='Type 1')
         plt.plot(self.queue_history[0], self.queue_history[2], color='C1', label='Type 2')
+        plt.plot(self.queue_history[0], self.queue_len_history, color='C9', label='Total')
         plt.title('Queue Length')
         plt.xlabel('t')
         plt.ylabel('length')
