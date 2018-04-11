@@ -16,3 +16,4 @@
 * [System Programming (C++)](https://github.com/DV1X3R/tti-projects/tree/master/cpp-system-programming)
 * [Software Engineering (Java)](https://github.com/DV1X3R/tti-projects/tree/master/java-software-engineering)
 * [Application development with Java](https://github.com/DV1X3R/tti-projects/tree/master/java-application-development)
+* [Logical Programming (Prolog)](https://github.com/DV1X3R/tti-projects/tree/master/prolog-logical-programming)
