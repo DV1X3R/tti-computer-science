@@ -8,7 +8,7 @@ class Model:
     queue = []
     processing = False  # Server status.
     time = 0.0  # Simulation time.
-    proc_end_time = 0.0  # Request processing end time.
+    proc_end_time = float("inf")  # Request processing end time.
     req1_gen_time = erlang_rand()  # Next generation time for request 1.
     req2_gen_time = poisson_rand()  # Next generation time for request 2.
 
@@ -68,7 +68,7 @@ class Model:
             # Finish processing.
             if self.time >= self.proc_end_time and self.processing:
                 self.processing = False  # Unlock server.
-                self.proc_end_time = 0.0
+                self.proc_end_time = float("inf")
 
                 # If queue is not empty.
                 if len(self.queue) != 0:
