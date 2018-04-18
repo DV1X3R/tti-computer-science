@@ -5,31 +5,11 @@
 
 using namespace std;
 
-int main()
+bool RegSearch(HKEY hRootKey, TCHAR *cPath, bool bSearch = false, TCHAR *sSearchKeyName = NULL)
 {
-	setlocale(LC_ALL, "Russian");
+	HKEY hKey;
 
-	string sRoot = "", sPath = "";
-	HKEY hRootKey = 0, hKey; // HKEY_LOCAL_MACHINE;
-	WCHAR *cPath = new WCHAR[MAX_PATH + 1]; // _T("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Reliability\\");
-
-	do
-	{
-		_tprintf(_T("Enter the root key name> "));
-		getline(cin, sRoot);
-		for (auto & c : sRoot) c = toupper(c);
-
-		if (sRoot == "HKEY_CLASSES_ROOT") hRootKey = HKEY_CLASSES_ROOT;
-		else if (sRoot == "HKEY_CURRENT_USER") hRootKey = HKEY_CURRENT_USER;
-		else if (sRoot == "HKEY_LOCAL_MACHINE") hRootKey = HKEY_LOCAL_MACHINE;
-		else if (sRoot == "HKEY_USERS") hRootKey = HKEY_USERS;
-		else if (sRoot == "HKEY_CURRENT_CONFIG") hRootKey = HKEY_CURRENT_CONFIG;
-	} while (hRootKey == 0);
-
-	_tprintf(_T("Enter the key path> "));
-	getline(cin, sPath);
-	wcscpy(cPath, wstring(sPath.begin(), sPath.end()).c_str());
-
+	// Открытие ключа
 	LONG dwRegOpenKey = RegOpenKeyEx(
 		hRootKey // Идентифицирует открытый в текущий момент ключ
 		, cPath // Адрес имени открываемого подключа
@@ -39,10 +19,8 @@ int main()
 
 	if (dwRegOpenKey == ERROR_SUCCESS)
 	{
-		_tprintf(_T("%s\n\n"), cPath);
-
+		// Информация о открытом ключе (количество подключей, количество значений и размеры буфферов)
 		DWORD dwSubKeys, dwMaxSubKeyLen, dwValues, dwMaxValueNameLen, dwMaxValueLen;
-
 		LONG dwRegQueryInfoKey = RegQueryInfoKey(
 			hKey // дескриптор ключа
 			, NULL // адрес буфера для имени класса
@@ -57,64 +35,26 @@ int main()
 			, NULL // адрес буфера для длины дескриптора безопасности
 			, NULL); // адрес буфера для получения времени последней записи
 
-		if (dwRegQueryInfoKey == ERROR_SUCCESS)
-		{
-			if (dwSubKeys)
-			{
-				_tprintf(_T("Number of subkeys: %i\n"), dwSubKeys);
+		if (dwRegQueryInfoKey == ERROR_SUCCESS) {
 
-				for (int i = 0; i < dwSubKeys; i++)
-				{
-					DWORD dwSubKeyBufferLen = dwMaxSubKeyLen + 1;
-					TCHAR *cSubKeyBuffer = new TCHAR[dwSubKeyBufferLen];
-					ZeroMemory(cSubKeyBuffer, sizeof(cSubKeyBuffer));
-
-					LONG dwRegEnumKeyEx = RegEnumKeyEx(
-						hKey // дескриптор перечисляемого ключа
-						, i // индекс перечисляемого подключа
-						, cSubKeyBuffer // адрес буфера для имени подключа
-						, &dwSubKeyBufferLen // адрес размера буфера подключа
-						, NULL // зарезервировано
-						, NULL // адрес буфера для имени класса
-						, NULL // адрес размера буфера для имени класса
-						, NULL); // адрес для времени последней записи ключа
-
-					if (dwRegEnumKeyEx == ERROR_SUCCESS)
-					{
-						_tprintf(_T("\t%i %s\n"), i, cSubKeyBuffer);
-					}
-					else { _tprintf(_T("Error occurred during reading the subkeys: %d\n"), dwRegEnumKeyEx); }
-				}
-
-				_tprintf(_T("\n"));
-			}
-
-			if (dwValues)
-			{
-				_tprintf(_T("Number of values: %i\n"), dwValues);
-
-				for (int i = 0; i < dwValues; i++)
-				{
+			// Обработка переменных в текущем ключе
+			if (dwValues) {
+				for (int i = 0; i < dwValues; i++) {
 					DWORD dwValueNameBufferLen = dwMaxValueNameLen + 1;
 					TCHAR *cValueNameBuffer = new TCHAR[dwValueNameBufferLen];
+					ZeroMemory(cValueNameBuffer, sizeof(cValueNameBuffer));
 
-					LONG dwRegEnumValue = RegEnumValue(
-						hKey, i, cValueNameBuffer, &dwValueNameBufferLen, NULL, NULL, NULL, NULL);
+					// Получение названий переменных в ключе
+					LONG dwRegEnumValue = RegEnumValue(hKey, i, cValueNameBuffer, &dwValueNameBufferLen, NULL, NULL, NULL, NULL);
 
-					if (dwRegEnumValue == ERROR_SUCCESS)
-					{
+					if (dwRegEnumValue == ERROR_SUCCESS) {
 						DWORD dwType;
 						DWORD dwValueBufferLen = dwMaxValueLen + 1;
 						BYTE *bValueBuffer = new BYTE[dwValueBufferLen];
 						ZeroMemory(bValueBuffer, sizeof(bValueBuffer));
 
-						LONG dwRegQueryValueEx = RegQueryValueEx(
-							hKey // дескриптор ключа
-							, cValueNameBuffer // адрес имени значения
-							, NULL // зарезервировано
-							, &dwType //адрес переменной для типа значения
-							, bValueBuffer // адрес буфера для данных
-							, &dwValueBufferLen); // адрес переменной для размер буфера данных
+						// Получение типов данных и содержимого переменных
+						LONG dwRegQueryValueEx = RegQueryValueEx(hKey, cValueNameBuffer, NULL, &dwType, bValueBuffer, &dwValueBufferLen);
 
 						if (dwRegQueryValueEx == ERROR_SUCCESS)
 						{
@@ -133,21 +73,89 @@ int main()
 							case REG_SZ: type = _T("REG_SZ"); break;
 							}
 
-							_tprintf(_T("\t%i %s (%s): %s\n"), i, cValueNameBuffer, type, bValueBuffer);
+							_tprintf(_T("\n%s\\%s \n \t Type: %s \n \t Data: %s\n"), cPath, cValueNameBuffer, type, bValueBuffer);
 						}
-						else { _tprintf(_T("Error occurred during reading the values data: %d\n"), dwRegQueryValueEx); }
-					}
-					else { _tprintf(_T("Error occurred during reading the values: %d\n"), dwRegEnumValue); }
-				}
 
-				_tprintf(_T("\n"));
+						// Если выбран поиск, и нужный ключ найден, то завершаем работу метода и завершаем обход в глубину
+						if (bSearch && !wcscmp(cValueNameBuffer, sSearchKeyName)) {
+							RegCloseKey(hKey);
+							return true;
+						}
+					}
+				}
 			}
+
+			// Обработка подключей, если выбран поиск определённого ключа
+			if (dwSubKeys && bSearch) {
+				for (int i = 0; i < dwSubKeys; i++) {
+					DWORD dwSubKeyBufferLen = dwMaxSubKeyLen + 1;
+					TCHAR *cSubKeyBuffer = new TCHAR[dwSubKeyBufferLen];
+					ZeroMemory(cSubKeyBuffer, sizeof(cSubKeyBuffer));
+
+					// Получение имени подключей
+					LONG dwRegEnumKeyEx = RegEnumKeyEx(
+						hKey // дескриптор перечисляемого ключа
+						, i // индекс перечисляемого подключа
+						, cSubKeyBuffer // адрес буфера для имени подключа
+						, &dwSubKeyBufferLen // адрес размера буфера подключа
+						, NULL // зарезервировано
+						, NULL // адрес буфера для имени класса
+						, NULL // адрес размера буфера для имени класса
+						, NULL); // адрес для времени последней записи ключа
+
+					if (dwRegEnumKeyEx == ERROR_SUCCESS) {
+						TCHAR *newPath = new TCHAR[MAX_PATH + 1];
+						ZeroMemory(newPath, sizeof(newPath));
+						wcscat(newPath, cPath); wcscat(newPath, L"\\"); wcscat(newPath, cSubKeyBuffer);
+						
+						// Запуск рекурсии
+						if (RegSearch(hRootKey, newPath, bSearch, sSearchKeyName))
+							return true;
+					}
+				}
+			}
+
 		}
-		else { _tprintf(_T("Error occurred during getting info of the key: %d\n"), dwRegQueryInfoKey); }
 	}
-	else { _tprintf(_T("Error occurred during opening the key: %d\n"), dwRegOpenKey); }
 
 	RegCloseKey(hKey);
+	return false;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+
+	string sRoot = "", sPath = "", sKeyName = "";
+	HKEY hRootKey = 0, hKey; // HKEY_LOCAL_MACHINE;
+	WCHAR *cPath = new WCHAR[MAX_PATH + 1]; // _T("SOFTWARE\\");
+	WCHAR *cKeyName = new WCHAR[MAX_PATH + 1]; // _T("DisplayName");
+
+	do
+	{
+		_tprintf(_T("Enter the root key name> "));
+		getline(cin, sRoot);
+		for (auto & c : sRoot) c = toupper(c);
+
+		if (sRoot == "HKEY_CLASSES_ROOT") hRootKey = HKEY_CLASSES_ROOT;
+		else if (sRoot == "HKEY_CURRENT_USER") hRootKey = HKEY_CURRENT_USER;
+		else if (sRoot == "HKEY_LOCAL_MACHINE") hRootKey = HKEY_LOCAL_MACHINE;
+		else if (sRoot == "HKEY_USERS") hRootKey = HKEY_USERS;
+		else if (sRoot == "HKEY_CURRENT_CONFIG") hRootKey = HKEY_CURRENT_CONFIG;
+	} while (hRootKey == 0);
+
+	_tprintf(_T("Enter the key path> "));
+	getline(cin, sPath);
+	wcscpy(cPath, wstring(sPath.begin(), sPath.end()).c_str());
+
+	_tprintf(_T("Enter the key name to search> "));
+	getline(cin, sKeyName);
+	wcscpy(cKeyName, wstring(sKeyName.begin(), sKeyName.end()).c_str());
+
+	if(sKeyName == "")
+		RegSearch(hRootKey, cPath);
+	else 
+		RegSearch(hRootKey, cPath, true, cKeyName);
 
 	system("pause");
 	return 0;
