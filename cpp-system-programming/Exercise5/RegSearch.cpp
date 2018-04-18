@@ -5,42 +5,42 @@ bool RegSearch(HKEY hRootKey, TCHAR *cPath, bool bSearch, TCHAR *sSearchKeyName)
 	_tprintf(_T(" %s\n"), cPath);
 	HKEY hKey;
 
-	// Открытие ключа
+	// РћС‚РєСЂС‹С‚РёРµ РєР»СЋС‡Р°
 	LONG dwRegOpenKey = RegOpenKeyEx(
-		hRootKey // Идентифицирует открытый в текущий момент ключ
-		, cPath // Адрес имени открываемого подключа
-		, NULL // Зарезервировано
-		, KEY_READ // Маска доступа безопасности
-		, &hKey); // Адрес переменной, в которую возвращается дескриптор открытого ключа
+		hRootKey // РРґРµРЅС‚РёС„РёС†РёСЂСѓРµС‚ РѕС‚РєСЂС‹С‚С‹Р№ РІ С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚ РєР»СЋС‡
+		, cPath // РђРґСЂРµСЃ РёРјРµРЅРё РѕС‚РєСЂС‹РІР°РµРјРѕРіРѕ РїРѕРґРєР»СЋС‡Р°
+		, NULL // Р—Р°СЂРµР·РµСЂРІРёСЂРѕРІР°РЅРѕ
+		, KEY_READ // РњР°СЃРєР° РґРѕСЃС‚СѓРїР° Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё
+		, &hKey); // РђРґСЂРµСЃ РїРµСЂРµРјРµРЅРЅРѕР№, РІ РєРѕС‚РѕСЂСѓСЋ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РґРµСЃРєСЂРёРїС‚РѕСЂ РѕС‚РєСЂС‹С‚РѕРіРѕ РєР»СЋС‡Р°
 
 	if (dwRegOpenKey == ERROR_SUCCESS)
 	{
-		// Информация о открытом ключе (количество подключей, количество значений и размеры буфферов)
+		// РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РѕС‚РєСЂС‹С‚РѕРј РєР»СЋС‡Рµ (РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРґРєР»СЋС‡РµР№, РєРѕР»РёС‡РµСЃС‚РІРѕ Р·РЅР°С‡РµРЅРёР№ Рё СЂР°Р·РјРµСЂС‹ Р±СѓС„С„РµСЂРѕРІ)
 		DWORD dwSubKeys, dwMaxSubKeyLen, dwValues, dwMaxValueNameLen, dwMaxValueLen;
 		LONG dwRegQueryInfoKey = RegQueryInfoKey(
-			hKey // дескриптор ключа
-			, NULL // адрес буфера для имени класса
-			, NULL // адрес размера буфер для имени класса
-			, NULL // зарезервировано
-			, &dwSubKeys // адрес буфера для количества подключей
-			, &dwMaxSubKeyLen //адрес буфера для наибольшего размера имени подключа
-			, NULL // адрес буфера для наибольшего размера имени класса
-			, &dwValues // адрес буфера для количества вхождений значений
-			, &dwMaxValueNameLen // адрес буфера для наибольшего размера имени значения
-			, &dwMaxValueLen // адрес буфера для наибольшего размера данных значения
-			, NULL // адрес буфера для длины дескриптора безопасности
-			, NULL); // адрес буфера для получения времени последней записи
+			hKey // РґРµСЃРєСЂРёРїС‚РѕСЂ РєР»СЋС‡Р°
+			, NULL // Р°РґСЂРµСЃ Р±СѓС„РµСЂР° РґР»СЏ РёРјРµРЅРё РєР»Р°СЃСЃР°
+			, NULL // Р°РґСЂРµСЃ СЂР°Р·РјРµСЂР° Р±СѓС„РµСЂ РґР»СЏ РёРјРµРЅРё РєР»Р°СЃСЃР°
+			, NULL // Р·Р°СЂРµР·РµСЂРІРёСЂРѕРІР°РЅРѕ
+			, &dwSubKeys // Р°РґСЂРµСЃ Р±СѓС„РµСЂР° РґР»СЏ РєРѕР»РёС‡РµСЃС‚РІР° РїРѕРґРєР»СЋС‡РµР№
+			, &dwMaxSubKeyLen //Р°РґСЂРµСЃ Р±СѓС„РµСЂР° РґР»СЏ РЅР°РёР±РѕР»СЊС€РµРіРѕ СЂР°Р·РјРµСЂР° РёРјРµРЅРё РїРѕРґРєР»СЋС‡Р°
+			, NULL // Р°РґСЂРµСЃ Р±СѓС„РµСЂР° РґР»СЏ РЅР°РёР±РѕР»СЊС€РµРіРѕ СЂР°Р·РјРµСЂР° РёРјРµРЅРё РєР»Р°СЃСЃР°
+			, &dwValues // Р°РґСЂРµСЃ Р±СѓС„РµСЂР° РґР»СЏ РєРѕР»РёС‡РµСЃС‚РІР° РІС…РѕР¶РґРµРЅРёР№ Р·РЅР°С‡РµРЅРёР№
+			, &dwMaxValueNameLen // Р°РґСЂРµСЃ Р±СѓС„РµСЂР° РґР»СЏ РЅР°РёР±РѕР»СЊС€РµРіРѕ СЂР°Р·РјРµСЂР° РёРјРµРЅРё Р·РЅР°С‡РµРЅРёСЏ
+			, &dwMaxValueLen // Р°РґСЂРµСЃ Р±СѓС„РµСЂР° РґР»СЏ РЅР°РёР±РѕР»СЊС€РµРіРѕ СЂР°Р·РјРµСЂР° РґР°РЅРЅС‹С… Р·РЅР°С‡РµРЅРёСЏ
+			, NULL // Р°РґСЂРµСЃ Р±СѓС„РµСЂР° РґР»СЏ РґР»РёРЅС‹ РґРµСЃРєСЂРёРїС‚РѕСЂР° Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё
+			, NULL); // Р°РґСЂРµСЃ Р±СѓС„РµСЂР° РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РІСЂРµРјРµРЅРё РїРѕСЃР»РµРґРЅРµР№ Р·Р°РїРёСЃРё
 
 		if (dwRegQueryInfoKey == ERROR_SUCCESS) {
 
-			// Обработка переменных в текущем ключе
+			// РћР±СЂР°Р±РѕС‚РєР° РїРµСЂРµРјРµРЅРЅС‹С… РІ С‚РµРєСѓС‰РµРј РєР»СЋС‡Рµ
 			if (dwValues) {
 				for (int i = 0; i < dwValues; i++) {
 					DWORD dwValueNameBufferLen = dwMaxValueNameLen + 1;
 					TCHAR *cValueNameBuffer = new TCHAR[dwValueNameBufferLen];
 					ZeroMemory(cValueNameBuffer, sizeof(cValueNameBuffer));
 
-					// Получение названий переменных в ключе
+					// РџРѕР»СѓС‡РµРЅРёРµ РЅР°Р·РІР°РЅРёР№ РїРµСЂРµРјРµРЅРЅС‹С… РІ РєР»СЋС‡Рµ
 					LONG dwRegEnumValue = RegEnumValue(hKey, i, cValueNameBuffer, &dwValueNameBufferLen, NULL, NULL, NULL, NULL);
 
 					if (dwRegEnumValue == ERROR_SUCCESS) {
@@ -50,7 +50,7 @@ bool RegSearch(HKEY hRootKey, TCHAR *cPath, bool bSearch, TCHAR *sSearchKeyName)
 						BYTE *bValueBuffer = new BYTE[dwValueBufferLen];
 						ZeroMemory(bValueBuffer, sizeof(bValueBuffer));
 
-						// Получение типов данных и содержимого переменных
+						// РџРѕР»СѓС‡РµРЅРёРµ С‚РёРїРѕРІ РґР°РЅРЅС‹С… Рё СЃРѕРґРµСЂР¶РёРјРѕРіРѕ РїРµСЂРµРјРµРЅРЅС‹С…
 						LONG dwRegQueryValueEx = RegQueryValueEx(hKey, cValueNameBuffer, NULL, &dwType, bValueBuffer, &dwValueBufferLen);
 
 						if (dwRegQueryValueEx == ERROR_SUCCESS)
@@ -75,7 +75,7 @@ bool RegSearch(HKEY hRootKey, TCHAR *cPath, bool bSearch, TCHAR *sSearchKeyName)
 							_tprintf(_T("\n%s\\%s \n \t Type: %s \n \t Data: %s\n"), cPath, cValueNameBuffer, cType, bValueBuffer);
 						}
 
-						// Если выбран поиск, и нужный ключ найден, то завершаем работу метода и завершаем обход в глубину
+						// Р•СЃР»Рё РІС‹Р±СЂР°РЅ РїРѕРёСЃРє, Рё РЅСѓР¶РЅС‹Р№ РєР»СЋС‡ РЅР°Р№РґРµРЅ, С‚Рѕ Р·Р°РІРµСЂС€Р°РµРј СЂР°Р±РѕС‚Сѓ РјРµС‚РѕРґР° Рё Р·Р°РІРµСЂС€Р°РµРј РѕР±С…РѕРґ РІ РіР»СѓР±РёРЅСѓ
 						if (searchFinished) {
 							RegCloseKey(hKey);
 							return true;
@@ -85,23 +85,23 @@ bool RegSearch(HKEY hRootKey, TCHAR *cPath, bool bSearch, TCHAR *sSearchKeyName)
 				}
 			}
 
-			// Обработка подключей, если выбран поиск определённого ключа
+			// РћР±СЂР°Р±РѕС‚РєР° РїРѕРґРєР»СЋС‡РµР№, РµСЃР»Рё РІС‹Р±СЂР°РЅ РїРѕРёСЃРє РѕРїСЂРµРґРµР»С‘РЅРЅРѕРіРѕ РєР»СЋС‡Р°
 			if (dwSubKeys && bSearch) {
 				for (int i = 0; i < dwSubKeys; i++) {
 					DWORD dwSubKeyBufferLen = dwMaxSubKeyLen + 1;
 					TCHAR *cSubKeyBuffer = new TCHAR[dwSubKeyBufferLen];
 					ZeroMemory(cSubKeyBuffer, sizeof(cSubKeyBuffer));
 
-					// Получение имени подключей
+					// РџРѕР»СѓС‡РµРЅРёРµ РёРјРµРЅРё РїРѕРґРєР»СЋС‡РµР№
 					LONG dwRegEnumKeyEx = RegEnumKeyEx(
-						hKey // дескриптор перечисляемого ключа
-						, i // индекс перечисляемого подключа
-						, cSubKeyBuffer // адрес буфера для имени подключа
-						, &dwSubKeyBufferLen // адрес размера буфера подключа
-						, NULL // зарезервировано
-						, NULL // адрес буфера для имени класса
-						, NULL // адрес размера буфера для имени класса
-						, NULL); // адрес для времени последней записи ключа
+						hKey // РґРµСЃРєСЂРёРїС‚РѕСЂ РїРµСЂРµС‡РёСЃР»СЏРµРјРѕРіРѕ РєР»СЋС‡Р°
+						, i // РёРЅРґРµРєСЃ РїРµСЂРµС‡РёСЃР»СЏРµРјРѕРіРѕ РїРѕРґРєР»СЋС‡Р°
+						, cSubKeyBuffer // Р°РґСЂРµСЃ Р±СѓС„РµСЂР° РґР»СЏ РёРјРµРЅРё РїРѕРґРєР»СЋС‡Р°
+						, &dwSubKeyBufferLen // Р°РґСЂРµСЃ СЂР°Р·РјРµСЂР° Р±СѓС„РµСЂР° РїРѕРґРєР»СЋС‡Р°
+						, NULL // Р·Р°СЂРµР·РµСЂРІРёСЂРѕРІР°РЅРѕ
+						, NULL // Р°РґСЂРµСЃ Р±СѓС„РµСЂР° РґР»СЏ РёРјРµРЅРё РєР»Р°СЃСЃР°
+						, NULL // Р°РґСЂРµСЃ СЂР°Р·РјРµСЂР° Р±СѓС„РµСЂР° РґР»СЏ РёРјРµРЅРё РєР»Р°СЃСЃР°
+						, NULL); // Р°РґСЂРµСЃ РґР»СЏ РІСЂРµРјРµРЅРё РїРѕСЃР»РµРґРЅРµР№ Р·Р°РїРёСЃРё РєР»СЋС‡Р°
 
 					if (dwRegEnumKeyEx == ERROR_SUCCESS) {
 						TCHAR *newPath = new TCHAR[MAX_PATH + 1];
@@ -112,7 +112,7 @@ bool RegSearch(HKEY hRootKey, TCHAR *cPath, bool bSearch, TCHAR *sSearchKeyName)
 							wcscat(newPath, L"\\");
 						wcscat(newPath, cSubKeyBuffer);
 
-						// Запуск рекурсии
+						// Р—Р°РїСѓСЃРє СЂРµРєСѓСЂСЃРёРё
 						if (RegSearch(hRootKey, newPath, bSearch, sSearchKeyName))
 							return true;
 					}
