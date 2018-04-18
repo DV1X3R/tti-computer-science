@@ -106,7 +106,11 @@ bool RegSearch(HKEY hRootKey, TCHAR *cPath, bool bSearch = false, TCHAR *sSearch
 					if (dwRegEnumKeyEx == ERROR_SUCCESS) {
 						TCHAR *newPath = new TCHAR[MAX_PATH + 1];
 						ZeroMemory(newPath, sizeof(newPath));
-						wcscat(newPath, cPath); wcscat(newPath, L"\\"); wcscat(newPath, cSubKeyBuffer);
+						
+						wcscat(newPath, cPath);
+						if(wcscmp(newPath, L"") != 0)
+							wcscat(newPath, L"\\"); 
+						wcscat(newPath, cSubKeyBuffer);
 						
 						// Запуск рекурсии
 						if (RegSearch(hRootKey, newPath, bSearch, sSearchKeyName))
