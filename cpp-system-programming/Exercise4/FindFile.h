@@ -5,8 +5,8 @@
 
 struct FileInfo
 {
-	WCHAR FileName[MAX_PATH];
-	WCHAR Path[MAX_PATH];
+	WCHAR FileName[MAX_PATH + 1];
+	WCHAR Path[MAX_PATH + 1];
 	bool IsDirectory;
 	SYSTEMTIME CreatedDate;
 };
