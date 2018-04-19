@@ -8,9 +8,8 @@ class Model:
     duration = 0.0  # Simulation duration.
     time = 0.0  # Current time.
     queue = []  # Queue, rly?
-    processing = False  # Server status.
 
-    proc_end_time = float("inf")  # Request processing end time.
+    proc_end_time = float('inf')  # Request processing end time.
     req1_gen_time = erlang_rand()  # Next generation time for request 1.
     req2_gen_time = poisson_rand()  # Next generation time for request 2.
 
@@ -31,16 +30,16 @@ class Model:
         self.queue_history[2].append(self.queue.count(2))
         print("%10s \t %10.2f \t %10.2f \t %10.2f \t %10.2f \t %10r %10d \t %10s"
               % (event, self.time, self.req1_gen_time, self.req2_gen_time
-                 , self.proc_end_time, self.processing, len(self.queue), self.queue))
+                 , self.proc_end_time, False if self.proc_end_time == float('inf') else True
+                 , len(self.queue), self.queue))
 
     # Add to the queue or start processing.
     def process(self, req_type):
         # If the server is busy, then add request to the queue.
         # Otherwise lock the server and generate new proc_end_time.
-        if self.processing:
+        if self.proc_end_time != float('inf'):
             self.queue.append(req_type)
         else:
-            self.processing = True  # Lock server (Further requests will go to the queue).
             if req_type == 1:
                 self.proc_end_time = normal_rand() + self.time
             elif req_type == 2:
@@ -65,10 +64,8 @@ class Model:
 
             # Finish processing.
             if self.time >= self.proc_end_time:
-                self.processing = False  # Unlock server.
-                self.proc_end_time = float("inf")
-
-                # If queue is not empty.
+                self.proc_end_time = float('inf')
+                # If queue is not empty, then process the following request.
                 if self.queue:
                     # q = self.queue.pop(len(self.queue) - 1)  # LIFO
                     q = self.queue.pop(0)  # FIFO
