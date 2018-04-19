@@ -113,8 +113,10 @@ bool RegSearch(HKEY hRootKey, TCHAR *cPath, bool bSearch, TCHAR *sSearchKeyName)
 						wcscat(newPath, cSubKeyBuffer);
 
 						// Запуск рекурсии
-						if (RegSearch(hRootKey, newPath, bSearch, sSearchKeyName))
+						if (RegSearch(hRootKey, newPath, bSearch, sSearchKeyName)) {
+							RegCloseKey(hKey);
 							return true;
+						}
 					}
 				}
 			}
