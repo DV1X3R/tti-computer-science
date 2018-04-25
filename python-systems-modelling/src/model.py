@@ -16,11 +16,7 @@ class Model:
     server_work_time = 0.0  # Used to calculate server coefficients.
     queue_history = [[], [], []]  # Used to show a beautiful plot at the end.
 
-    # Print table header.
     def __init__(self, t):
-        print("%10s \t %10s \t %10s \t %10s \t %10s \t %10s %10s \t %10s"
-              % ("Event", "tm", "l1", "l2", "h", "S", "n", "Q"))
-        self.print_event("")
         self.duration = t
 
     # Print a table row.
@@ -48,6 +44,10 @@ class Model:
                 (self.proc_end_time if self.proc_end_time <= self.duration else self.duration) - self.time
 
     def run(self):
+        print("%10s \t %10s \t %10s \t %10s \t %10s \t %10s %10s \t %10s"
+              % ("Event", "tm", "l1", "l2", "h", "S", "n", "Q"))
+        self.print_event("")
+
         while self.time <= self.duration:
 
             # Generate type 1 request.
