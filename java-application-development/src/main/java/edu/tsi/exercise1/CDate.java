@@ -29,18 +29,12 @@ public class CDate {
     }
 
     public boolean isGregorian() {
-        if (year > 1918 || (year == 1918 && month >= 2))
-            return true;
-        else
-            return false;
+        return (year > 1918 || (year == 1918 && month >= 2));
     }
 
     public boolean isLeap() {
         if (isGregorian()) {
-            if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
-                return true;
-            else
-                return false;
+            return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
         } else if (year % 4 == 0)
             return true;
         else
