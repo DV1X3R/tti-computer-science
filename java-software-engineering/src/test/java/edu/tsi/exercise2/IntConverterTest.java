@@ -6,16 +6,9 @@ import static org.junit.Assert.*;
 
 public class IntConverterTest {
 
-    // 1-2-4-6-7-8-10-11-6-12-13
     @Test
-    public void intToHex_189_0xBD() {
-        assertEquals("0xBD", IntConverter.intToHex(189));
-    }
-
-    // 1-2-4-6-7-9-10-11-6-12-13
-    @Test
-    public void intToHex_20_0x14() {
-        assertEquals("0x14", IntConverter.intToHex(20));
+    public void intToHex_26_0x1A() {
+        assertEquals("0x1A", IntConverter.intToHex(26));
     }
 
     @Test
