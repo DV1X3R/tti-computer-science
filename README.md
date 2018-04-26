@@ -10,7 +10,7 @@
 * [Object-Oriented Programming (C#)](https://github.com/DV1X3R/tti-projects/tree/master/cs-object-oriented-programming)
 * Database and Data Banks (C#) - TBP
 * Operating Systems (Bash) - TBP
-* Embedded Electronic Devices and Programming (C) - TBP
+* [Embedded Electronic Devices and Programming (C)](https://github.com/DV1X3R/tti-projects/tree/master/c-electronic-devices)
 
 ### III. Third Year
 * [Functional Programming (Haskell)](https://github.com/DV1X3R/tti-projects/tree/master/haskell-functional-programming)
