@@ -26,5 +26,5 @@ program :-
     sizeIn(Length), arrayIn(List, Length), rangeIn(Min, Max),
     write("List: "), writeln(List),
 	arrayFind(List, Min, Max, Count), % узнаём количество элементов попадающих в диапазон
-	write("Number of matching elements: "), writeln(Count).
+	write("Number of matching elements: "), writeln(Count), !.
 
