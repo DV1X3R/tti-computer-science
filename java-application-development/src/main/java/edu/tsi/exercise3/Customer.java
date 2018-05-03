@@ -22,7 +22,7 @@ public class Customer extends Thread {
 
         try {
             while (bakery.getIsOpened()) {
-                if (bakery.getMuffins() > 0) {
+                if (bakery.getMuffinsCount() > 0) {
 
                     int requested = random.nextInt(maxMuffinsPerGet) + 1;
                     int received = bakery.get(requested);
@@ -40,7 +40,6 @@ public class Customer extends Thread {
         } catch (InterruptedException e) {
             System.out.println("Customer thread was interrupted!");
         } finally {
-            bakery.setIsOpened(false);
             System.out.println("Customer left the bakery");
         }
 

@@ -5,7 +5,7 @@ public class Bakery {
     private int muffins;
     private boolean isOpened;
 
-    public int getMuffins() {
+    public int getMuffinsCount() {
         return muffins;
     }
 

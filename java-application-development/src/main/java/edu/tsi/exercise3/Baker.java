@@ -24,7 +24,7 @@ public class Baker extends Thread {
 
         try {
             while (muffinsToBake > 0) {
-                if (bakery.getMuffins() == 0) {
+                if (bakery.getMuffinsCount() == 0) {
 
                     int baked = random.nextInt(maxMuffinsPerBake) + 1;
                     bakery.put(baked);
