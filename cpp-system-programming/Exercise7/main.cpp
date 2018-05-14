@@ -11,7 +11,7 @@ DWORD WINAPI worker(LPDWORD lpData)
 {
 	printf("worker> attempting semaphore...\n");
 	WaitForSingleObject(hSemaphore, INFINITE);
-	printf("worker> got semaphore...\n");
+	printf("worker> got semaphore\n");
 
 	int avg = 0;
 	for (int i = 0; i < n; i++)
@@ -57,7 +57,7 @@ int main()
 
 	printf("main> attempting semaphore...\n");
 	WaitForSingleObject(hSemaphore, INFINITE);
-	printf("main> got semaphore...\n");
+	printf("main> got semaphore\n");
 
 	int min = arr[0];
 	int max = arr[0];
@@ -93,3 +93,4 @@ int main()
 	system("pause");
 	return 0;
 }
+
