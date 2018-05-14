@@ -9,9 +9,9 @@ HANDLE hSemaphore;
 
 DWORD WINAPI worker(LPDWORD lpData)
 {
-	cout << "worker> attempting semaphore..." << endl;
+	printf("worker> attempting semaphore...\n");
 	WaitForSingleObject(hSemaphore, INFINITE);
-	cout << "worker> got semaphore" << endl;
+	printf("worker> got semaphore...\n");
 
 	int avg = 0;
 	for (int i = 0; i < n; i++)
@@ -21,22 +21,22 @@ DWORD WINAPI worker(LPDWORD lpData)
 	}
 
 	avg /= n;
-	cout << "worker> average value: " << avg << endl;
+	printf("worker> average value: %i\n", avg);
 
 	ReleaseSemaphore(hSemaphore, 1, NULL);
-	cout << "worker> semaphore released" << endl;
+	printf("worker> semaphore released\n");
 	return avg;
 }
 
 int main()
 {
-	cout << "Enter the size of the array> ";
+	printf("main> Enter the size of the array> ");
 	cin >> n;
 	arr = new int[n];
 
 	for (int i = 0; i < n; i++)
 	{
-		cout << "Enter the value of '" << i << "' array element> ";
+		printf("main> Enter the value of '%i' aray element> ", i);
 		cin >> arr[i];
 	}
 
@@ -55,9 +55,9 @@ int main()
 		, 0 // флаги создания потока
 		, &tid); // идентификатор потока
 
-	cout << "main> attempting semaphore..." << endl;
+	printf("main> attempting semaphore...\n");
 	WaitForSingleObject(hSemaphore, INFINITE);
-	cout << "main> got semaphore" << endl;
+	printf("main> got semaphore...\n");
 
 	int min = arr[0];
 	int max = arr[0];
@@ -68,17 +68,17 @@ int main()
 		Sleep(7);
 	}
 
-	cout << "main> min value: " << min << endl;
-	cout << "main> max value: " << max << endl;
+	printf("main> min value: %i\n", min);
+	printf("main> max value: %i\n", max);
 
 	ReleaseSemaphore(
 		hSemaphore // hSemaphore
 		, 1 // lReleaseCount
 		, NULL); // lpPreviousCount
 
-	cout << "main> semaphore released" << endl;
+	printf("main> semaphore released\n");
 	
-	cout << "main> waiting for 'worker' thread..." << endl;
+	printf("main> waiting for 'worker' thread...\n");
 	WaitForSingleObject(hWorker, INFINITE);
 	DWORD avg;
 	GetExitCodeThread(hWorker, &avg);
@@ -88,9 +88,8 @@ int main()
 	for (int i = 0; i < n; i++)
 		if (avg < arr[i]) count++;
 
-	cout << "main> number of elements greater than average value: " << count << endl;
+	printf("main> number of elements greater than average value: %i\n", count);
 
 	system("pause");
 	return 0;
 }
-
