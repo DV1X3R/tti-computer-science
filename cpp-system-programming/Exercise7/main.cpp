@@ -1,8 +1,6 @@
 #include <windows.h>
 #include <iostream>
 
-using namespace std;
-
 int n;
 int *arr;
 HANDLE hSemaphore;
@@ -31,13 +29,13 @@ DWORD WINAPI worker(LPDWORD lpData)
 int main()
 {
 	printf("main> Enter the size of the array> ");
-	cin >> n;
+	std::cin >> n;
 	arr = new int[n];
 
 	for (int i = 0; i < n; i++)
 	{
 		printf("main> Enter the value of '%i' aray element> ", i);
-		cin >> arr[i];
+		std::cin >> arr[i];
 	}
 
 	hSemaphore = CreateSemaphore(
