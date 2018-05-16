@@ -10,7 +10,6 @@ int main()
 
 	printf("Page Size: %i \n", si.dwPageSize);
 	printf("Allocation Granularity: %i \n", si.dwAllocationGranularity);
-	printf("Number of pages available: %i \n", si.dwAllocationGranularity / si.dwPageSize);
 
 	LPVOID lpReservedMem = VirtualAlloc(
 		NULL // область для распределения или резервирования
@@ -64,7 +63,7 @@ int main()
 		}
 	}
 
-	printf("\n Pages used: ", pagesCommited);
+	printf("\n Pages used: %i \n", pagesCommited);
 	printf(" %p : %i (integer) \n", lpReservedMem, *(int*)lpReservedMem);
 	printf(" %p : %f (double) \n", ((int*)lpReservedMem + 1), *(double*)((int*)lpReservedMem + 1));
 
