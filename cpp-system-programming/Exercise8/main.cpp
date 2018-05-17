@@ -11,15 +11,15 @@ int main()
 	printf("Page Size: %i \n", si.dwPageSize);
 	printf("Allocation Granularity: %i \n", si.dwAllocationGranularity);
 
-	LPVOID lpReservedMem = VirtualAlloc(
+	LPVOID lpReservedMem = VirtualAlloc( // Резервация области физической памяти
 		NULL // область для распределения или резервирования
 		, si.dwAllocationGranularity // размер области
-		, MEM_RESERVE // тип распределения (резервация области физической памяти)
+		, MEM_RESERVE // тип распределения
 		, PAGE_READWRITE); // тип защиты доступа
 
 	LPVOID lpCommitedMem = VirtualAlloc(lpReservedMem, si.dwPageSize, MEM_COMMIT, PAGE_READWRITE); // Выполняется выделение страниц памяти для непосредственной работы с ними
-	DWORD pagesCommited = 1;
-	DWORD shift = 0;
+	DWORD pagesCommited = 1; // Количество выделенных страниц
+	DWORD shift = 0; // Сдвиг в байтах (для последовательной записи)
 
 	printf("Virtual memory address: %p \n\n", lpCommitedMem);
 
@@ -35,12 +35,11 @@ int main()
 		structs[i].charVal = 'A' + i;
 	}
 
-	*(int*)lpCommitedMem = *inum;
+	*(int*)lpCommitedMem = *inum; // Записываем int в область памяти
 	printf("Integer added \t | %p \n", lpCommitedMem);
-	shift += sizeof(int);
+	shift += sizeof(int); // К сдвигу прибавляется размер int (4 байта)
 
-
-	*(double*)((char*)lpCommitedMem + shift) = *dnum;
+	*(double*)((char*)lpCommitedMem + shift) = *dnum; // Записываем double по выделенному адресу со сдвигом в 4 байта
 	printf("Double added \t | %p \n\n", ((char*)lpCommitedMem + shift));
 	shift += sizeof(double);
 
@@ -53,7 +52,7 @@ int main()
 			shift += sizeof(MyStruct);
 		}
 		__except (EXCEPTION_EXECUTE_HANDLER)
-		{
+		{ // Если произошла ошибка при записи, выделяем ещё 4Кб памяти
 			printf("\tException at %i structure \n", i);
 			VirtualAlloc(
 				((char*)lpReservedMem) + (si.dwPageSize * pagesCommited)
