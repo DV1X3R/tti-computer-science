@@ -29,27 +29,19 @@ public class CDate {
     }
 
     public boolean isGregorian() {
-        return (year > 1918 || (year == 1918 && month >= 2));
+        return year > 1918 || (year == 1918 && month >= 2);
     }
 
     public boolean isLeap() {
-        if (isGregorian()) {
-            return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
-        } else if (year % 4 == 0)
-            return true;
-        else
-            return false;
-
+        return (!isGregorian() && (year % 4 == 0 || year % 100 != 0 || year % 400 == 0))
+                || (isGregorian() && year % 4 == 0);
     }
 
     public int daysInMonth() {
         if (month == 2) {
-            if (isLeap())
-                return 29;
-            else
-                return 28;
-        } else if (month == 8)
-            return 31;
+            if (isLeap()) return 29;
+            else return 28;
+        } else if (month == 8) return 31;
         else return month % 2 == 0 ? 30 : 31;
     }
 
