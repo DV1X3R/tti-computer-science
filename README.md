@@ -8,7 +8,7 @@
 ### II. Second Year
 * [Data Structures and Algorithms (C#)](https://github.com/DV1X3R/tti-projects/tree/master/cs-data-structures-and-algorithms)
 * [Object-Oriented Programming (C#)](https://github.com/DV1X3R/tti-projects/tree/master/cs-object-oriented-programming)
-* Database and Data Banks (C#) - TBP
+* [Database and Data Banks (C#)](https://github.com/DV1X3R/tti-projects/tree/master/cs-database-and-data-banks)
 * Operating Systems (Bash) - TBP
 * [Embedded Electronic Devices and Programming (C)](https://github.com/DV1X3R/tti-projects/tree/master/c-electronic-devices)
 
