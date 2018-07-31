@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coursework", "Coursework\Coursework.csproj", "{1D3EE1B9-051C-4167-B916-5B9948021753}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Coursework-FillDb", "Coursework-FillDb\Coursework-FillDb.dtproj", "{FD7DDDE1-ED95-4C99-B12F-4A9BC75E74D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Development|Any CPU = Development|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D3EE1B9-051C-4167-B916-5B9948021753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D3EE1B9-051C-4167-B916-5B9948021753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D3EE1B9-051C-4167-B916-5B9948021753}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D3EE1B9-051C-4167-B916-5B9948021753}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{1D3EE1B9-051C-4167-B916-5B9948021753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D3EE1B9-051C-4167-B916-5B9948021753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD7DDDE1-ED95-4C99-B12F-4A9BC75E74D4}.Debug|Any CPU.ActiveCfg = Development
+		{FD7DDDE1-ED95-4C99-B12F-4A9BC75E74D4}.Debug|Any CPU.Build.0 = Development
+		{FD7DDDE1-ED95-4C99-B12F-4A9BC75E74D4}.Development|Any CPU.ActiveCfg = Development
+		{FD7DDDE1-ED95-4C99-B12F-4A9BC75E74D4}.Development|Any CPU.Build.0 = Development
+		{FD7DDDE1-ED95-4C99-B12F-4A9BC75E74D4}.Release|Any CPU.ActiveCfg = Development
+		{FD7DDDE1-ED95-4C99-B12F-4A9BC75E74D4}.Release|Any CPU.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2514D443-7238-4DD4-8BCF-66698EE7A22F}
+	EndGlobalSection
+EndGlobal
