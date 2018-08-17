@@ -1,5 +1,6 @@
 .vs/
 Debug/
+bin/
 obj/
 *.userprefs
 *.user
@@ -8,3 +9,4 @@ out/
 *.VC.db
 *.VC.VC.opendb
 __pycache__/
+packages/

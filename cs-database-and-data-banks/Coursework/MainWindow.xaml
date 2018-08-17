@@ -1,0 +1,462 @@
+﻿<Window x:Class="Coursework.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Coursework"
+        mc:Ignorable="d"
+        Title="Coursework - Music Database Management System" Height="750" Width="1200" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Resources>
+            <VisualBrush x:Key="tbFilterHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="anything you wish to find"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbAlbumTitleHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="Greatest Hits"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbArtistNameHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="AC/DC"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbCustomerFirstNameHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="Denny"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbCustomerLastNameHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="Dv1x3r"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbCustomerCompanyHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="TRANSPORT AND TELECOMMUNICATION INSTITUTE"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbCustomerAddressHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="1 Lomonosova Street"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbCustomerCityHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="Riga"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbCustomerCountryHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="Latvia"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbCustomerPhoneHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="+371 00000000"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbCustomerEmailHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="sample@domain.lv"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbGenreNameHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="Mashup"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbTrackNameHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="Kiramekirari"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbTrackMillisecondsHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="102304"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbTrackBytesHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="5403201"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+
+            <VisualBrush x:Key="tbTrackUnitPriceHint" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                <VisualBrush.Visual>
+                    <TextBlock Foreground="Gray" FontStyle="Italic" Text="0.99"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Grid.Resources>
+
+        <Menu VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open" Click="bnOpen_Click"/>
+                <Separator/>
+                <MenuItem Header="Exit" Click="bnExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem x:Name="bnExport" Header="Export table" Click="bnExport_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <StatusBar VerticalAlignment="Bottom">
+            <TextBlock x:Name="tbStatus"/>
+        </StatusBar>
+
+        <DataGrid x:Name="dataGrid" Margin="220,25,10,26.5" IsReadOnly="True"/>
+
+        <GroupBox Header="Select entity" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60" Width="205" Margin="10,25,0,0">
+            <ComboBox x:Name="cbQueries" HorizontalAlignment="Left" VerticalAlignment="Top" Width="195" Margin="0,10,-2,0">
+                <ComboBoxItem Content="Invoices Summary" Tag="invoices_summary" IsSelected="True"/>
+                <Separator/>
+                <ComboBoxItem Content="Albums.Table" Tag="albums"/>
+                <ComboBoxItem Content="Artists.Table" Tag="artists"/>
+                <ComboBoxItem Content="Customers.Table" Tag="customers"/>
+                <ComboBoxItem Content="Genres.Table" Tag="genres"/>
+                <ComboBoxItem Content="Invoices.Table" Tag="invoices"/>
+                <ComboBoxItem Content="Invoice Lines.Table" Tag="invoice_lines"/>
+                <ComboBoxItem Content="Tracks.Table" Tag="tracks"/>
+            </ComboBox>
+        </GroupBox>
+
+        <GroupBox Header="Select data" HorizontalAlignment="Left" VerticalAlignment="Top" Height="85" Width="205" Margin="10,85,0,0">
+            <Grid>
+                <Button x:Name="bnSelect" Content="Select" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="65" Margin="10,10,0,0" Click="bnSelect_Click" />
+                <CheckBox x:Name="cbFilter" Content="Use Filter" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="95,13,0,0"/>
+                <TextBox x:Name="tbFilter" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="173" Margin="10,35,0,0" IsEnabled="{Binding IsChecked, ElementName=cbFilter}">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=tbFilter, Path=Text}" Value="">
+                                    <Setter Property="Background" Value="{StaticResource tbFilterHint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Data manipulation" HorizontalAlignment="Left" VerticalAlignment="Top" Height="85" Width="205" Margin="10,175,0,0">
+            <Grid>
+                <Button x:Name="bnInsert" Content="Insert" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="20" Margin="10,10,0,0" Click="bnInsert_Click"/>
+                <Button x:Name="bnEdit" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="20" Margin="103,10,0,0" Click="bnEdit_Click"/>
+                <Button x:Name="bnRemove" Content="Remove selected" HorizontalAlignment="Left" VerticalAlignment="Top" Width="173" Height="20" Margin="10,35,0,0" Click="bnRemove_Click"/>
+            </Grid>
+        </GroupBox>
+
+        <TabControl x:Name="tcEntities" HorizontalAlignment="Left" Width="205" Margin="10,265,0,26.5">
+            <TabItem Header="Albums" Tag="albums">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox Header="Album Id" HorizontalAlignment="Left" Height="46" Margin="0,0,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbAlbumId" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" IsEnabled="False"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Artist*" HorizontalAlignment="Left" Height="46" Margin="0,51,0,0" VerticalAlignment="Top" Width="199">
+                        <ComboBox x:Name="cbAlbumArtist" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="5,0,0,0"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Title*" HorizontalAlignment="Left" Height="46" Margin="0,102,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbAlbumTitle" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbAlbumTitle, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbAlbumTitleHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Artists" Tag="artists">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox Header="Artist Id" HorizontalAlignment="Left" Height="46" Margin="0,0,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbArtistId" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" IsEnabled="False"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Name*" HorizontalAlignment="Left" Height="46" Margin="0,51,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbArtistName" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbArtistName, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbArtistNameHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Customers" Tag="customers">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox Header="Customer Id" HorizontalAlignment="Left" Height="46" Margin="0,0,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbCustomerId" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" IsEnabled="False"/>
+                    </GroupBox>
+
+                    <GroupBox Header="First Name*" HorizontalAlignment="Left" Height="46" Margin="0,51,0,0" VerticalAlignment="Top" Width="100">
+                        <TextBox x:Name="tbCustomerFirstName" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbCustomerFirstName, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbCustomerFirstNameHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+
+                    <GroupBox Header="Last Name*" HorizontalAlignment="Left" Height="46" Margin="100,51,0,0" VerticalAlignment="Top" Width="100">
+                        <TextBox x:Name="tbCustomerLastName" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbCustomerLastName, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbCustomerLastNameHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+
+                    <GroupBox Header="Company" HorizontalAlignment="Left" Height="46" Margin="0,102,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbCustomerCompany" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbCustomerCompany, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbCustomerCompanyHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+
+                    <GroupBox Header="Address" HorizontalAlignment="Left" Height="46" Margin="0,153,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbCustomerAddress" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbCustomerAddress, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbCustomerAddressHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+
+                    <GroupBox Header="City" HorizontalAlignment="Left" Height="46" Margin="0,204,0,0" VerticalAlignment="Top" Width="100">
+                        <TextBox x:Name="tbCustomerCity" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbCustomerCity, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbCustomerCityHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+
+                    <GroupBox Header="Country" HorizontalAlignment="Left" Height="46" Margin="100,204,0,0" VerticalAlignment="Top" Width="100">
+                        <TextBox x:Name="tbCustomerCountry" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbCustomerCountry, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbCustomerCountryHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+
+                    <GroupBox Header="Phone" HorizontalAlignment="Left" Height="46" Margin="0,255,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbCustomerPhone" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbCustomerPhone, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbCustomerPhoneHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+
+                    <GroupBox Header="Email*" HorizontalAlignment="Left" Height="46" Margin="0,306,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbCustomerEmail" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbCustomerEmail, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbCustomerEmailHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Genres" Tag="genres">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox Header="Genre Id" HorizontalAlignment="Left" Height="46" Margin="0,0,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbGenreId" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" IsEnabled="False"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Name*" HorizontalAlignment="Left" Height="46" Margin="0,51,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbGenreName" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbGenreName, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbGenreNameHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Invoices" Tag="invoices">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox Header="Invoice Id" HorizontalAlignment="Left" Height="46" Margin="0,0,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbInvoiceId" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" IsEnabled="False"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Customer*" HorizontalAlignment="Left" Height="46" Margin="0,51,0,0" VerticalAlignment="Top" Width="199">
+                        <ComboBox x:Name="cbInvoiceCustomer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="5,0,0,0"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Date*" HorizontalAlignment="Left" Height="46" Margin="0,102,0,0" VerticalAlignment="Top" Width="199">
+                        <DatePicker x:Name="dpInvoiceDate" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" VerticalAlignment="Top" Width="180"/>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Invoice Lines" Tag="invoice_lines">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox Header="Invoice Line Id" HorizontalAlignment="Left" Height="46" Margin="0,0,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbInvoiceLineId" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" IsEnabled="False"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Invoice*" HorizontalAlignment="Left" Height="46" Margin="0,51,0,0" VerticalAlignment="Top" Width="199">
+                        <ComboBox x:Name="cbInvoiceLineInvoice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="5,0,0,0"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Track*" HorizontalAlignment="Left" Height="46" Margin="0,102,0,0" VerticalAlignment="Top" Width="199">
+                        <ComboBox x:Name="cbInvoiceLineTrack" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="5,0,0,0"/>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Tracks" Tag="tracks">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox Header="Track Id" HorizontalAlignment="Left" Height="46" Margin="0,0,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbTrackId" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" IsEnabled="False"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Album*" HorizontalAlignment="Left" Height="46" Margin="0,51,0,0" VerticalAlignment="Top" Width="199">
+                        <ComboBox x:Name="cbTrackAlbum" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="5,0,0,0"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Genre*" HorizontalAlignment="Left" Height="46" Margin="0,102,0,0" VerticalAlignment="Top" Width="199">
+                        <ComboBox x:Name="cbTrackGenre" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="5,0,0,0"/>
+                    </GroupBox>
+
+                    <GroupBox Header="Name*" HorizontalAlignment="Left" Height="46" Margin="0,153,0,0" VerticalAlignment="Top" Width="199">
+                        <TextBox x:Name="tbTrackName" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbTrackName, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbTrackNameHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+
+                    <GroupBox Header="Milliseconds*" HorizontalAlignment="Left" Height="46" Margin="0,204,0,0" VerticalAlignment="Top" Width="100">
+                        <TextBox x:Name="tbTrackMilliseconds" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbTrackMilliseconds, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbTrackMillisecondsHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+
+                    <GroupBox Header="Bytes*" HorizontalAlignment="Left" Height="46" Margin="100,204,0,0" VerticalAlignment="Top" Width="100">
+                        <TextBox x:Name="tbTrackBytes" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbTrackBytes, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbTrackBytesHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+
+                    <GroupBox Header="UnitPrice*" HorizontalAlignment="Left" Height="46" Margin="0,255,0,0" VerticalAlignment="Top" Width="100">
+                        <TextBox x:Name="tbTrackUnitPrice" HorizontalAlignment="Left" Height="23" Margin="5,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=tbTrackUnitPrice, Path=Text}" Value="">
+                                            <Setter Property="Background" Value="{StaticResource tbTrackUnitPriceHint}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
