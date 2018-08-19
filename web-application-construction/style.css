@@ -1,0 +1,27 @@
+body,html
+{
+	margin:0;
+	padding:0px;
+	height:100%;
+	background: radial-gradient(#555555, #000000);
+}
+
+table
+{
+	height:100%;
+	width:70%;
+	min-width:840px;
+	border-collapse:collapse;
+	margin:0 auto;
+}
+
+td
+{
+	border:outset 2px grey;
+	padding:0px;
+	vertical-align:top;
+}
+
+A {color: #cecece;}
+A:visited {color: #cecece;}
+A:active {color: #ff0000;}
