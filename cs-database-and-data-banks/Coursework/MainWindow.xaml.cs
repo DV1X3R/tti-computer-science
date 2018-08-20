@@ -385,7 +385,7 @@ namespace Coursework
                         Name = tbTrackName.Text == "" ? null : tbTrackName.Text,
                         Milliseconds = tbTrackMilliseconds.Text == "" ? 0 : Convert.ToInt32(tbTrackMilliseconds.Text),
                         Bytes = tbTrackBytes.Text == "" ? 0 : Convert.ToInt32(tbTrackBytes.Text),
-                        UnitPrice = tbTrackUnitPrice.Text == "" ? 0 : Convert.ToInt32(tbTrackUnitPrice.Text)
+                        UnitPrice = tbTrackUnitPrice.Text == "" ? 0 : Convert.ToDouble(tbTrackUnitPrice.Text)
                     };
                     break;
 
