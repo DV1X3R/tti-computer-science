@@ -11,7 +11,7 @@
 * [Discrete Mathematics](https://github.com/DV1X3R/tti-projects/tree/master/discrete-mathematics)
 * [Object-Oriented Programming (C#)](https://github.com/DV1X3R/tti-projects/tree/master/cs-object-oriented-programming)
 * [Database and Data Banks (C#)](https://github.com/DV1X3R/tti-projects/tree/master/cs-database-and-data-banks)
-* Operating Systems (Bash) - TBP
+* [Operating Systems (Bash)](https://github.com/DV1X3R/tti-projects/tree/master/bash-operating-systems)
 * [Probability Theory and Mathematical Statistics (R)](https://github.com/DV1X3R/tti-projects/tree/master/r-probability-theory-and-mathematical-statistics)
 * [Embedded Electronic Devices and Programming (C)](https://github.com/DV1X3R/tti-projects/tree/master/c-electronic-devices)
 
