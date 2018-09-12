@@ -22,3 +22,7 @@
 * [Software Engineering (Java)](https://github.com/DV1X3R/tti-projects/tree/master/java-software-engineering)
 * [Application development with Java](https://github.com/DV1X3R/tti-projects/tree/master/java-application-development)
 * [Logical Programming (Prolog)](https://github.com/DV1X3R/tti-projects/tree/master/prolog-logical-programming)
+
+### IV. Fourth Year
+* [Software Engineering (C#)](https://github.com/Ary0n-Z/SmartPong)
+* [Algorithmic Means of Computer Graphics (C++)](https://github.com/DV1X3R/tti-projects/tree/master/cpp-algorithmic-means-of-computer-graphics)

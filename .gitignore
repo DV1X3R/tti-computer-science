@@ -10,3 +10,4 @@ out/
 *.VC.VC.opendb
 __pycache__/
 packages/
+*.out*
