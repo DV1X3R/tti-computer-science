@@ -4,7 +4,6 @@
 #include <GL/glut.h>
 #endif
 
-#include <iostream>
 #include <math.h>
 
 void reshape(int w, int h);
@@ -26,34 +25,31 @@ int main(int argc, char *argv[])
 
 void reshape(int w, int h)
 {
-    printf(">Reshape \n");
-    glViewport(0, 0, w, h); // Настройка окна
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-
-    gluOrtho2D(-100, 100, -100, 100); // Мировые координаты
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    glViewport(0, 0, w, h);           // настройка окна: порт просмотра (область вывода)
+    glMatrixMode(GL_PROJECTION);      // выбор матрицы, над которой будет производится работа
+    glLoadIdentity();                 // заменяет текущую матрицу на единичную
+    gluOrtho2D(-100, 100, -100, 100); // устанавливает для окна левый нижний угол (left, bottom) и правый верхний угол (right, top) в мировых координатах
+    glMatrixMode(GL_MODELVIEW);       // выбор матрицы, над которой будет производится работа
+    glLoadIdentity();                 // заменяет текущую матрицу на единичную
 }
 
 void display()
 {
-    printf(">Display \n");
-    glClearColor(1, 1, 1, 0);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(1, 1, 1, 0);     // Установка цвета экрана
+    glClear(GL_COLOR_BUFFER_BIT); // Очищение окна установленным цветом очистки
 
     // Отрисовка осей
-    glColor3d(0, 0, 0);
-    glBegin(GL_LINES);
-    glVertex2f(-100, 0);
-    glVertex2f(100, 0);
-    glVertex2f(0, 100);
-    glVertex2f(0, -100);
+    glColor3d(0, 0, 0);  // установка цвета
+    glBegin(GL_LINES);   // каждая отдельная пара вершин задает линию
+    glVertex2f(-100, 0); // горизонтальная линия - лево
+    glVertex2f(100, 0);  // горизонтальная линия - право
+    glVertex2f(0, -100); // вертикальная линия - низ
+    glVertex2f(0, 100);  // вертикальная линия - верх
     glEnd();
 
     // Отрисовка функции
-    glColor3d(0, 0, 1);
-    glBegin(GL_LINE_STRIP);
+    glColor3d(0, 0, 1);     // установка цвета
+    glBegin(GL_LINE_STRIP); // каждая пара вершин задает линию (т.е. конец предыдущей линии является началом следующей)
     for (double x = -100; x <= 100; x += 0.5)
         glVertex2f(x, abs(((1 / 4.0) * x) + 3 * cos(100 * x) * sin(x)));
     glEnd();
