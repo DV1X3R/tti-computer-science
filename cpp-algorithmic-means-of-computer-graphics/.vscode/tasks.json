@@ -7,6 +7,11 @@
             "label": "build1",
             "type": "shell",
             "command": "g++ -g Exercise1/*.cpp -framework OpenGL -framework GLUT"
+        },
+        {
+            "label": "build1_2",
+            "type": "shell",
+            "command": "g++ -g Exercise1_2/*.cpp -framework OpenGL -framework GLUT"
         }
     ]
 }
