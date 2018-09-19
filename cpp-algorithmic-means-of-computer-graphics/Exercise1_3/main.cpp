@@ -79,8 +79,6 @@ void display()
 void readPointsFromFile(const char *filePath, vector<Point> &pointVector)
 {
     fstream f(filePath, ios::in);
-
-    int count;
     Point tmpPoint;
 
     while (f)
@@ -95,8 +93,7 @@ void readPointsFromFile(const char *filePath, vector<Point> &pointVector)
 void readCodesFromFile(const char *filePath, vector<int> &codeVector)
 {
     fstream f(filePath, ios::in);
-
-    int count, tmpCode;
+    int tmpCode;
 
     while (f)
     {
