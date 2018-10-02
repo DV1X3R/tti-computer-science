@@ -26,4 +26,5 @@
 ### IV. Fourth Year
 * [Software Engineering (C#): Coursework - SmartPong](https://github.com/Ary0n-Z/SmartPong)
 * [Algorithmic Means of Computer Graphics (C++): Assignments - OpenGL](https://github.com/DV1X3R/tti-projects/tree/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics)
-* [Bachelor's Thesis: <ProjectName>](https://github.com/DV1X3R/tti-projects/tree/master/bachelors-thesis)
+
+### [Bachelor's Thesis: \Project Name\](https://github.com/DV1X3R/tti-projects/tree/master/bachelors-thesis)
