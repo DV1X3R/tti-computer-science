@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "1. (lldb) Launch Exercise",
+            "name": "1_1. (lldb) Launch Exercise",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/a.out",
@@ -15,7 +15,7 @@
             "environment": [],
             "externalConsole": true,
             "MIMode": "lldb",
-            "preLaunchTask": "build1"
+            "preLaunchTask": "build1_1"
         },
         {
             "name": "1_2. (lldb) Launch Exercise",
@@ -44,7 +44,7 @@
             "preLaunchTask": "build1_3"
         },
         {
-            "name": "2. (lldb) Launch Exercise",
+            "name": "2_1. (lldb) Launch Exercise",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/a.out",
@@ -54,7 +54,7 @@
             "environment": [],
             "externalConsole": true,
             "MIMode": "lldb",
-            "preLaunchTask": "build2"
+            "preLaunchTask": "build2_1"
         }
     ]
 }
