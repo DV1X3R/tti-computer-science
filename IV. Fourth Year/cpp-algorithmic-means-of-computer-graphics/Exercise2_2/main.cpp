@@ -5,7 +5,8 @@
 #endif
 
 float heart[3][3] = {{0, 75, 0}, {-40, 100, 0}, {0, 15, 0}};
-void displayCurrentHeart();
+
+void bezierCurrentHeart();
 
 void reshape(int w, int h);
 void display();
@@ -44,18 +45,24 @@ void display()
     glClearColor(1, 1, 1, 0);     // Установка цвета экрана
     glClear(GL_COLOR_BUFFER_BIT); // Очищение окна установленным цветом очистки
 
-    displayCurrentHeart(); // отображение одной стороны
-    heart[1][0] *= -1;     // инверсия 'x'
-    displayCurrentHeart(); // отображение противоположной стороны
+    bezierCurrentHeart(); // отображение одной стороны
+    heart[1][0] *= -1;    // инверсия 'x'
+    bezierCurrentHeart(); // отображение противоположной стороны
 
     glFlush(); // GLUT_SINGLE
 }
 
-void displayCurrentHeart()
+void bezierCurrentHeart()
 {
     int steps = 30; // Количество прямых линий на кривой
 
-    glMap1f(GL_MAP1_VERTEX_3, 0.0, 1.0, 3, 3, *heart); // Задание параметров кривых
+    glMap1f( // Задание параметров кривых
+        GL_MAP1_VERTEX_3,
+        0.0, 1.0,      // Минимальное и максимальное значения параметра кривой t
+        3,             // Смещение между точками в массиве (stride)
+        3,             // Число точек в массиве
+        &heart[0][0]); // Значения контрольных точек
+
     glBegin(GL_LINE_STRIP);
     for (int i = 0; i <= steps; i++)
         glEvalCoord1f((float)i / steps);
