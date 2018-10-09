@@ -44,10 +44,12 @@ int main(int argc, char *argv[])
     glutReshapeFunc(reshape);                     // Функция обработки изменения размеров окна
     glutDisplayFunc(display);                     // Функция рисования изображения
 
+    glColor3d(0, 0, 0); // Установка цвета рисования
     GLint *planesCount = new GLint();
-    glGetIntegerv(GL_MAX_CLIP_PLANES, planesCount);
+    glGetIntegerv(GL_MAX_CLIP_PLANES, planesCount); // Узнать количество плоскостей
     printf("Clip Planes Count: %i \n", *planesCount);
-    glClipPlane(GL_CLIP_PLANE0, plane);
+    glClipPlane(GL_CLIP_PLANE0, plane); // Задание плоскости отсечения
+    glEnable(GL_CLIP_PLANE0); // Включение плоскости отсечения
 
     glutMainLoop();
 
@@ -69,9 +71,6 @@ void display()
     glClearColor(1, 1, 1, 0);     // Установка цвета экрана
     glClear(GL_COLOR_BUFFER_BIT); // Очищение окна установленным цветом очистки
 
-    glEnable(GL_CLIP_PLANE0);
-
-    glColor3d(0, 0, 0); // установка цвета
     for (int i = 0; i < code.size(); i++)
     {
         if (code[i] > 0)
@@ -85,8 +84,6 @@ void display()
         currentPoint.x = point[abs(code[i]) - 1].x;
         currentPoint.y = point[abs(code[i]) - 1].y;
     }
-
-    glDisable(GL_CLIP_PLANE0);
 
     glFlush(); // GLUT_SINGLE
 }
