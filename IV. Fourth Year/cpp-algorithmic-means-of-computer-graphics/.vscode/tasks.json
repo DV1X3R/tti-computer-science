@@ -32,6 +32,11 @@
             "label": "build2_3",
             "type": "shell",
             "command": "g++ -g Exercise2_3/*.cpp -framework OpenGL -framework GLUT"
+        },
+        {
+            "label": "build2_4",
+            "type": "shell",
+            "command": "g++ -g Exercise2_4/*.cpp -framework OpenGL -framework GLUT"
         }
     ]
 }
