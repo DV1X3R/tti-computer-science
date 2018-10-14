@@ -1,7 +1,7 @@
 # Transport and Telecommunication Institute
 ## Computer Science (BSc, Bachelor's degree)
 
-## [Bachelor's Thesis: Chat Analysis Platform](https://github.com/DV1X3R/tti-computer-science/tree/master/bachelors-thesis)
+### [Bachelor's Thesis: Chat Analysis Platform](https://github.com/DV1X3R/tti-computer-science/tree/master/bachelors-thesis)
 
 ### I. First Year (2015-2016)
 * [Programming (C++): Assignments and Coursework](https://github.com/DV1X3R/tti-computer-science/tree/master/I.%20First%20Year/cpp-programming)
