@@ -12,6 +12,7 @@
         "string": "cpp",
         "system_error": "cpp",
         "__string": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "ios": "cpp"
     }
 }
