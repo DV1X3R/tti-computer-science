@@ -105,7 +105,6 @@ void processNormalKeys(unsigned char key, int x, int y)
 
 void processSpecialKeys(int key, int x, int y)
 {
-    printf("%i \n", key);
     switch (key)
     {
     case GLUT_KEY_UP:
