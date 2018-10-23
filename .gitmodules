@@ -1,3 +1,6 @@
 [submodule "IV. Fourth Year/cs-software-engineering-cp"]
 	path = IV. Fourth Year/cs-software-engineering-cp
 	url = https://github.com/Ary0n-Z/SmartPong.git
+[submodule "IV. Fourth Year/cs-numerical-methods/tti-numerical-lw"]
+	path = IV. Fourth Year/cs-numerical-methods/tti-numerical-lw
+	url = https://github.com/DV1X3R/tti-numerical-lw.git
