@@ -26,5 +26,6 @@
 * [Logical Programming (Prolog): Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/III.%20Third%20Year/prolog-logical-programming)
 
 ### IV. Fourth Year (2018-2019)
+* [Numerical Methods in Computer Calculations (C#/MatLab)](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-numerical)
 * [Software Engineering (C#): Coursework](https://github.com/Ary0n-Z/SmartPong)
 * [Algorithmic Means of Computer Graphics (C++): Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics)
