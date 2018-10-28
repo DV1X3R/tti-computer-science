@@ -399,15 +399,16 @@ P2 = P1 [Rz^-1(θv) Ry^-1(φv) Rz(α) Ry^-1(-φv) Rz^-1(-θv)]
 3. Поворот
 4. Перенос СК назад: T*^-1(-Xa, -Ya, -Za)
   
+
+Этапы проецирования
+1. Видовое преобразование (МСК -> ВСК)
+2. Перспективное преобразование (ВСК -> ЭСК)
+
 Видовое преобразование как композиция базовых преобразований
 1. Перенос ЦМСК в точку наблюдения: T*^-1(Xe, Ye, Ze)
 2. Поворот СК вокруг Z на -(π/2 - θ): Rz*^-1(θ - π/2)
 3. Поворот СК вокруг X на (π - φ): Rx*^-1(π - φ)
 4. Изменение направления оси X: Mx*^-1
-
-Этапы проецирования
-1. Видовое преобразование (МСК -> ВСК)
-2. Перспективное преобразование (ВСК -> ЭСК)
 
 Матрица видового преобразования
 Pe* = Pw* * V* (E) = |Xw  Yw  Zw  1| * [[-sin(θ), -cos(φ)cos(θ), -sin(φ)cos(θ), 0], [cos(θ), -cos(φ)sin(θ), -sin(φ)sin(θ), 0], [0, sin(φ), -cos(φ), 0], [0, 0, p, 1]] = |Xe  Ye  Ze  1|
@@ -428,8 +429,8 @@ P.S. Для того чтобы в центр области вывода про
 ```cpp
 // Параллельная проекция (ортографическая)
 // создание матрицы проекций в усеченном объем видимости (параллелепипед видимости) в левосторонней системе координат
-void glOrtho (GLdouble left,  GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far);
-void gluOrtho2D (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top); // near и far устанавливаются равными -1 и 1
+void glOrtho (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far);
+void gluOrtho2D (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top); // near и far устанавливаются равными -1 и 1
 
 // Центральная (перспективная) проекция
 // строит пирамиду охвата видимости
@@ -440,4 +441,10 @@ void gluPerspective (
     GLdouble zFar // расстояние до дальней плоскости отсечения
 );
 
+// Положение наблюдателя (точки наблюдения)
+void gluLookAt (
+    GLdouble eyex, GLdouble eyey, GLdouble eyez, // координаты точки наблюдения
+    GLdouble atx, GLdouble aty, GLdouble atz, // координаты прицельной точки (точки, на которую направлена камера)
+    GLdouble upx, GLdouble upy, GLdouble upz // направление, которое следует считать верхним.
+);
 ```
