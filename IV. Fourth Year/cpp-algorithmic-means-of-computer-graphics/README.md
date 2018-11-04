@@ -76,7 +76,7 @@ PG DN – вращение объектов против часовой стре
   
   
 * Screenshot
-![Oops. Image was here](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics/screenshot.png)
+<img src="https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics/screenshot.png">
   
 ## Notes
 glutInitDisplayMode
