@@ -8,4 +8,4 @@
 5. На основе автомата составить и отладить программу лексического анализатора.  
   
 * Screenshot
-![Oops. Image was here](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-compiler-construction/screenshot.png)
+![Oops. Image was here](https://raw.githubusercontent.com/DV1X3R/tti-computer-science/master/IV.%20Fourth%20Year/cs-compiler-construction/screenshot.png)

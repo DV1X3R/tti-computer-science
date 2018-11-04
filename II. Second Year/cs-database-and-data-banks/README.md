@@ -9,4 +9,4 @@
 * To open FillDb project please make sure SSDT is installed. This ETL project extracts data from the sqlite-sample-database.
   
 * Screenshot
-![Oops. Image was here](https://github.com/DV1X3R/tti-computer-science/tree/master/II.%20Second%20Year/cs-database-and-data-banks/screenshot.png)
+![Oops. Image was here](https://raw.githubusercontent.com/DV1X3R/tti-computer-science/master/II.%20Second%20Year/cs-database-and-data-banks/screenshot.png)
