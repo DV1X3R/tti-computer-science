@@ -27,11 +27,12 @@
 
 ### IV. Fourth Year (2018-2019)
 * Numerical Methods in Computer Calculations: Homework (TBI)
-[//]: <> (https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-numerical/homework)
-* [Numerical Methods in Computer Calculations: Laboratory (external)](https://github.com/DV1X3R/tti-numerical-lw)
-* [Software Engineering (C#): Coursework (external)](https://github.com/Ary0n-Z/SmartPong)
+* [Numerical Methods in Computer Calculations: Laboratory <External Repo>](https://github.com/DV1X3R/tti-numerical-lw)
+* Development in .Net environment (C#): Assignments (TBI)
+* [Software Engineering (C#): Coursework <External Repo>](https://github.com/Ary0n-Z/SmartPong)
 * [Compiler Construction (C#): Assignment](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-compiler-construction)
 * [Algorithmic Means of Computer Graphics (C++): Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics)
+* Web Application Development Tools (TBI)
   
-  
+
 [Joe Esposito You're The Best Around](https://www.youtube.com/watch?v=E-WHW-QNswE)
