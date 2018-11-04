@@ -31,6 +31,5 @@
 * [Compiler Construction (C#)](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-compilers)
 * [Algorithmic Means of Computer Graphics (C++): Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics)
   
-https://www.youtube.com/watch?v=E-WHW-QNswE
-[![Joe Esposito You're The Best Around](https://img.youtube.com/vi/E-WHW-QNswE/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 
+[![Joe Esposito You're The Best Around](https://img.youtube.com/vi/E-WHW-QNswE/0.jpg)](https://www.youtube.com/watch?v=E-WHW-QNswE)
