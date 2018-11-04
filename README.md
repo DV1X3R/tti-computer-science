@@ -28,8 +28,7 @@
 ### IV. Fourth Year (2018-2019)
 * [Numerical Methods in Computer Calculations (C#/MatLab)](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-numerical)
 * [Software Engineering (C#): Coursework](https://github.com/Ary0n-Z/SmartPong)
-* [Compiler Construction (C#)](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-compilers)
+* [Compiler Construction (C#)](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-compiler-construction)
 * [Algorithmic Means of Computer Graphics (C++): Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics)
   
-
-[![Joe Esposito You're The Best Around](https://img.youtube.com/vi/E-WHW-QNswE/0.jpg)](https://www.youtube.com/watch?v=E-WHW-QNswE)
+[Joe Esposito You're The Best Around](https://www.youtube.com/watch?v=E-WHW-QNswE)
