@@ -18,3 +18,10 @@
 1. Реализовать модель системы, на любом языке программирования используя событийный принцип отсчета модельного времени. Разработать генераторы случайных чисел.
 1. Протестировать реализованные генераторы случайных чисел.
 1. Найти значения показателей функционирования системы - { Коэффициент простоя сервера, Среднее число заявок, стоявших в очереди или Максимальное число заявок, стоявших в очереди }.
+
+  
+* Screenshot.Test
+![Oops. Image was here](https://raw.githubusercontent.com/DV1X3R/tti-computer-science/master/III.%20Third%20Year/python-systems-modelling/screenshot.test.png)  
+  
+* Screenshot.Model
+![Oops. Image was here](https://raw.githubusercontent.com/DV1X3R/tti-computer-science/master/III.%20Third%20Year/python-systems-modelling/screenshot.model.png)
