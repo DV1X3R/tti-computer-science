@@ -133,6 +133,19 @@
             "externalConsole": true,
             "MIMode": "lldb",
             "preLaunchTask": "build4_1"
+        },
+        {
+            "name": "5_1. (lldb) Launch Exercise",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/a.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "lldb",
+            "preLaunchTask": "build5_1"
         }
     ]
 }
