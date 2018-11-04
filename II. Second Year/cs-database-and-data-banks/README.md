@@ -8,5 +8,5 @@
 * Do not load two projects at the same time (Coursework and Coursework-FillDb), it will take long time to load (due the Microsoft)
 * To open FillDb project please make sure SSDT is installed. This ETL project extracts data from the sqlite-sample-database.
   
-* Screenshot
+## How does it look?
 ![Oops. Image was here](https://raw.githubusercontent.com/DV1X3R/tti-computer-science/master/II.%20Second%20Year/cs-database-and-data-banks/screenshot.png)
