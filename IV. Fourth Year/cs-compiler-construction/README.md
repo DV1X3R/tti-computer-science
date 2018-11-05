@@ -7,5 +7,5 @@
 4. Для полученной грамматики построить диаграмму состояний соответствующего конечного автомата.  
 5. На основе автомата составить и отладить программу лексического анализатора.  
   
-## How does it look?
+## But how does it look?
 ![Oops. Image was here](https://raw.githubusercontent.com/DV1X3R/tti-computer-science/master/IV.%20Fourth%20Year/cs-compiler-construction/screenshot.png)

@@ -19,7 +19,7 @@
 1. Протестировать реализованные генераторы случайных чисел.
 1. Найти значения показателей функционирования системы - { Коэффициент простоя сервера, Среднее число заявок, стоявших в очереди или Максимальное число заявок, стоявших в очереди }.
   
-## How does it look?
+## But how does it look?
 * Test
 ![Oops. Image was here](https://raw.githubusercontent.com/DV1X3R/tti-computer-science/master/III.%20Third%20Year/python-systems-modelling/screenshot.test.png)  
   
