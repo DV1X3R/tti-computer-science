@@ -60,16 +60,18 @@
             this.LEXEME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stringDelimiterGroupBox = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lexemesGroupBox = new System.Windows.Forms.GroupBox();
-            this.delimiters2Panel = new System.Windows.Forms.Panel();
-            this.delimiters1Panel = new System.Windows.Forms.Panel();
-            this.sourcePanel = new System.Windows.Forms.Panel();
-            this.keywordsPanel = new System.Windows.Forms.Panel();
-            this.lexemesPanel = new System.Windows.Forms.Panel();
-            this.identifiersPanel = new System.Windows.Forms.Panel();
-            this.integersPanel = new System.Windows.Forms.Panel();
             this.stringsPanel = new System.Windows.Forms.Panel();
+            this.integersPanel = new System.Windows.Forms.Panel();
+            this.identifiersPanel = new System.Windows.Forms.Panel();
+            this.lexemesPanel = new System.Windows.Forms.Panel();
+            this.lexemesGroupBox = new System.Windows.Forms.GroupBox();
+            this.keywordsPanel = new System.Windows.Forms.Panel();
+            this.sourcePanel = new System.Windows.Forms.Panel();
+            this.delimiters1Panel = new System.Windows.Forms.Panel();
+            this.delimiters2Panel = new System.Windows.Forms.Panel();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.sourceGroupBox.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.keywordsGroupBox.SuspendLayout();
             this.stringsGroupBox.SuspendLayout();
@@ -80,15 +82,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.scannerDataGridView)).BeginInit();
             this.stringDelimiterGroupBox.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.lexemesGroupBox.SuspendLayout();
-            this.delimiters2Panel.SuspendLayout();
-            this.delimiters1Panel.SuspendLayout();
-            this.sourcePanel.SuspendLayout();
-            this.keywordsPanel.SuspendLayout();
-            this.lexemesPanel.SuspendLayout();
-            this.identifiersPanel.SuspendLayout();
-            this.integersPanel.SuspendLayout();
             this.stringsPanel.SuspendLayout();
+            this.integersPanel.SuspendLayout();
+            this.identifiersPanel.SuspendLayout();
+            this.lexemesPanel.SuspendLayout();
+            this.lexemesGroupBox.SuspendLayout();
+            this.keywordsPanel.SuspendLayout();
+            this.sourcePanel.SuspendLayout();
+            this.delimiters1Panel.SuspendLayout();
+            this.delimiters2Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // sourceTextBox
@@ -120,7 +122,9 @@
             // 
             // statusStrip
             // 
-            this.statusStrip.Location = new System.Drawing.Point(0, 614);
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 615);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(864, 22);
             this.statusStrip.TabIndex = 4;
@@ -150,19 +154,19 @@
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.openFileToolStripMenuItem.Text = "Open File";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -178,7 +182,7 @@
             // scanToolStripMenuItem
             // 
             this.scanToolStripMenuItem.Name = "scanToolStripMenuItem";
-            this.scanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.scanToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.scanToolStripMenuItem.Text = "Run Scan";
             this.scanToolStripMenuItem.Click += new System.EventHandler(this.runScanToolStripMenuItem_Click);
             // 
@@ -187,7 +191,7 @@
             this.autoScanToolStripMenuItem.Checked = true;
             this.autoScanToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.autoScanToolStripMenuItem.Name = "autoScanToolStripMenuItem";
-            this.autoScanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.autoScanToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.autoScanToolStripMenuItem.Text = "Auto-Scan";
             this.autoScanToolStripMenuItem.Click += new System.EventHandler(this.autoScanToolStripMenuItem_Click);
             // 
@@ -238,7 +242,7 @@
             this.stringsGroupBox.Location = new System.Drawing.Point(5, 5);
             this.stringsGroupBox.Name = "stringsGroupBox";
             this.stringsGroupBox.Padding = new System.Windows.Forms.Padding(10);
-            this.stringsGroupBox.Size = new System.Drawing.Size(124, 309);
+            this.stringsGroupBox.Size = new System.Drawing.Size(124, 310);
             this.stringsGroupBox.TabIndex = 0;
             this.stringsGroupBox.TabStop = false;
             this.stringsGroupBox.Text = "Strings";
@@ -249,7 +253,7 @@
             this.stringsListBox.FormattingEnabled = true;
             this.stringsListBox.Location = new System.Drawing.Point(10, 23);
             this.stringsListBox.Name = "stringsListBox";
-            this.stringsListBox.Size = new System.Drawing.Size(104, 276);
+            this.stringsListBox.Size = new System.Drawing.Size(104, 277);
             this.stringsListBox.TabIndex = 7;
             // 
             // integersGroupBox
@@ -259,7 +263,7 @@
             this.integersGroupBox.Location = new System.Drawing.Point(5, 5);
             this.integersGroupBox.Name = "integersGroupBox";
             this.integersGroupBox.Padding = new System.Windows.Forms.Padding(10);
-            this.integersGroupBox.Size = new System.Drawing.Size(124, 309);
+            this.integersGroupBox.Size = new System.Drawing.Size(124, 310);
             this.integersGroupBox.TabIndex = 0;
             this.integersGroupBox.TabStop = false;
             this.integersGroupBox.Text = "Integers";
@@ -270,7 +274,7 @@
             this.integersListBox.FormattingEnabled = true;
             this.integersListBox.Location = new System.Drawing.Point(10, 23);
             this.integersListBox.Name = "integersListBox";
-            this.integersListBox.Size = new System.Drawing.Size(104, 276);
+            this.integersListBox.Size = new System.Drawing.Size(104, 277);
             this.integersListBox.TabIndex = 6;
             // 
             // identifiersGroupBox
@@ -280,7 +284,7 @@
             this.identifiersGroupBox.Location = new System.Drawing.Point(5, 5);
             this.identifiersGroupBox.Name = "identifiersGroupBox";
             this.identifiersGroupBox.Padding = new System.Windows.Forms.Padding(10);
-            this.identifiersGroupBox.Size = new System.Drawing.Size(124, 309);
+            this.identifiersGroupBox.Size = new System.Drawing.Size(124, 310);
             this.identifiersGroupBox.TabIndex = 0;
             this.identifiersGroupBox.TabStop = false;
             this.identifiersGroupBox.Text = "Identifiers";
@@ -291,7 +295,7 @@
             this.identifiersListBox.FormattingEnabled = true;
             this.identifiersListBox.Location = new System.Drawing.Point(10, 23);
             this.identifiersListBox.Name = "identifiersListBox";
-            this.identifiersListBox.Size = new System.Drawing.Size(104, 276);
+            this.identifiersListBox.Size = new System.Drawing.Size(104, 277);
             this.identifiersListBox.TabIndex = 5;
             // 
             // stringDelimiterTextBox
@@ -334,7 +338,8 @@
             "(",
             ")",
             ",",
-            "\'"});
+            "\'",
+            "-"});
             this.delimiters1ListBox.Location = new System.Drawing.Point(10, 23);
             this.delimiters1ListBox.Name = "delimiters1ListBox";
             this.delimiters1ListBox.Size = new System.Drawing.Size(104, 161);
@@ -377,7 +382,7 @@
             this.scannerDataGridView.Location = new System.Drawing.Point(10, 23);
             this.scannerDataGridView.Name = "scannerDataGridView";
             this.scannerDataGridView.ReadOnly = true;
-            this.scannerDataGridView.Size = new System.Drawing.Size(408, 276);
+            this.scannerDataGridView.Size = new System.Drawing.Size(408, 277);
             this.scannerDataGridView.TabIndex = 8;
             // 
             // TYPE
@@ -431,8 +436,48 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(864, 590);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(864, 591);
             this.tableLayoutPanel1.TabIndex = 10;
+            // 
+            // stringsPanel
+            // 
+            this.stringsPanel.Controls.Add(this.stringsGroupBox);
+            this.stringsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stringsPanel.Location = new System.Drawing.Point(727, 268);
+            this.stringsPanel.Name = "stringsPanel";
+            this.stringsPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.stringsPanel.Size = new System.Drawing.Size(134, 320);
+            this.stringsPanel.TabIndex = 11;
+            // 
+            // integersPanel
+            // 
+            this.integersPanel.Controls.Add(this.integersGroupBox);
+            this.integersPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.integersPanel.Location = new System.Drawing.Point(587, 268);
+            this.integersPanel.Name = "integersPanel";
+            this.integersPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.integersPanel.Size = new System.Drawing.Size(134, 320);
+            this.integersPanel.TabIndex = 11;
+            // 
+            // identifiersPanel
+            // 
+            this.identifiersPanel.Controls.Add(this.identifiersGroupBox);
+            this.identifiersPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.identifiersPanel.Location = new System.Drawing.Point(447, 268);
+            this.identifiersPanel.Name = "identifiersPanel";
+            this.identifiersPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.identifiersPanel.Size = new System.Drawing.Size(134, 320);
+            this.identifiersPanel.TabIndex = 11;
+            // 
+            // lexemesPanel
+            // 
+            this.lexemesPanel.Controls.Add(this.lexemesGroupBox);
+            this.lexemesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lexemesPanel.Location = new System.Drawing.Point(3, 268);
+            this.lexemesPanel.Name = "lexemesPanel";
+            this.lexemesPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.lexemesPanel.Size = new System.Drawing.Size(438, 320);
+            this.lexemesPanel.TabIndex = 11;
             // 
             // lexemesGroupBox
             // 
@@ -441,20 +486,30 @@
             this.lexemesGroupBox.Location = new System.Drawing.Point(5, 5);
             this.lexemesGroupBox.Name = "lexemesGroupBox";
             this.lexemesGroupBox.Padding = new System.Windows.Forms.Padding(10);
-            this.lexemesGroupBox.Size = new System.Drawing.Size(428, 309);
+            this.lexemesGroupBox.Size = new System.Drawing.Size(428, 310);
             this.lexemesGroupBox.TabIndex = 11;
             this.lexemesGroupBox.TabStop = false;
             this.lexemesGroupBox.Text = "Lexemes Table";
             // 
-            // delimiters2Panel
+            // keywordsPanel
             // 
-            this.delimiters2Panel.Controls.Add(this.delimiters2GroupBox);
-            this.delimiters2Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.delimiters2Panel.Location = new System.Drawing.Point(727, 3);
-            this.delimiters2Panel.Name = "delimiters2Panel";
-            this.delimiters2Panel.Padding = new System.Windows.Forms.Padding(5);
-            this.delimiters2Panel.Size = new System.Drawing.Size(134, 259);
-            this.delimiters2Panel.TabIndex = 11;
+            this.keywordsPanel.Controls.Add(this.keywordsGroupBox);
+            this.keywordsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.keywordsPanel.Location = new System.Drawing.Point(447, 3);
+            this.keywordsPanel.Name = "keywordsPanel";
+            this.keywordsPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.keywordsPanel.Size = new System.Drawing.Size(134, 259);
+            this.keywordsPanel.TabIndex = 11;
+            // 
+            // sourcePanel
+            // 
+            this.sourcePanel.Controls.Add(this.sourceGroupBox);
+            this.sourcePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sourcePanel.Location = new System.Drawing.Point(3, 3);
+            this.sourcePanel.Name = "sourcePanel";
+            this.sourcePanel.Padding = new System.Windows.Forms.Padding(5);
+            this.sourcePanel.Size = new System.Drawing.Size(438, 259);
+            this.sourcePanel.TabIndex = 11;
             // 
             // delimiters1Panel
             // 
@@ -467,71 +522,26 @@
             this.delimiters1Panel.Size = new System.Drawing.Size(134, 259);
             this.delimiters1Panel.TabIndex = 11;
             // 
-            // sourcePanel
+            // delimiters2Panel
             // 
-            this.sourcePanel.Controls.Add(this.sourceGroupBox);
-            this.sourcePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sourcePanel.Location = new System.Drawing.Point(3, 3);
-            this.sourcePanel.Name = "sourcePanel";
-            this.sourcePanel.Padding = new System.Windows.Forms.Padding(5);
-            this.sourcePanel.Size = new System.Drawing.Size(438, 259);
-            this.sourcePanel.TabIndex = 11;
+            this.delimiters2Panel.Controls.Add(this.delimiters2GroupBox);
+            this.delimiters2Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.delimiters2Panel.Location = new System.Drawing.Point(727, 3);
+            this.delimiters2Panel.Name = "delimiters2Panel";
+            this.delimiters2Panel.Padding = new System.Windows.Forms.Padding(5);
+            this.delimiters2Panel.Size = new System.Drawing.Size(134, 259);
+            this.delimiters2Panel.TabIndex = 11;
             // 
-            // keywordsPanel
+            // toolStripStatusLabel
             // 
-            this.keywordsPanel.Controls.Add(this.keywordsGroupBox);
-            this.keywordsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.keywordsPanel.Location = new System.Drawing.Point(447, 3);
-            this.keywordsPanel.Name = "keywordsPanel";
-            this.keywordsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.keywordsPanel.Size = new System.Drawing.Size(134, 259);
-            this.keywordsPanel.TabIndex = 11;
-            // 
-            // lexemesPanel
-            // 
-            this.lexemesPanel.Controls.Add(this.lexemesGroupBox);
-            this.lexemesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lexemesPanel.Location = new System.Drawing.Point(3, 268);
-            this.lexemesPanel.Name = "lexemesPanel";
-            this.lexemesPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.lexemesPanel.Size = new System.Drawing.Size(438, 319);
-            this.lexemesPanel.TabIndex = 11;
-            // 
-            // identifiersPanel
-            // 
-            this.identifiersPanel.Controls.Add(this.identifiersGroupBox);
-            this.identifiersPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.identifiersPanel.Location = new System.Drawing.Point(447, 268);
-            this.identifiersPanel.Name = "identifiersPanel";
-            this.identifiersPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.identifiersPanel.Size = new System.Drawing.Size(134, 319);
-            this.identifiersPanel.TabIndex = 11;
-            // 
-            // integersPanel
-            // 
-            this.integersPanel.Controls.Add(this.integersGroupBox);
-            this.integersPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.integersPanel.Location = new System.Drawing.Point(587, 268);
-            this.integersPanel.Name = "integersPanel";
-            this.integersPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.integersPanel.Size = new System.Drawing.Size(134, 319);
-            this.integersPanel.TabIndex = 11;
-            // 
-            // stringsPanel
-            // 
-            this.stringsPanel.Controls.Add(this.stringsGroupBox);
-            this.stringsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stringsPanel.Location = new System.Drawing.Point(727, 268);
-            this.stringsPanel.Name = "stringsPanel";
-            this.stringsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.stringsPanel.Size = new System.Drawing.Size(134, 319);
-            this.stringsPanel.TabIndex = 11;
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 636);
+            this.ClientSize = new System.Drawing.Size(864, 637);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
@@ -540,6 +550,8 @@
             this.Text = "Compiler (by http://github.com/DV1X3R)";
             this.sourceGroupBox.ResumeLayout(false);
             this.sourceGroupBox.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.keywordsGroupBox.ResumeLayout(false);
@@ -552,15 +564,15 @@
             this.stringDelimiterGroupBox.ResumeLayout(false);
             this.stringDelimiterGroupBox.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.lexemesGroupBox.ResumeLayout(false);
-            this.delimiters2Panel.ResumeLayout(false);
-            this.delimiters1Panel.ResumeLayout(false);
-            this.sourcePanel.ResumeLayout(false);
-            this.keywordsPanel.ResumeLayout(false);
-            this.lexemesPanel.ResumeLayout(false);
-            this.identifiersPanel.ResumeLayout(false);
-            this.integersPanel.ResumeLayout(false);
             this.stringsPanel.ResumeLayout(false);
+            this.integersPanel.ResumeLayout(false);
+            this.identifiersPanel.ResumeLayout(false);
+            this.lexemesPanel.ResumeLayout(false);
+            this.lexemesGroupBox.ResumeLayout(false);
+            this.keywordsPanel.ResumeLayout(false);
+            this.sourcePanel.ResumeLayout(false);
+            this.delimiters1Panel.ResumeLayout(false);
+            this.delimiters2Panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -608,6 +620,7 @@
         private System.Windows.Forms.Panel sourcePanel;
         private System.Windows.Forms.Panel delimiters1Panel;
         private System.Windows.Forms.Panel delimiters2Panel;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
     }
 }
 

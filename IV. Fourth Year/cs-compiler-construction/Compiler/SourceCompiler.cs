@@ -57,9 +57,10 @@ namespace Compiler
         private bool IsLetterOrDigit(char character) => Char.IsLetterOrDigit(character);
 
         // Заполнение таблиц
-        private void AddLexeme(LexemeType lexemeType, string lexeme)
+        private void AddLexeme(LexemeType lexemeType, StringBuilder lexeme)
         {
             List<string> list = null;
+            string value = lexeme.ToString();
 
             switch (lexemeType)
             {
@@ -71,14 +72,14 @@ namespace Compiler
                 case LexemeType.STR: list = strings; break;
             }
 
-            int index = list.IndexOf(lexeme);
+            int index = list.IndexOf(value);
             if (index == -1)
             {
-                list.Add(lexeme);
+                list.Add(value);
                 index = list.Count - 1;
             }
 
-            lexemes.Add(new Lexeme(lexemeType, index, lexeme));
+            lexemes.Add(new Lexeme(lexemeType, index, value));
         }
 
         // Считывание символа
@@ -107,66 +108,78 @@ namespace Compiler
             var lexeme = new StringBuilder();
             char character = ' ';
             int index = 0;
+            bool GetCharacterResult = false;
 
             while (true)
             {
                 lexeme.Clear(); // Новая лексема
-                if (!GetCharacter(source, index, out character)) // Считываем первый символ
-                    break; // Если конец программы - break;
+                GetCharacterResult = GetCharacter(source, index, out character); // Считываем текущий символ
+                if (!GetCharacterResult) // Если конец программы - break;
+                    break;
 
                 if (IsLetter(character)) // Первый символ - буква
                 { // <идентификатор> ::= буква | <идентификатор> буква | <идентификатор> цифра
-                    do { lexeme.Append(character); } // Конкатенация
-                    while (GetCharacter(source, ++index, out character) && IsLetterOrDigit(character));
+                    do
+                    {
+                        lexeme.Append(character); // Конкатенация
+                        GetCharacterResult = GetCharacter(source, ++index, out character); // Считываем следующий символ
+                    }
+                    while (GetCharacterResult && IsLetterOrDigit(character));
 
                     if (IsKeyword(lexeme.ToString()))
-                    { // Проверка на ключевое слово
-                        AddLexeme(LexemeType.KEY, lexeme.ToString());
+                    { // Ключевое слово
+                        AddLexeme(LexemeType.KEY, lexeme);
                     }
                     else
-                    { // Иначе идентификатор
-                        AddLexeme(LexemeType.IDN, lexeme.ToString());
+                    { // Идентификатор
+                        AddLexeme(LexemeType.IDN, lexeme);
                     }
                 }
 
                 else if (IsDigit(character)) // Первый символ - цифра
                 { // <целое> ::= цифра | <целое> цифра
-                    do { lexeme.Append(character); }
-                    while (GetCharacter(source, ++index, out character) && IsDigit(character));
-                    AddLexeme(LexemeType.INT, lexeme.ToString());
+                    do
+                    {
+                        lexeme.Append(character);
+                        GetCharacterResult = GetCharacter(source, ++index, out character);
+                    }
+                    while (GetCharacterResult && IsDigit(character));
+                    AddLexeme(LexemeType.INT, lexeme);
                 }
 
                 else if (IsDelimiter1(character.ToString()))
                 {
                     lexeme.Append(character);
-                    bool GetCharacterResult = GetCharacter(source, ++index, out character);
+
+                    GetCharacterResult = GetCharacter(source, ++index, out character);
+
                     if (GetCharacterResult && IsDelimiter2(lexeme.ToString() + character))
                     { // Двухпозиционный разделитель
                         lexeme.Append(character);
+                        AddLexeme(LexemeType.DL2, lexeme);
                         index += 1; // Переход на следующий символ
-                        AddLexeme(LexemeType.DL2, lexeme.ToString());
                     }
                     else
                     { // Однопозиционный разделитель
-                        AddLexeme(LexemeType.DL1, lexeme.ToString());
+                        AddLexeme(LexemeType.DL1, lexeme);
 
-                        if(GetCharacterResult && IsStringDelimiter(lexeme.ToString()[0]))
+                        if (GetCharacterResult && IsStringDelimiter(lexeme.ToString()[0]))
                         { // Литерал
                             lexeme.Clear();
 
-                            while(GetCharacterResult && !IsStringDelimiter(character))
+                            while (GetCharacterResult && !IsStringDelimiter(character))
                             { // Если мы нашли символ, и это не StringDelimiter
                                 lexeme.Append(character);
                                 GetCharacterResult = GetCharacter(source, ++index, out character);
                             }
 
-                            AddLexeme(LexemeType.STR, lexeme.ToString());
+                            AddLexeme(LexemeType.STR, lexeme);
 
-                            if(GetCharacterResult)
+                            if (GetCharacterResult)
                             { // Если нашли завершающий StringDelimiter
                                 lexeme.Clear();
                                 lexeme.Append(character);
-                                AddLexeme(LexemeType.DL1, lexeme.ToString());
+                                AddLexeme(LexemeType.DL1, lexeme);
                                 index += 1; // Переход на следующий символ
                             }
 
@@ -174,10 +187,16 @@ namespace Compiler
                     }
                 }
 
-                else // White Space
+                else if (Char.IsWhiteSpace(character)) 
                 {
                     index += 1;
                 }
+
+                else
+                {
+                    throw new ScanUndefinedException(index, character);
+                }
+
             }
         }
 

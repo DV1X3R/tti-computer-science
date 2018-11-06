@@ -49,7 +49,17 @@ namespace Compiler
         private void CompileAndRefresh()
         {
             var source = sourceTextBox.Text;
-            sourceCompiler.Compile(source);
+            try
+            {
+                sourceCompiler.Compile(source);
+                toolStripStatusLabel.Text = string.Format("Scan successful!");
+            }
+            catch(ScanUndefinedException e)
+            {
+                var line = sourceTextBox.GetLineFromCharIndex(e.Index) + 1;
+                var index = e.Index - sourceTextBox.GetFirstCharIndexFromLine(line - 1) + 1;
+                toolStripStatusLabel.Text = string.Format("Scan failed: Undefined symbol [{0}] on line {1},{2}", e.Character, line, index);
+            }
 
             identifiersListBox.Items.Clear();
             identifiersListBox.Items.AddRange(sourceCompiler.Identifiers.ToArray());
