@@ -32,7 +32,7 @@
 * [Software Engineering (C#): Coursework <External Repo>](https://github.com/Ary0n-Z/SmartPong)
 * [Compiler Construction (C#): Assignment](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-compiler-construction)
 * [Algorithmic Means of Computer Graphics (C++): Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics)
-* Web Application Development Tools (TBI)
+* [Web Application Development Tools](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/web-application-development-tools)
   
 
 [Joe Esposito You're The Best Around](https://www.youtube.com/watch?v=E-WHW-QNswE)
