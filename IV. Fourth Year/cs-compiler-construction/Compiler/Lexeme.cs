@@ -2,7 +2,7 @@
 {
     enum LexemeType
     {
-        KEY, IDN, DL1, DL2, INT, STR
+        KEY, IDN, DL1, DL2, DLS, INT, STR
     }
 
     class Lexeme

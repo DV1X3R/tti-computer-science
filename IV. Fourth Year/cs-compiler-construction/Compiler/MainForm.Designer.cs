@@ -32,6 +32,7 @@
             this.sourceTextBox = new System.Windows.Forms.TextBox();
             this.sourceGroupBox = new System.Windows.Forms.GroupBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,7 +70,6 @@
             this.sourcePanel = new System.Windows.Forms.Panel();
             this.delimiters1Panel = new System.Windows.Forms.Panel();
             this.delimiters2Panel = new System.Windows.Forms.Panel();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.sourceGroupBox.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -129,6 +129,11 @@
             this.statusStrip.Size = new System.Drawing.Size(864, 22);
             this.statusStrip.TabIndex = 4;
             this.statusStrip.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // menuStrip
             // 
@@ -338,7 +343,6 @@
             "(",
             ")",
             ",",
-            "\'",
             "-"});
             this.delimiters1ListBox.Location = new System.Drawing.Point(10, 23);
             this.delimiters1ListBox.Name = "delimiters1ListBox";
@@ -531,11 +535,6 @@
             this.delimiters2Panel.Padding = new System.Windows.Forms.Padding(5);
             this.delimiters2Panel.Size = new System.Drawing.Size(134, 259);
             this.delimiters2Panel.TabIndex = 11;
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // MainForm
             // 

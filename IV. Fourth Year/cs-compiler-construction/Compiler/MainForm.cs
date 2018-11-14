@@ -54,11 +54,11 @@ namespace Compiler
                 sourceCompiler.Compile(source);
                 toolStripStatusLabel.Text = string.Format("Scan successful!");
             }
-            catch(ScanUndefinedException e)
+            catch(ScannerException e)
             {
                 var line = sourceTextBox.GetLineFromCharIndex(e.Index) + 1;
                 var index = e.Index - sourceTextBox.GetFirstCharIndexFromLine(line - 1) + 1;
-                toolStripStatusLabel.Text = string.Format("Scan failed: Undefined symbol [{0}] on line {1},{2}", e.Character, line, index);
+                toolStripStatusLabel.Text = string.Format("Scan failed: {0} [{1}] on line {2},{3}", e.Message, e.Character, line, index);
             }
 
             identifiersListBox.Items.Clear();

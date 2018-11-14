@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ScanUndefinedException.cs" />
+    <Compile Include="ScannerExceptions.cs" />
     <Compile Include="SourceCompiler.cs" />
     <Compile Include="Lexeme.cs" />
     <Compile Include="MainForm.cs">

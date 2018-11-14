@@ -48,7 +48,7 @@ namespace Compiler
         // Проверка на ключевые слова и делиметры
         private bool IsKeyword(string word) => keywords.Contains(word);
         private bool IsStringDelimiter(char character) => delimiterString.CompareTo(character) == 0;
-        private bool IsDelimiter1(string character) => delimiters1.Contains(character);
+        private bool IsDelimiter1(char character) => delimiters1.Contains(character.ToString());
         private bool IsDelimiter2(string word) => delimiters2.Contains(word);
 
         // Проверка на буквы и цифры
@@ -72,7 +72,7 @@ namespace Compiler
                 case LexemeType.STR: list = strings; break;
             }
 
-            int index = list.IndexOf(value);
+            int index = lexemeType == LexemeType.DLS ? 0 : list.IndexOf(value);
             if (index == -1)
             {
                 list.Add(value);
@@ -144,15 +144,48 @@ namespace Compiler
                         GetCharacterResult = GetCharacter(source, ++index, out character);
                     }
                     while (GetCharacterResult && IsDigit(character));
+
+                    if (IsLetter(character))
+                        throw new ScanIntegerIdentifierException(index, character);
+
                     AddLexeme(LexemeType.INT, lexeme);
                 }
 
-                else if (IsDelimiter1(character.ToString()))
+                else if (IsStringDelimiter(character)) // String разделитель
+                {
+                    int stringStartIndex = index;
+                    lexeme.Append(character);
+                    AddLexeme(LexemeType.DLS, lexeme);
+                    lexeme.Clear();
+
+                    // Литерал
+                    GetCharacterResult = GetCharacter(source, ++index, out character);
+                    while (GetCharacterResult && !IsStringDelimiter(character))
+                    { // Если мы нашли символ, и это не StringDelimiter
+                        lexeme.Append(character);
+                        GetCharacterResult = GetCharacter(source, ++index, out character);
+                    }
+
+                    AddLexeme(LexemeType.STR, lexeme);
+
+                    if (GetCharacterResult)
+                    { // Если нашли завершающий StringDelimiter
+                        lexeme.Clear();
+                        lexeme.Append(character);
+                        AddLexeme(LexemeType.DLS, lexeme);
+                        index += 1; // Переход на следующий символ
+                    }
+                    else
+                    {
+                        throw new ScanInfiniteStringException(stringStartIndex);
+                    }
+                }
+
+                else if (IsDelimiter1(character))
                 {
                     lexeme.Append(character);
 
                     GetCharacterResult = GetCharacter(source, ++index, out character);
-
                     if (GetCharacterResult && IsDelimiter2(lexeme.ToString() + character))
                     { // Двухпозиционный разделитель
                         lexeme.Append(character);
@@ -162,42 +195,25 @@ namespace Compiler
                     else
                     { // Однопозиционный разделитель
                         AddLexeme(LexemeType.DL1, lexeme);
-
-                        if (GetCharacterResult && IsStringDelimiter(lexeme.ToString()[0]))
-                        { // Литерал
-                            lexeme.Clear();
-
-                            while (GetCharacterResult && !IsStringDelimiter(character))
-                            { // Если мы нашли символ, и это не StringDelimiter
-                                lexeme.Append(character);
-                                GetCharacterResult = GetCharacter(source, ++index, out character);
-                            }
-
-                            AddLexeme(LexemeType.STR, lexeme);
-
-                            if (GetCharacterResult)
-                            { // Если нашли завершающий StringDelimiter
-                                lexeme.Clear();
-                                lexeme.Append(character);
-                                AddLexeme(LexemeType.DL1, lexeme);
-                                index += 1; // Переход на следующий символ
-                            }
-
-                        }
                     }
                 }
 
-                else if (Char.IsWhiteSpace(character)) 
+                else if (Char.IsWhiteSpace(character))
                 {
                     index += 1;
                 }
 
                 else
                 {
-                    throw new ScanUndefinedException(index, character);
+                    throw new ScanUndefinedSymbolException(index, character);
                 }
 
             }
+        }
+
+        private void Parse(string source)
+        {
+
         }
 
     }
