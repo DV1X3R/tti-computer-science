@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Parser.cs" />
+    <Compile Include="Scanner.cs" />
     <Compile Include="ScannerExceptions.cs" />
     <Compile Include="SourceCompiler.cs" />
     <Compile Include="Lexeme.cs" />
@@ -82,5 +84,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

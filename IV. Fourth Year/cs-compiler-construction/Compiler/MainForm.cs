@@ -39,9 +39,9 @@ namespace Compiler
 
         private void UpdateCompiler()
         {
-            var keywords = (from string s in keywordsListBox.Items select s).ToArray();
-            var delimiters1 = (from string s in delimiters1ListBox.Items select s).ToArray();
-            var delimiters2 = (from string s in delimiters2ListBox.Items select s).ToArray();
+            var keywords = (from string s in keywordsListBox.Items select s).ToList();
+            var delimiters1 = (from string s in delimiters1ListBox.Items select s).ToList();
+            var delimiters2 = (from string s in delimiters2ListBox.Items select s).ToList();
             var stringDelimiter = stringDelimiterTextBox.Text.Length > 0 ? stringDelimiterTextBox.Text[0] : ' ';
             sourceCompiler = new SourceCompiler(keywords, stringDelimiter, delimiters1, delimiters2);
         }
@@ -62,16 +62,16 @@ namespace Compiler
             }
 
             identifiersListBox.Items.Clear();
-            identifiersListBox.Items.AddRange(sourceCompiler.Identifiers.ToArray());
+            identifiersListBox.Items.AddRange(sourceCompiler.Scanner.Identifiers.ToArray());
 
             integersListBox.Items.Clear();
-            integersListBox.Items.AddRange(sourceCompiler.Integers.ToArray());
+            integersListBox.Items.AddRange(sourceCompiler.Scanner.Integers.ToArray());
 
             stringsListBox.Items.Clear();
-            stringsListBox.Items.AddRange(sourceCompiler.Strings.ToArray());
+            stringsListBox.Items.AddRange(sourceCompiler.Scanner.Strings.ToArray());
 
             scannerDataGridView.Rows.Clear();
-            foreach (Lexeme lexeme in sourceCompiler.Lexemes)
+            foreach (Lexeme lexeme in sourceCompiler.Scanner.Lexemes)
                 scannerDataGridView.Rows.Add(lexeme.Type, lexeme.Index, lexeme.Value);
         }
 
