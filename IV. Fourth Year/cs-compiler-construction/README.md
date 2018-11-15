@@ -29,15 +29,21 @@
 if State and sfDragging = 0 then Color := GetColor(1);
 
 <statement> := <ifStatement> | <assignmentStatement>
+<ifStatement> := if <logicalExpression> then <statement>
 
-<ifStatement> := if <ifExpression> then <statement>
-<ifExpression> := <boolExpression> | <boolExpression> and <ifExpression>
-<boolExpression> := <identifier> | <identifier> = <literal>
+<logicalOperator> := and | or
+<boolOperator> := = | < | > | <= | >=
+<value> := <identifier> | <literal>
 
-<assignmentStatement> := <identifier> := <assignExpression>;
-<assignExpression> := <identifier> | <functionCall>
-<functionCall> := <identifier> ( <functionArgument> )
-<functionArgument> := <identifier> | <literal>
+<logicalExpression> := <boolExpression> { <logicalOperator> <boolExpression> }
+<boolExpression> := <value> | <value> <boolOperator> <value>
+
+<assignmentStatement> := <identifier> := <expression> ;
+<expression> := <value> | <function> | <boolExpression>
+
+<function> := <functionName> ( <functionParam> )
+<functionName> := <identifier>
+<functionParam> := <expression>
 ```
 
 * Программный фрагмент

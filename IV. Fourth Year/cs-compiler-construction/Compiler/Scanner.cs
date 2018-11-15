@@ -127,8 +127,8 @@ namespace Compiler
                     }
                     while (GetCharacterResult && IsDigit(character));
 
-                    if (IsLetter(character))
-                        throw new ScanIntegerIdentifierException(index, character);
+                    //if (IsLetter(character))
+                        //throw new ScanIntegerIdentifierException(index, character);
 
                     AddLexeme(LexemeType.INT, lexeme);
                 }
