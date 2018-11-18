@@ -1,4 +1,4 @@
-# Compiler Construction (C#) (4 year / 1 semester)
+﻿# Compiler Construction (C#) (4 year / 1 semester)
 
 * Приложение 1. «Программирование лексического анализатора»  
 1. Произвести анализ заданного программного фрагмента на языке PASCAL и выделить все типы имеющихся в нем лексем.  
@@ -8,11 +8,11 @@
 5. На основе автомата составить и отладить программу лексического анализатора.  
 
 ```
-<keywords> := procedure | var | Byte | Char | array | of | Longint | String | Begin | if | and | then | else | End
-<delimiters1> := . | ; | : | [ | ] | = | ( | ) | , | -
+<keywords> := procedure | var | Byte | Char | array | of | Longint | String | Begin | if | and | then | else | End | or
+<delimiters1> := . | ; | : | [ | ] | = | ( | ) | , | - | > | <
 <dot> := .
 <colon> := :
-<delimiters2> := <dot> . | <colon> :
+<delimiters2> := <dot> . | <colon> =
 <identifier> := letter | <identifier> letter | <identifier> digit
 <number> := digit | <number> digit 
 <letter> := A | ... | Z | a | ... | z
@@ -28,22 +28,22 @@
 ```
 if State and sfDragging = 0 then Color := GetColor(1);
 
-<statement> := <ifStatement> | <assignmentStatement>
-<ifStatement> := if <logicalExpression> then <statement>
-
-<logicalOperator> := and | or
-<boolOperator> := = | < | > | <= | >=
-<value> := <identifier> | <literal>
+<ifStatement> := if <logicalExpression> then <assignmentStatement>
 
 <logicalExpression> := <boolExpression> { <logicalOperator> <boolExpression> }
-<boolExpression> := <value> | <value> <boolOperator> <value>
+<boolExpression> := <comparableValue> [ <boolOperator> <comparableValue> ]
 
-<assignmentStatement> := <identifier> := <expression> ;
-<expression> := <value> | <function> | <boolExpression>
+<comparableValue> := <identifier> | <integer>
+<logicalOperator> := and | or
+<boolOperator> := = | < | >
+
+<assignmentStatement> := <variableName> := <assignableValue> ;
+<variableName> := <identifier>
+<assignableValue> := <comparableValue> | <boolExpression> | <function>
 
 <function> := <functionName> ( <functionParam> )
 <functionName> := <identifier>
-<functionParam> := <expression>
+<functionParam> :=  [ <comparableValue> { , <comparableValue> } ]
 ```
 
 * Программный фрагмент

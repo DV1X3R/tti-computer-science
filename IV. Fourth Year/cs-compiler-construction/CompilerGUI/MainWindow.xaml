@@ -1,0 +1,76 @@
+﻿<Window x:Class="CompilerGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompilerGUI"
+        mc:Ignorable="d"
+        Title="Compiler by [http://github.com/dv1x3r/] (c) 2018" Height="650" Width="1080" MinWidth="1080" MinHeight="500">
+    <Grid>
+
+        <Menu VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Compiler">
+                <MenuItem x:Name="bnAuto" Header="Auto-Compile" IsChecked="True" Click="AutoCompile_Click"/>
+                <MenuItem Header="Compile" Click="Compile_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <GroupBox Header="Source Code" HorizontalAlignment="Left" Height="280" VerticalAlignment="Top" Width="380" Margin="10,23,0,0">
+            <TextBox x:Name="tbSourceCode" Margin="5,5,5,5" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="procedure TIndicator.Draw;&#xA;var&#xA;&#x9;Color: Byte; Frame: Char;&#xA;&#x9;L: array[0..1] of Longint;&#xA;&#x9;S: String[15];&#xA;&#x9;B: TDrawBuffer;&#xA;Begin&#xA;&#x9;if State and sfDragging = 0 then Color := GetColor(1);&#xA;&#x9;else&#xA;&#x9;MoveChar(B, Frame, Color, Size.X);&#xA;&#x9;if Modified then WordRec(B[0].Lo := 15);&#xA;&#x9;FormatStr(S, ' %d:%d ', L);&#xA;&#x9;MoveStr(B[8 - Pos(':', S)], S, Color);&#xA;&#x9;WriteBuf(0, 0, Size.X, 1, B);&#xA;End;"/>
+        </GroupBox>
+
+        <GroupBox Header="Lexemes" HorizontalAlignment="Left" Margin="10,308,0,31" Width="380">
+            <DataGrid x:Name="dgLexemes" Margin="5,5,5,5" FontSize="14" FontFamily="Consolas"/>
+        </GroupBox>
+
+        <Grid Margin="395,23,10,31">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="65*"/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Debug Output" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                <ListBox x:Name="lbDebugOutput" Margin="5,5,5,5" FontFamily="Consolas"/>
+            </GroupBox>
+
+            <Grid Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="Keywords" Grid.Column="0">
+                    <ListBox x:Name="lbKeywords" Margin="5,5,5,5"/>
+                </GroupBox>
+                <GroupBox Header="Identifiers" Grid.Column="1">
+                    <ListBox x:Name="lbIdentifiers" Margin="5,5,5,5"/>
+                </GroupBox>
+                <GroupBox Header="Literals" Grid.Column="2">
+                    <ListBox x:Name="lbLiterals" Margin="5,5,5,5"/>
+                </GroupBox>
+            </Grid>
+
+            <GroupBox Header="Compile Results" HorizontalAlignment="Right" Height="84" Margin="0,0,10,0" VerticalAlignment="Top" Width="148" Grid.Row="1" Grid.Column="2">
+                <Grid>
+                    <Label Content="Scanner: " HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label x:Name="lScannerResult" Content="[ok]" HorizontalAlignment="Left" Margin="63,0,0,0" VerticalAlignment="Top" FontWeight="Bold" Background="#FFF9F9F9"/>
+                    <Label Content="Parser: " HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lParserResult" Content="[ok]" HorizontalAlignment="Left" Margin="63,26,0,0" VerticalAlignment="Top" FontWeight="Bold" Background="#FFF9F9F9"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+        <StatusBar VerticalAlignment="Bottom">
+            <TextBlock x:Name="tbStatus"/>
+        </StatusBar>
+
+    </Grid>
+</Window>

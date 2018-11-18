@@ -1,11 +1,11 @@
 ﻿namespace Compiler
 {
-    enum LexemeType
+    public enum LexemeType
     {
-        KEY, IDN, DL1, DL2, DLS, INT, STR
+        UNKNOWN, KEY, IDN, DL1, DL2, DLS, INT, STR
     }
 
-    class Lexeme
+    public class Lexeme
     {
         public LexemeType Type { get; private set; }
         public int Index { get; private set; }

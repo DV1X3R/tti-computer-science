@@ -1,23 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+using Compiler.Scanner;
+using Compiler.Parser;
 
 namespace Compiler
 {
-    class SourceCompiler
+    public class SourceCompiler
     {
-        public Scanner Scanner { get; private set; }
-        public Parser Parser { get; private set; }
+        public CompilerScanner Scanner { get; private set; }
+        public CompilerParser Parser { get; private set; }
 
-        public SourceCompiler(List<string> keywords, char delimiterString, List<string> delimiters1, List<string> delimiters2)
+        public SourceCompiler(List<string> keywords, char delimiterString, List<string> delimiters1, List<string> delimiters2,
+            Action<ScannerLog> scannerLogger, Action<ParserLog> parserLogger)
         {
-            Scanner = new Scanner(keywords, delimiterString, delimiters1, delimiters2);
+            Scanner = new CompilerScanner(keywords, delimiterString, delimiters1, delimiters2, scannerLogger);
+            Parser = new CompilerParser(parserLogger);
         }
 
         public void Compile(string source)
         {
             Scanner.Scan(source);
+            Parser.Parse(Scanner.Lexemes);
         }
 
     }
