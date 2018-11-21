@@ -28,7 +28,7 @@
 ### IV. Fourth Year (2018-2019)
 * Numerical Methods in Computer Calculations: Homework (TBI)
 * [Numerical Methods in Computer Calculations: Laboratory <External Repo>](https://github.com/DV1X3R/tti-numerical-lw)
-* Development in .Net environment (C#): Assignments (TBI)
+* [Development in .Net environment: Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/net-dotnet-development)
 * [Software Engineering (C#): Coursework <External Repo>](https://github.com/Ary0n-Z/SmartPong)
 * [Compiler Construction (C#): Assignment](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-compiler-construction)
 * [Algorithmic Means of Computer Graphics (C++): Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics)
