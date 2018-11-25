@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Compiler.Scanner
+namespace CompilerGUI.Compiler
 {
-    public class ScannerException : Exception
+    class ScannerException : Exception
     {
         public int Index { get; private set; }
         public char Character { get; private set; }

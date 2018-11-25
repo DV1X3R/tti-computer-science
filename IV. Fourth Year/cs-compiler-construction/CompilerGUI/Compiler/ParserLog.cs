@@ -1,11 +1,11 @@
-﻿namespace Compiler.Parser
+﻿namespace CompilerGUI.Compiler
 {
-    public enum ParserLogType
+    enum ParserLogType
     {
         Start, Success, ThrowEOF, ThowNotFound, Ok
     }
 
-    public class ParserLog
+    class ParserLog
     {
         public ParserLogType Type { get; private set; }
         public Lexeme Lexeme { get; private set; }

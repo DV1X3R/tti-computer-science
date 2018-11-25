@@ -63,6 +63,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Compiler\CompilerViewModel.cs" />
+    <Compile Include="Compiler\Parser.cs" />
+    <Compile Include="Compiler\Scanner.cs" />
+    <Compile Include="Compiler\Lexeme.cs" />
+    <Compile Include="Compiler\ParserException.cs" />
+    <Compile Include="Compiler\ParserLog.cs" />
+    <Compile Include="Compiler\ScannerException.cs" />
+    <Compile Include="Compiler\ScannerLog.cs" />
+    <Compile Include="Compiler\SourceCompiler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -93,12 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Compiler\Compiler.csproj">
-      <Project>{f08caad7-5ac0-4faa-a031-227e27c0732c}</Project>
-      <Name>Compiler</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

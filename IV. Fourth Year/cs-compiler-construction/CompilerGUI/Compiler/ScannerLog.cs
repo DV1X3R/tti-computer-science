@@ -1,16 +1,16 @@
 ﻿using System.Text;
 
-namespace Compiler.Scanner
+namespace CompilerGUI.Compiler
 {
-    public enum ScannerLogType
+    enum ScannerLogType
     {
         Start, Success, ThrowEOF, ThrowSTR, ThrowUndefined, Append, New, Write, Skip
     }
 
-    public class ScannerLog
+    class ScannerLog
     {
         public ScannerLogType Type { get; private set; }
-        public StringBuilder Lexeme { get; private set; }
+        public string Lexeme { get; private set; }
         public LexemeType LexemeType { get; private set; }
         public int Index { get; private set; }
         public char Character { get; private set; }
@@ -18,7 +18,7 @@ namespace Compiler.Scanner
         public ScannerLog(ScannerLogType type, StringBuilder lexeme, LexemeType lexemeType, int index, char character)
         {
             Type = type;
-            Lexeme = lexeme;
+            Lexeme = lexeme?.ToString();
             LexemeType = lexemeType;
             Index = index;
             Character = character;

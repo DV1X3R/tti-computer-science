@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
-namespace Compiler.Parser
+namespace CompilerGUI.Compiler
 {
     // 2. Синтаксический анализатор
-    public class CompilerParser
+    class Parser
     {
-        private Action<ParserLog> logger;
-        private List<Lexeme> lexemes;
+        // Логи для отладки
+        public List<ParserLog> Logs { get; private set; } = new List<ParserLog>();
+
+        private ObservableCollection<Lexeme> lexemes;
         private int index;
         private string result;
 
-        public CompilerParser(Action<ParserLog> logger)
+        public Parser(Scanner scanner)
         {
-            this.logger = logger ?? (x => { });
+            lexemes = scanner.Lexemes;
         }
 
         private void CheckEOF(string expected)
@@ -21,7 +23,7 @@ namespace Compiler.Parser
             if (index > lexemes.Count - 1)
             {
                 var log = new ParserLog(ParserLogType.ThrowEOF, null, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -43,13 +45,13 @@ namespace Compiler.Parser
             if (lexeme.Value == "if" && lexeme.Type == LexemeType.KEY)
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -62,13 +64,13 @@ namespace Compiler.Parser
             if (lexeme.Value == "then" && lexeme.Type == LexemeType.KEY)
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -102,13 +104,13 @@ namespace Compiler.Parser
             if (lexeme.Type == LexemeType.IDN || lexeme.Type == LexemeType.INT)
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -123,13 +125,13 @@ namespace Compiler.Parser
             if ((lexeme.Value == "and" || lexeme.Value == "or") && lexeme.Type == LexemeType.KEY)
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -145,13 +147,13 @@ namespace Compiler.Parser
                 ((lexeme.Value == "<=" || lexeme.Value == ">=") && lexeme.Type == LexemeType.DL2))
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -185,13 +187,13 @@ namespace Compiler.Parser
             if (lexeme.Value == ":=" && lexeme.Type == LexemeType.DL2)
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -204,13 +206,13 @@ namespace Compiler.Parser
             if (lexeme.Value == ";" && lexeme.Type == LexemeType.DL1)
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -225,13 +227,13 @@ namespace Compiler.Parser
             if (lexeme.Type == LexemeType.IDN)
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -250,7 +252,7 @@ namespace Compiler.Parser
                     CheckEOF(expected);
                     var lexeme = lexemes[index];
                     var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                    logger(log);
+                    Logs.Add(log);
                     throw new ParserException(log);
             }
         }
@@ -273,13 +275,13 @@ namespace Compiler.Parser
             if (lexeme.Value == "(" && lexeme.Type == LexemeType.DL1)
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -292,13 +294,13 @@ namespace Compiler.Parser
             if (lexeme.Value == ")" && lexeme.Type == LexemeType.DL1)
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -313,13 +315,13 @@ namespace Compiler.Parser
             if (lexeme.Type == LexemeType.IDN)
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
@@ -349,22 +351,22 @@ namespace Compiler.Parser
             if (lexeme.Value == "," && lexeme.Type == LexemeType.DL1)
             {
                 result += lexeme.Value + " ";
-                logger(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
+                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
                 index += 1;
             }
             else
             {
                 var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                logger(log);
+                Logs.Add(log);
                 throw new ParserException(log);
             }
         }
 
-        public void Parse(List<Lexeme> lexemes)
+        public void Parse()
         {
-            this.lexemes = lexemes;
-            this.index = 0;
-            this.result = "";
+            Logs.Clear();
+            index = 0;
+            result = "";
 
             // DEBUG: Check only first IF
             for (int i = 0; i < lexemes.Count; i++)
@@ -372,9 +374,9 @@ namespace Compiler.Parser
                 if (lexemes[i].Value == "if" && lexemes[i].Type == LexemeType.KEY)
                 {
                     index = i;
-                    logger(new ParserLog(ParserLogType.Start, null, "#N/A", result));
+                    Logs.Add(new ParserLog(ParserLogType.Start, null, "#N/A", result));
                     CheckIfStatement();
-                    logger(new ParserLog(ParserLogType.Success, null, "#N/A", result));
+                    Logs.Add(new ParserLog(ParserLogType.Success, null, "#N/A", result));
                     break;
                 }
             }

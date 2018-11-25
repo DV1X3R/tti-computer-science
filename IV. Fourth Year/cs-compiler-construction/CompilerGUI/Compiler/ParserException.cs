@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Compiler.Parser
+namespace CompilerGUI.Compiler
 {
-    public class ParserException : Exception
+    class ParserException : Exception
     {
         public ParserLog Log { get; private set; }
 
