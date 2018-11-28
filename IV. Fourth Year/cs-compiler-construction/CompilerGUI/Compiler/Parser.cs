@@ -100,26 +100,30 @@ namespace CompilerGUI.Compiler
         private void CheckVariableName() => CheckLexeme("<variableName>", LexemeType.IDN);
 
         // <assignableValue> := <function> | <identifier> | <integer>
-        private void CheckAssignableValue(int seed = 0)
+        private void CheckAssignableValue()
         {
             int recIndex = index;
             string recResult = result;
 
-            try
-            {
-                switch (seed)
-                {
-                    case 0: CheckFunction(); return;
-                    case 1: CheckLexeme("<identifier>", LexemeType.IDN); return;
-                    case 2: CheckLexeme("<integer>", LexemeType.INT); ; return;
-                }
-            }
+            try { CheckFunction(); return; }
             catch (ParserException)
             {
                 index = recIndex;
                 result = recResult;
-                CheckAssignableValue(seed + 1);
-                return;
+            }
+
+            try { CheckLexeme("<identifier>", LexemeType.IDN); return; }
+            catch (ParserException)
+            {
+                index = recIndex;
+                result = recResult;
+            }
+
+            try { CheckLexeme("<integer>", LexemeType.INT); return; }
+            catch (ParserException)
+            {
+                index = recIndex;
+                result = recResult;
             }
 
             ThrowMismatch("<assignableValue>");
