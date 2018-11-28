@@ -31,15 +31,14 @@ if State and sfDragging = 0 then Color := GetColor(1);
 <ifStatement> := if <logicalExpression> then <assignmentStatement>
 
 <logicalExpression> := <boolExpression> { <logicalOperator> <boolExpression> }
-<boolExpression> := <comparableValue> [ <boolOperator> <comparableValue> ]
+<boolExpression> := <assignableValue> [ <boolOperator> <assignableValue> ]
 
-<comparableValue> := <identifier> | <integer>
 <logicalOperator> := and | or
 <boolOperator> := = | < | >
 
 <assignmentStatement> := <variableName> := <assignableValue> ;
 <variableName> := <identifier>
-<assignableValue> := <comparableValue> | <boolExpression> | <function>
+<assignableValue> := <function> | <identifier> | <integer>
 
 <function> := <functionName> ( <functionParam> )
 <functionName> := <identifier>

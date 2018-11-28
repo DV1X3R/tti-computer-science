@@ -114,7 +114,7 @@ namespace CompilerGUI.Compiler
                 GetCharacterResult = GetCharacter(source, index, out character); // Считываем текущий символ
                 if (!GetCharacterResult) // Если конец программы - break;
                 {
-                    Logs.Add(new ScannerLog(ScannerLogType.ThrowEOF, lexeme, LexemeType.NA, index, character));
+                    Logs.Add(new ScannerLog(ScannerLogType.EndOfFile, lexeme, LexemeType.NA, index, character));
                     break;
                 }
 
@@ -124,19 +124,19 @@ namespace CompilerGUI.Compiler
                     do
                     {
                         lexeme.Append(character); // Конкатенация
-                        Logs.Add(new ScannerLog(ScannerLogType.Append, lexeme, LexemeType.IDN, index, character));
+                        Logs.Add(new ScannerLog(ScannerLogType.Concat, lexeme, LexemeType.IDN, index, character));
                         GetCharacterResult = GetCharacter(source, ++index, out character); // Считываем следующий символ
                     }
                     while (GetCharacterResult && IsLetterOrDigit(character));
 
                     if (IsKeyword(lexeme.ToString()))
                     { // Ключевое слово
-                        Logs.Add(new ScannerLog(ScannerLogType.Write, lexeme, LexemeType.KEY, index, character));
+                        Logs.Add(new ScannerLog(ScannerLogType.Push, lexeme, LexemeType.KEY, index, character));
                         AddLexeme(LexemeType.KEY, lexeme);
                     }
                     else
                     { // Идентификатор
-                        Logs.Add(new ScannerLog(ScannerLogType.Write, lexeme, LexemeType.IDN, index, character));
+                        Logs.Add(new ScannerLog(ScannerLogType.Push, lexeme, LexemeType.IDN, index, character));
                         AddLexeme(LexemeType.IDN, lexeme);
                     }
                 }
@@ -147,12 +147,12 @@ namespace CompilerGUI.Compiler
                     do
                     {
                         lexeme.Append(character);
-                        Logs.Add(new ScannerLog(ScannerLogType.Append, lexeme, LexemeType.INT, index, character));
+                        Logs.Add(new ScannerLog(ScannerLogType.Concat, lexeme, LexemeType.INT, index, character));
                         GetCharacterResult = GetCharacter(source, ++index, out character);
                     }
                     while (GetCharacterResult && IsDigit(character));
 
-                    Logs.Add(new ScannerLog(ScannerLogType.Write, lexeme, LexemeType.INT, index, character));
+                    Logs.Add(new ScannerLog(ScannerLogType.Push, lexeme, LexemeType.INT, index, character));
                     AddLexeme(LexemeType.INT, lexeme);
                 }
 
@@ -160,7 +160,7 @@ namespace CompilerGUI.Compiler
                 {
                     int stringStartIndex = index;
                     lexeme.Append(character);
-                    Logs.Add(new ScannerLog(ScannerLogType.Write, lexeme, LexemeType.DLS, index, character));
+                    Logs.Add(new ScannerLog(ScannerLogType.Concat, lexeme, LexemeType.DLS, index, character));
                     AddLexeme(LexemeType.DLS, lexeme);
                     lexeme.Clear();
 
@@ -169,24 +169,24 @@ namespace CompilerGUI.Compiler
                     while (GetCharacterResult && !IsStringDelimiter(character))
                     { // Если мы нашли символ, и это не StringDelimiter
                         lexeme.Append(character);
-                        Logs.Add(new ScannerLog(ScannerLogType.Append, lexeme, LexemeType.STR, index, character));
+                        Logs.Add(new ScannerLog(ScannerLogType.Concat, lexeme, LexemeType.STR, index, character));
                         GetCharacterResult = GetCharacter(source, ++index, out character);
                     }
 
-                    Logs.Add(new ScannerLog(ScannerLogType.Write, lexeme, LexemeType.STR, index, character));
+                    Logs.Add(new ScannerLog(ScannerLogType.Push, lexeme, LexemeType.STR, index, character));
                     AddLexeme(LexemeType.STR, lexeme);
 
                     if (GetCharacterResult)
                     { // Если нашли завершающий StringDelimiter
                         lexeme.Clear();
                         lexeme.Append(character);
-                        Logs.Add(new ScannerLog(ScannerLogType.Write, lexeme, LexemeType.DLS, index, character));
+                        Logs.Add(new ScannerLog(ScannerLogType.Push, lexeme, LexemeType.DLS, index, character));
                         AddLexeme(LexemeType.DLS, lexeme);
                         index += 1; // Переход на следующий символ
                     }
                     else
                     {
-                        Logs.Add(new ScannerLog(ScannerLogType.ThrowSTR, lexeme, LexemeType.DLS, index, character));
+                        Logs.Add(new ScannerLog(ScannerLogType.EndlessString, lexeme, LexemeType.DLS, index, character));
                         throw new ScannerException(stringStartIndex, ' ', "String termination character cannot be found");
                     }
                 }
@@ -200,13 +200,13 @@ namespace CompilerGUI.Compiler
                     if (GetCharacterResult && IsDelimiter2(lexeme.ToString() + character))
                     { // Двухпозиционный разделитель
                         lexeme.Append(character);
-                        Logs.Add(new ScannerLog(ScannerLogType.Write, lexeme, LexemeType.DL2, index, character));
+                        Logs.Add(new ScannerLog(ScannerLogType.Push, lexeme, LexemeType.DL2, index, character));
                         AddLexeme(LexemeType.DL2, lexeme);
                         index += 1; // Переход на следующий символ
                     }
                     else
                     { // Однопозиционный разделитель
-                        Logs.Add(new ScannerLog(ScannerLogType.Write, lexeme, LexemeType.DL1, index, character));
+                        Logs.Add(new ScannerLog(ScannerLogType.Push, lexeme, LexemeType.DL1, index, character));
                         AddLexeme(LexemeType.DL1, lexeme);
                     }
                 }
@@ -219,7 +219,7 @@ namespace CompilerGUI.Compiler
 
                 else
                 {
-                    Logs.Add(new ScannerLog(ScannerLogType.ThrowUndefined, lexeme, LexemeType.NA, index, character));
+                    Logs.Add(new ScannerLog(ScannerLogType.Undefined, lexeme, LexemeType.NA, index, character));
                     throw new ScannerException(index, character, "Undefined symbol found");
                 }
             }

@@ -1,10 +1,11 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace CompilerGUI.Compiler
 {
     enum ScannerLogType
     {
-        Start, Success, ThrowEOF, ThrowSTR, ThrowUndefined, Append, New, Write, Skip
+        Start, Success, New, Concat, Push, EndOfFile, EndlessString, Undefined, Skip
     }
 
     class ScannerLog
@@ -20,6 +21,19 @@ namespace CompilerGUI.Compiler
             Type = type;
             Lexeme = lexeme?.ToString();
             LexemeType = lexemeType;
+            Index = index;
+            Character = character;
+        }
+
+    }
+
+    class ScannerException : Exception
+    {
+        public int Index { get; private set; }
+        public char Character { get; private set; }
+
+        public ScannerException(int index, char character, string message) : base(message)
+        {
             Index = index;
             Character = character;
         }

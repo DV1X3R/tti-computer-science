@@ -13,19 +13,41 @@ namespace CompilerGUI.Compiler
         private int index;
         private string result;
 
+        private List<string> ifList = new List<string>() { "if" };
+        private List<string> thenList = new List<string>() { "then" };
+        private List<string> logicaloperatorList = new List<string>() { "or", "and" };
+        private List<string> booloperatorList = new List<string>() { "=", "<", ">" };
+        private List<string> eqsignList = new List<string>() { ":=" };
+        private List<string> endsignList = new List<string>() { ";" };
+        private List<string> paramstartList = new List<string>() { "(" };
+        private List<string> paramendList = new List<string>() { ")" };
+        private List<string> paramdelList = new List<string>() { "," };
+
         public Parser(Scanner scanner)
         {
             lexemes = scanner.Lexemes;
         }
 
-        private void CheckEOF(string expected)
+        private void CheckLexeme(string expected, LexemeType lexemeType, List<string> values = null)
         {
-            if (index > lexemes.Count - 1)
-            {
-                var log = new ParserLog(ParserLogType.ThrowEOF, null, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
+            if (index > lexemes.Count - 1 || lexemes[index].Type != lexemeType || (values != null && !values.Contains(lexemes[index].Value)))
+                ThrowMismatch(expected);
+            else
+                WriteMatch(expected);
+        }
+
+        private void WriteMatch(string expected)
+        {
+            result += lexemes[index].Value + " ";
+            Logs.Add(new ParserLog(ParserLogType.Match, lexemes[index], expected, result));
+            index += 1;
+        }
+
+        private void ThrowMismatch(string expected)
+        {
+            var log = new ParserLog(ParserLogType.Mismatch, (index > lexemes.Count - 1) ? null : lexemes[index], expected, result);
+            Logs.Add(log);
+            throw new ParserException(log);
         }
 
         // <ifStatement> := if <logicalExpression> then <statement>
@@ -36,44 +58,8 @@ namespace CompilerGUI.Compiler
             CheckThen();
             CheckAssignmentStatement();
         }
-        private void CheckIf()
-        {
-            string expected = "[if]";
-
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if (lexeme.Value == "if" && lexeme.Type == LexemeType.KEY)
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
-        }
-        private void CheckThen()
-        {
-            string expected = "[then]";
-
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if (lexeme.Value == "then" && lexeme.Type == LexemeType.KEY)
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
-        }
+        private void CheckIf() => CheckLexeme("[if]", LexemeType.KEY, ifList);
+        private void CheckThen() => CheckLexeme("[then]", LexemeType.KEY, thenList);
 
         // <logicalExpression> := <boolExpression> { <logicalOperator> <boolExpression> }
         private void CheckLogicalExpression()
@@ -84,179 +70,60 @@ namespace CompilerGUI.Compiler
             CheckLogicalExpression();
         }
 
-        // <boolExpression> := <comparableValue> [ <boolOperator> <comparableValue> ]
+        // <boolExpression> := <assignableValue> [ <boolOperator> <assignableValue> ]
         private void CheckBoolExpression()
         {
-            CheckComparableValue();
+            CheckAssignableValue();
             try { CheckBoolOperator(); }
             catch (ParserException) { return; }
-            CheckComparableValue();
-        }
-
-
-        // <comparableValue> := <identifier> | <integer>
-        private void CheckComparableValue()
-        {
-            string expected = "<comparableValue>";
-
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if (lexeme.Type == LexemeType.IDN || lexeme.Type == LexemeType.INT)
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
+            CheckAssignableValue();
         }
 
         // <logicalOperator> := and | or
-        private void CheckLogicalOperator()
-        {
-            string expected = "<logicalOperator>";
+        private void CheckLogicalOperator() => CheckLexeme("<logicalOperator>", LexemeType.KEY, logicaloperatorList);
 
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if ((lexeme.Value == "and" || lexeme.Value == "or") && lexeme.Type == LexemeType.KEY)
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
-        }
-
-        // <boolOperator> := = | < | > | <= | >=
-        private void CheckBoolOperator()
-        {
-            string expected = "<boolOperator>";
-
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if (((lexeme.Value == "=" || lexeme.Value == "<" || lexeme.Value == ">") && lexeme.Type == LexemeType.DL1) ||
-                ((lexeme.Value == "<=" || lexeme.Value == ">=") && lexeme.Type == LexemeType.DL2))
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
-        }
-
+        // <boolOperator> := = | < | >
+        private void CheckBoolOperator() => CheckLexeme("<boolOperator>", LexemeType.DL1, booloperatorList);
 
         // <assignmentStatement> := <variableName> := <assignableValue> ;
-        private void CheckAssignmentStatement(int seed = 0)
+        private void CheckAssignmentStatement()
+        {
+            CheckVariableName();
+            CheckAssignmentEqSign();
+            CheckAssignableValue();
+            CheckAssignmentEndSign();
+        }
+        private void CheckAssignmentEqSign() => CheckLexeme("[:=]", LexemeType.DL2, eqsignList);
+        private void CheckAssignmentEndSign() => CheckLexeme("[;]", LexemeType.DL1, endsignList);
+
+        // <variableName> := <identifier>
+        private void CheckVariableName() => CheckLexeme("<variableName>", LexemeType.IDN);
+
+        // <assignableValue> := <function> | <identifier> | <integer>
+        private void CheckAssignableValue(int seed = 0)
         {
             int recIndex = index;
             string recResult = result;
 
-            CheckVariableName();
-
-            CheckAssignmentEqSign();
-            CheckAssignableValue(seed);
-
-            try { CheckAssignmentEndSign(); return; }
+            try
+            {
+                switch (seed)
+                {
+                    case 0: CheckFunction(); return;
+                    case 1: CheckLexeme("<identifier>", LexemeType.IDN); return;
+                    case 2: CheckLexeme("<integer>", LexemeType.INT); ; return;
+                }
+            }
             catch (ParserException)
             {
                 index = recIndex;
                 result = recResult;
-                CheckAssignmentStatement(seed + 1);
+                CheckAssignableValue(seed + 1);
+                return;
             }
+
+            ThrowMismatch("<assignableValue>");
         }
-        private void CheckAssignmentEqSign()
-        {
-            string expected = "[:=]";
-
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if (lexeme.Value == ":=" && lexeme.Type == LexemeType.DL2)
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
-        }
-        private void CheckAssignmentEndSign()
-        {
-            string expected = "[;]";
-
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if (lexeme.Value == ";" && lexeme.Type == LexemeType.DL1)
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
-        }
-
-        // <variableName> := <identifier>
-        private void CheckVariableName()
-        {
-            string expected = "<variableName>";
-
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if (lexeme.Type == LexemeType.IDN)
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
-        }
-
-        // <assignableValue> := <comparableValue> | <boolExpression> | <function> 
-        private void CheckAssignableValue(int seed)
-        {
-            string expected = "<assignableValue>";
-
-            switch (seed)
-            {
-                case 0: CheckComparableValue(); break;
-                case 1: CheckBoolExpression(); break;
-                case 2: CheckFunction(); break;
-                default:
-                    CheckEOF(expected);
-                    var lexeme = lexemes[index];
-                    var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                    Logs.Add(log);
-                    throw new ParserException(log);
-            }
-        }
-
 
         // <function> := <functionName> ( <functionParam> )
         private void CheckFunction()
@@ -266,101 +133,29 @@ namespace CompilerGUI.Compiler
             CheckFunctionParam();
             CheckFunctionParamEndSign();
         }
-        private void CheckFunctionParamStartSign()
-        {
-            string expected = "[(]";
-
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if (lexeme.Value == "(" && lexeme.Type == LexemeType.DL1)
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
-        }
-        private void CheckFunctionParamEndSign()
-        {
-            string expected = "[)]";
-
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if (lexeme.Value == ")" && lexeme.Type == LexemeType.DL1)
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
-        }
+        private void CheckFunctionParamStartSign() => CheckLexeme("[(]", LexemeType.DL1, paramstartList);
+        private void CheckFunctionParamEndSign() => CheckLexeme("[)]", LexemeType.DL1, paramendList);
 
         // <functionName> := <identifier>
-        private void CheckFunctionName()
-        {
-            string expected = "<functionName>";
+        private void CheckFunctionName() => CheckLexeme("<functionName>", LexemeType.IDN);
 
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if (lexeme.Type == LexemeType.IDN)
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
-        }
-
-        // <functionParam> :=  [ <comparableValue> { , <comparableValue> } ]
+        // <functionParam> :=  [ <assignableValue> { , <assignableValue> } ]
         private void CheckFunctionParam(bool required = false)
         {
             if (required)
             {
-                CheckComparableValue();
+                CheckAssignableValue();
             }
             else
             {
-                try { CheckComparableValue(); }
+                try { CheckAssignableValue(); }
                 catch (ParserException) { return; }
             }
             try { CheckFunctionParamFunctionParamDel(); }
             catch (ParserException) { return; }
             CheckFunctionParam(true);
         }
-        private void CheckFunctionParamFunctionParamDel()
-        {
-            string expected = "[,]";
-
-            CheckEOF(expected);
-            var lexeme = lexemes[index];
-            if (lexeme.Value == "," && lexeme.Type == LexemeType.DL1)
-            {
-                result += lexeme.Value + " ";
-                Logs.Add(new ParserLog(ParserLogType.Ok, lexeme, expected, result));
-                index += 1;
-            }
-            else
-            {
-                var log = new ParserLog(ParserLogType.ThowNotFound, lexeme, expected, result);
-                Logs.Add(log);
-                throw new ParserException(log);
-            }
-        }
+        private void CheckFunctionParamFunctionParamDel() => CheckLexeme("[,]", LexemeType.DL1, paramdelList);
 
         public void Parse()
         {

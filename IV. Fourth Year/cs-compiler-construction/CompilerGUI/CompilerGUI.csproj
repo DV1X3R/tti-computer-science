@@ -67,10 +67,8 @@
     <Compile Include="Compiler\Parser.cs" />
     <Compile Include="Compiler\Scanner.cs" />
     <Compile Include="Compiler\Lexeme.cs" />
-    <Compile Include="Compiler\ParserException.cs" />
-    <Compile Include="Compiler\ParserLog.cs" />
-    <Compile Include="Compiler\ScannerException.cs" />
-    <Compile Include="Compiler\ScannerLog.cs" />
+    <Compile Include="Compiler\ParserUtils.cs" />
+    <Compile Include="Compiler\ScannerUtils.cs" />
     <Compile Include="Compiler\SourceCompiler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

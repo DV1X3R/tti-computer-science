@@ -1,8 +1,10 @@
-﻿namespace CompilerGUI.Compiler
+﻿using System;
+
+namespace CompilerGUI.Compiler
 {
     enum ParserLogType
     {
-        Start, Success, ThrowEOF, ThowNotFound, Ok
+        Start, Success, Match, Mismatch
     }
 
     class ParserLog
@@ -18,6 +20,17 @@
             Lexeme = lexeme;
             Expected = expected;
             Result = result;
+        }
+
+    }
+
+    class ParserException : Exception
+    {
+        public ParserLog Log { get; private set; }
+
+        public ParserException(ParserLog log) : base()
+        {
+            Log = log;
         }
 
     }
