@@ -15,6 +15,8 @@ namespace CompilerGUI.Compiler
 
         public void Compile(string source)
         {
+            Scanner.Logs.Clear();
+            Parser.Logs.Clear();
             Scanner.Scan(source);
             Parser.Parse();
         }
