@@ -9,7 +9,7 @@ namespace CompilerGUI.Compiler
     class CompilerViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        public void OnPropertyChanged(string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
@@ -18,12 +18,7 @@ namespace CompilerGUI.Compiler
 
         public CompilerViewModel()
         {
-            var keywords = new ObservableCollection<string>() { "procedure", "var", "Byte", "Char", "array", "of", "Longint", "String", "Begin", "if", "and", "then", "else", "End", "or" };
-            var delimiters1 = new ObservableCollection<string>() { ".", ";", ":", "[", "]", "=", "(", ")", ",", "-", ">", "<" };
-            var delimiters2 = new ObservableCollection<string>() { "..", ":=" };
-            var delimiterString = '\'';
-
-            sourceCompiler = new SourceCompiler(keywords, delimiters1, delimiters2, delimiterString);
+            sourceCompiler = new SourceCompiler();
 
             sourceCodeText =
                 "procedure TIndicator.Draw;\n" + "var\n\t" + "Color: Byte; Frame: Char;\n\t" + "L: array[0..1] of Longint;\n\t" + "S: String[15];\n\t" +
@@ -69,7 +64,7 @@ namespace CompilerGUI.Compiler
                 msg += ("[" + log.Type.ToString() + "]").PadRight(12);
                 msg += " Index: " + log.Index.ToString().PadRight(5);
                 msg += " Character: [" + (Char.IsWhiteSpace(log.Character) ? " " : log.Character.ToString()) + "]  ";
-                msg += " Lexeme: " + ("[" + log.Lexeme?.ToString() + "]").PadRight(12);
+                msg += " Lexeme: " + ("[" + log.Lexeme?.ToString() + "]").PadRight(13);
                 msg += " Type: " + log.LexemeType;
                 Logs.Insert(0, msg);
             }
@@ -78,7 +73,7 @@ namespace CompilerGUI.Compiler
             {
                 string msg = "Parser> ";
                 msg += ("[" + log.Type.ToString() + "]").PadRight(15);
-                msg += " Lexeme: " + ("[" + log.Lexeme?.Value + "]").PadRight(12);
+                msg += " Lexeme: " + ("[" + log.Lexeme?.Value + "]").PadRight(13);
                 msg += " Expected: " + log.Expected?.PadRight(25);
                 msg += " Result: " + log.Result;
                 Logs.Insert(0, msg);
@@ -91,6 +86,7 @@ namespace CompilerGUI.Compiler
         public ObservableCollection<string> Keywords { get { return sourceCompiler.Scanner.Keywords; } }
         public ObservableCollection<string> Identifiers { get { return sourceCompiler.Scanner.Identifiers; } }
         public ObservableCollection<string> Literals { get { return sourceCompiler.Scanner.Literals; } }
+        public ObservableCollection<Quad> Quads { get { return sourceCompiler.WfpGenerator.Quads; } }
 
         private string sourceCodeText;
         public string SourceCodeText

@@ -6,48 +6,62 @@
         xmlns:local="clr-namespace:CompilerGUI"
         xmlns:vm="clr-namespace:CompilerGUI.Compiler"
         mc:Ignorable="d"
-        Title="Compiler by [http://github.com/dv1x3r/] (c) 2018" Height="695" Width="1200" MinWidth="800" MinHeight="500">
+        Title="Compiler by [http://github.com/dv1x3r/] (c) 2018" Height="700" Width="1200" MinWidth="800" MinHeight="600">
 
     <Window.DataContext>
         <vm:CompilerViewModel/>
     </Window.DataContext>
 
     <Grid>
-
         <Menu VerticalAlignment="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Exit" Click="MenuExit_Click"/>
             </MenuItem>
         </Menu>
 
-        <GroupBox Header="Source Code" HorizontalAlignment="Left" Height="320" VerticalAlignment="Top" Width="430" Margin="10,23,0,0">
-            <TextBox Margin="5,5,5,5" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding SourceCodeText, UpdateSourceTrigger=PropertyChanged}" FontSize="14"/>
-        </GroupBox>
+        <Grid HorizontalAlignment="Left" Width="465" Margin="10,23,0,31">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="320"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <GroupBox Header="Lexemes" HorizontalAlignment="Left" Margin="10,348,0,31" Width="430">
-            <DataGrid ItemsSource="{Binding Lexemes}" Margin="5,5,5,5" FontSize="16" FontFamily="Consolas"/>
-        </GroupBox>
+            <GroupBox Header="Source Code" Grid.Row="0">
+                <TextBox Margin="5,5,5,5" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding SourceCodeText, UpdateSourceTrigger=PropertyChanged}" FontSize="14"/>
+            </GroupBox>
 
-        <Grid Margin="445,23,10,31">
+            <GroupBox Header="Compiler" Grid.Row="1">
+                <Grid>
+                    <Button Command="{Binding CompileCommand}" Content="&gt; &gt; &gt; Compile &lt; &lt; &lt;" HorizontalAlignment="Left" Margin="50,5,0,0" VerticalAlignment="Top" Width="147"/>
+                    <Button Click="Button_Click" Content="Parser Rules" HorizontalAlignment="Left" Margin="50,30,0,0" VerticalAlignment="Top" Width="147"/>
+                    <Label Content="Scanner: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,-1,0,0"/>
+                    <Label Content="{Binding ScannerResultText}" HorizontalAlignment="Left" Margin="333,-1,0,0" VerticalAlignment="Top" FontWeight="Bold" Background="#FFF9F9F9" Foreground="{Binding ScannerResultColor}"/>
+                    <Label Content="Parser: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,30,0,0"/>
+                    <Label Content="{Binding ParserResultText}" HorizontalAlignment="Left" Margin="333,30,0,0" VerticalAlignment="Top" FontWeight="Bold" Background="#FFF9F9F9" Foreground="{Binding ParserResultColor}"/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Quads" Grid.Row="2">
+                <DataGrid ItemsSource="{Binding Quads}" Margin="5,5,5,5" FontSize="14" FontFamily="Consolas"/>
+            </GroupBox>
+        </Grid>
+
+        <Grid Margin="480,23,10,31">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100*"/>
-                <ColumnDefinition Width="100*"/>
-                <ColumnDefinition Width="162"/>
-            </Grid.ColumnDefinitions>
 
-            <GroupBox Header="Debug Output" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-                <ListBox ItemsSource="{Binding Logs}" Margin="5,5,5,5" FontFamily="Consolas" FontSize="16"/>
+            <GroupBox Header="Debug Output" Grid.Row="0">
+                <ListBox ItemsSource="{Binding Logs}" Margin="5,5,5,5" FontFamily="Consolas" FontSize="14"/>
             </GroupBox>
 
-            <Grid Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid Margin="0,0,0,0" Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="160*"/>
                 </Grid.ColumnDefinitions>
                 <GroupBox Header="Keywords" Grid.Column="0">
                     <ListBox ItemsSource="{Binding Keywords}" Margin="5,5,5,5" FontSize="14"/>
@@ -58,27 +72,14 @@
                 <GroupBox Header="Literals" Grid.Column="2">
                     <ListBox ItemsSource="{Binding Literals}" Margin="5,5,5,5" FontSize="14"/>
                 </GroupBox>
+                <GroupBox Header="Lexemes" Grid.Column="3">
+                    <DataGrid ItemsSource="{Binding Lexemes}" Margin="5,5,5,5" FontSize="14" FontFamily="Consolas"/>
+                </GroupBox>
             </Grid>
-
-            <GroupBox Header="Compile Results" HorizontalAlignment="Right" Height="84" Margin="0,0,10,0" VerticalAlignment="Top" Width="148" Grid.Row="1" Grid.Column="2">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="21*"/>
-                        <RowDefinition Height="41*"/>
-                    </Grid.RowDefinitions>
-                    <Label Content="Scanner: " HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="2"/>
-                    <Label Content="{Binding ScannerResultText}" HorizontalAlignment="Left" Margin="63,0,0,0" VerticalAlignment="Top" FontWeight="Bold" Background="#FFF9F9F9" Foreground="{Binding ScannerResultColor}" Grid.RowSpan="2"/>
-                    <Label Content="Parser: " HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-                    <Label Content="{Binding ParserResultText}" HorizontalAlignment="Left" Margin="63,5,0,0" VerticalAlignment="Top" FontWeight="Bold" Background="#FFF9F9F9" Foreground="{Binding ParserResultColor}" Grid.Row="1"/>
-                </Grid>
-            </GroupBox>
-            <Button Command="{Binding CompileCommand}" Content="&gt; &gt; &gt; Compile &lt; &lt; &lt;" Grid.Column="2" HorizontalAlignment="Left" Margin="5,89,0,0" Grid.Row="1" VerticalAlignment="Top" Width="147"/>
-            <Button Content="Parser Rules" Grid.Column="2" HorizontalAlignment="Left" Margin="77,116,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         </Grid>
 
         <StatusBar VerticalAlignment="Bottom">
             <TextBlock Text="{Binding StatusText}"/>
         </StatusBar>
-
     </Grid>
 </Window>

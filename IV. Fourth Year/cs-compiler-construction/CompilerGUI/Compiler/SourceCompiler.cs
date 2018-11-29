@@ -8,8 +8,13 @@ namespace CompilerGUI.Compiler
         public Parser Parser { get; private set; }
         public WfpGenerator WfpGenerator { get; private set; }
 
-        public SourceCompiler(ObservableCollection<string> keywords, ObservableCollection<string> delimiters1, ObservableCollection<string> delimiters2, char delimiterString)
+        public SourceCompiler()
         {
+            var keywords = new ObservableCollection<string>() { "procedure", "var", "Byte", "Char", "array", "of", "Longint", "String", "Begin", "if", "and", "then", "else", "End", "or" };
+            var delimiters1 = new ObservableCollection<string>() { ".", ";", ":", "[", "]", "=", "(", ")", ",", "-", ">", "<" };
+            var delimiters2 = new ObservableCollection<string>() { "..", ":=" };
+            var delimiterString = '\'';
+
             Scanner = new Scanner(keywords, delimiters1, delimiters2, delimiterString);
             WfpGenerator = new WfpGenerator();
             Parser = new Parser(Scanner, WfpGenerator);
@@ -19,6 +24,7 @@ namespace CompilerGUI.Compiler
         {
             Scanner.Logs.Clear();
             Parser.Logs.Clear();
+            WfpGenerator.Quads.Clear();
             Scanner.Scan(source);
             Parser.Parse();
         }
