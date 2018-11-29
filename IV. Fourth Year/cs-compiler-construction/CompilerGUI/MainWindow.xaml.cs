@@ -16,5 +16,10 @@ namespace CompilerGUI
         {
             Application.Current.Shutdown();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            (new ParserRulesWindow()).Show();
+        }
     }
 }

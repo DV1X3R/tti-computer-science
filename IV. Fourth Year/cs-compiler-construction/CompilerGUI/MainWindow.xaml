@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CompilerGUI"
         xmlns:vm="clr-namespace:CompilerGUI.Compiler"
         mc:Ignorable="d"
-        Title="Compiler by [http://github.com/dv1x3r/] (c) 2018" Height="650" Width="1080" MinWidth="1080" MinHeight="500">
+        Title="Compiler by [http://github.com/dv1x3r/] (c) 2018" Height="695" Width="1200" MinWidth="800" MinHeight="500">
 
     <Window.DataContext>
         <vm:CompilerViewModel/>
@@ -20,15 +20,15 @@
             </MenuItem>
         </Menu>
 
-        <GroupBox Header="Source Code" HorizontalAlignment="Left" Height="280" VerticalAlignment="Top" Width="380" Margin="10,23,0,0">
-            <TextBox Margin="5,5,5,5" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding SourceCodeText, UpdateSourceTrigger=PropertyChanged}"/>
+        <GroupBox Header="Source Code" HorizontalAlignment="Left" Height="320" VerticalAlignment="Top" Width="430" Margin="10,23,0,0">
+            <TextBox Margin="5,5,5,5" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Text="{Binding SourceCodeText, UpdateSourceTrigger=PropertyChanged}" FontSize="14"/>
         </GroupBox>
 
-        <GroupBox Header="Lexemes" HorizontalAlignment="Left" Margin="10,308,0,31" Width="380">
-            <DataGrid ItemsSource="{Binding Lexemes}" Margin="5,5,5,5" FontSize="14" FontFamily="Consolas"/>
+        <GroupBox Header="Lexemes" HorizontalAlignment="Left" Margin="10,348,0,31" Width="430">
+            <DataGrid ItemsSource="{Binding Lexemes}" Margin="5,5,5,5" FontSize="16" FontFamily="Consolas"/>
         </GroupBox>
 
-        <Grid Margin="395,23,10,31">
+        <Grid Margin="445,23,10,31">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -40,7 +40,7 @@
             </Grid.ColumnDefinitions>
 
             <GroupBox Header="Debug Output" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-                <ListBox ItemsSource="{Binding Logs}" Margin="5,5,5,5" FontFamily="Consolas"/>
+                <ListBox ItemsSource="{Binding Logs}" Margin="5,5,5,5" FontFamily="Consolas" FontSize="16"/>
             </GroupBox>
 
             <Grid Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
@@ -50,13 +50,13 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <GroupBox Header="Keywords" Grid.Column="0">
-                    <ListBox ItemsSource="{Binding Keywords}" Margin="5,5,5,5"/>
+                    <ListBox ItemsSource="{Binding Keywords}" Margin="5,5,5,5" FontSize="14"/>
                 </GroupBox>
                 <GroupBox Header="Identifiers" Grid.Column="1">
-                    <ListBox ItemsSource="{Binding Identifiers}" Margin="5,5,5,5"/>
+                    <ListBox ItemsSource="{Binding Identifiers}" Margin="5,5,5,5" FontSize="14"/>
                 </GroupBox>
                 <GroupBox Header="Literals" Grid.Column="2">
-                    <ListBox ItemsSource="{Binding Literals}" Margin="5,5,5,5"/>
+                    <ListBox ItemsSource="{Binding Literals}" Margin="5,5,5,5" FontSize="14"/>
                 </GroupBox>
             </Grid>
 
@@ -73,6 +73,7 @@
                 </Grid>
             </GroupBox>
             <Button Command="{Binding CompileCommand}" Content="&gt; &gt; &gt; Compile &lt; &lt; &lt;" Grid.Column="2" HorizontalAlignment="Left" Margin="5,89,0,0" Grid.Row="1" VerticalAlignment="Top" Width="147"/>
+            <Button Content="Parser Rules" Grid.Column="2" HorizontalAlignment="Left" Margin="77,116,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         </Grid>
 
         <StatusBar VerticalAlignment="Bottom">

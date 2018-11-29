@@ -28,7 +28,7 @@
 ```
 if State and sfDragging = 0 then Color := GetColor(1);
 
-<ifStatement> := if <logicalExpression> then <assignmentStatement>
+<ifStatement> := Begin if <logicalExpression> then <assignmentStatement>
 
 <logicalExpression> := <boolExpression> { <logicalOperator> <boolExpression> }
 <boolExpression> := <assignableValue> [ <boolOperator> <assignableValue> ]

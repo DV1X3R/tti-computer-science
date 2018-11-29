@@ -167,16 +167,16 @@ namespace CompilerGUI.Compiler
             index = 0;
             result = "";
 
-            // DEBUG: Check only first IF
+            // DEBUG: Check if after Begin
             for (int i = 0; i < lexemes.Count; i++)
             {
-                if (lexemes[i].Value == "if" && lexemes[i].Type == LexemeType.KEY)
+                if (lexemes[i].Value == "Begin" && lexemes[i].Type == LexemeType.KEY)
                 {
-                    index = i;
+                    index = i + 1;
                     Logs.Add(new ParserLog(ParserLogType.Start, null, "#N/A", result));
                     CheckIfStatement();
                     Logs.Add(new ParserLog(ParserLogType.Success, null, "#N/A", result));
-                    break;
+                    return;
                 }
             }
         }
