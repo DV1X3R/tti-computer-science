@@ -23,7 +23,7 @@ namespace CompilerGUI.Compiler
         private List<string> paramendList = new List<string>() { ")" };
         private List<string> paramdelList = new List<string>() { "," };
 
-        public Parser(Scanner scanner)
+        public Parser(Scanner scanner, WfpGenerator wfpGenerator)
         {
             lexemes = scanner.Lexemes;
         }
@@ -179,6 +179,10 @@ namespace CompilerGUI.Compiler
                     return;
                 }
             }
+
+            var log = new ParserLog(ParserLogType.Mismatch, null, "Begin if", null);
+            Logs.Add(log);
+            throw new ParserException(log);
         }
 
     }

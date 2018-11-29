@@ -6,11 +6,13 @@ namespace CompilerGUI.Compiler
     {
         public Scanner Scanner { get; private set; }
         public Parser Parser { get; private set; }
+        public WfpGenerator WfpGenerator { get; private set; }
 
         public SourceCompiler(ObservableCollection<string> keywords, ObservableCollection<string> delimiters1, ObservableCollection<string> delimiters2, char delimiterString)
         {
             Scanner = new Scanner(keywords, delimiters1, delimiters2, delimiterString);
-            Parser = new Parser(Scanner);
+            WfpGenerator = new WfpGenerator();
+            Parser = new Parser(Scanner, WfpGenerator);
         }
 
         public void Compile(string source)

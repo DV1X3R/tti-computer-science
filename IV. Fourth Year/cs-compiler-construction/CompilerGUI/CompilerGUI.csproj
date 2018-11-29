@@ -65,11 +65,13 @@
     </Compile>
     <Compile Include="Compiler\CompilerViewModel.cs" />
     <Compile Include="Compiler\Parser.cs" />
+    <Compile Include="Compiler\Quad.cs" />
     <Compile Include="Compiler\Scanner.cs" />
     <Compile Include="Compiler\Lexeme.cs" />
     <Compile Include="Compiler\ParserUtils.cs" />
     <Compile Include="Compiler\ScannerUtils.cs" />
     <Compile Include="Compiler\SourceCompiler.cs" />
+    <Compile Include="Compiler\WfpGenerator.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
