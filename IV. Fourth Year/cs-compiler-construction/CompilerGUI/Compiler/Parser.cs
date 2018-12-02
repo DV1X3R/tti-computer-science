@@ -12,6 +12,9 @@ namespace CompilerGUI.Compiler
         private ObservableCollection<Lexeme> lexemes;
         private int index;
         private string result;
+        private string resultLocal;
+
+        private WfpGenerator wfp;
 
         private List<string> ifList = new List<string>() { "if" };
         private List<string> thenList = new List<string>() { "then" };
@@ -26,6 +29,7 @@ namespace CompilerGUI.Compiler
         public Parser(Scanner scanner, WfpGenerator wfpGenerator)
         {
             lexemes = scanner.Lexemes;
+            wfp = wfpGenerator;
         }
 
         private void CheckLexeme(string expected, LexemeType lexemeType, List<string> values = null)
@@ -38,7 +42,8 @@ namespace CompilerGUI.Compiler
 
         private void WriteMatch(string expected)
         {
-            result += lexemes[index].Value + " ";
+            resultLocal = lexemes[index].Value;
+            result += resultLocal + " ";
             Logs.Add(new ParserLog(ParserLogType.Match, lexemes[index], expected, result));
             index += 1;
         }
@@ -56,17 +61,32 @@ namespace CompilerGUI.Compiler
             CheckIf();
             CheckLogicalExpression();
             CheckThen();
+            wfp.UpdateAssign();
             CheckAssignmentStatement();
+            wfp.UpdateEnd();
         }
         private void CheckIf() => CheckLexeme("[if]", LexemeType.KEY, ifList);
         private void CheckThen() => CheckLexeme("[then]", LexemeType.KEY, thenList);
 
-        // <logicalExpression> := <boolExpression> { <logicalOperator> <boolExpression> }
+        // <logicalExpression> := <boolExpression> { <logicalOperator> <logicalExpression> }
         private void CheckLogicalExpression()
         {
             CheckBoolExpression();
-            try { CheckLogicalOperator(); }
-            catch (ParserException) { return; }
+            try
+            {
+                CheckLogicalOperator();
+                switch (resultLocal)
+                {
+                    case "and": wfp.CompareAnd(); break;
+                    case "or": wfp.CompareOr(); break;
+                    default: throw new System.ArgumentOutOfRangeException($"Logical Operator '{resultLocal}' is not supported");
+                }
+            }
+            catch (ParserException)
+            {
+                wfp.CompareAnd();
+                return;
+            }
             CheckLogicalExpression();
         }
 
@@ -74,9 +94,29 @@ namespace CompilerGUI.Compiler
         private void CheckBoolExpression()
         {
             CheckAssignableValue();
-            try { CheckBoolOperator(); }
-            catch (ParserException) { return; }
+
+            string boolOperator;
+            try
+            {
+                CheckBoolOperator();
+                boolOperator = resultLocal;
+                wfp.SetCompareWith();
+            }
+            catch (ParserException)
+            {
+                wfp.SetCompareOpBE();
+                return;
+            }
+
             CheckAssignableValue();
+
+            switch (boolOperator)
+            {
+                case "=": wfp.SetCompareOpBE(); break;
+                case ">": wfp.SetCompareOpBG(); break;
+                case "<": wfp.SetCompareOpBL(); break;
+                default: throw new System.ArgumentOutOfRangeException($"Bool Operator '{boolOperator}' is not supported");
+            }
         }
 
         // <logicalOperator> := and | or
@@ -89,9 +129,11 @@ namespace CompilerGUI.Compiler
         private void CheckAssignmentStatement()
         {
             CheckVariableName();
+            string variableName = resultLocal;
             CheckAssignmentEqSign();
             CheckAssignableValue();
             CheckAssignmentEndSign();
+            wfp.Assign(variableName);
         }
         private void CheckAssignmentEqSign() => CheckLexeme("[:=]", LexemeType.DL2, eqsignList);
         private void CheckAssignmentEndSign() => CheckLexeme("[;]", LexemeType.DL1, endsignList);
@@ -105,21 +147,35 @@ namespace CompilerGUI.Compiler
             int recIndex = index;
             string recResult = result;
 
-            try { CheckFunction(); return; }
+            try
+            {
+                CheckFunction();
+                return;
+            }
             catch (ParserException)
             {
                 index = recIndex;
                 result = recResult;
             }
 
-            try { CheckLexeme("<identifier>", LexemeType.IDN); return; }
+            try
+            {
+                CheckLexeme("<identifier>", LexemeType.IDN);
+                wfp.AddAssignable(resultLocal);
+                return;
+            }
             catch (ParserException)
             {
                 index = recIndex;
                 result = recResult;
             }
 
-            try { CheckLexeme("<integer>", LexemeType.INT); return; }
+            try
+            {
+                CheckLexeme("<integer>", LexemeType.INT);
+                wfp.AddAssignable(resultLocal);
+                return;
+            }
             catch (ParserException)
             {
                 index = recIndex;
@@ -133,9 +189,12 @@ namespace CompilerGUI.Compiler
         private void CheckFunction()
         {
             CheckFunctionName();
+            string potentialFunction = resultLocal;
             CheckFunctionParamStartSign();
-            CheckFunctionParam();
+            wfp.AddFunction(potentialFunction);
+            CheckFunctionParams();
             CheckFunctionParamEndSign();
+            wfp.Call();
         }
         private void CheckFunctionParamStartSign() => CheckLexeme("[(]", LexemeType.DL1, paramstartList);
         private void CheckFunctionParamEndSign() => CheckLexeme("[)]", LexemeType.DL1, paramendList);
@@ -144,7 +203,7 @@ namespace CompilerGUI.Compiler
         private void CheckFunctionName() => CheckLexeme("<functionName>", LexemeType.IDN);
 
         // <functionParam> :=  [ <assignableValue> { , <assignableValue> } ]
-        private void CheckFunctionParam(bool required = false)
+        private void CheckFunctionParams(bool required = false)
         {
             if (required)
             {
@@ -155,9 +214,13 @@ namespace CompilerGUI.Compiler
                 try { CheckAssignableValue(); }
                 catch (ParserException) { return; }
             }
+
+            wfp.AddFunctionParam();
+
             try { CheckFunctionParamFunctionParamDel(); }
             catch (ParserException) { return; }
-            CheckFunctionParam(true);
+
+            CheckFunctionParams(true);
         }
         private void CheckFunctionParamFunctionParamDel() => CheckLexeme("[,]", LexemeType.DL1, paramdelList);
 
@@ -166,6 +229,8 @@ namespace CompilerGUI.Compiler
             Logs.Clear();
             index = 0;
             result = "";
+
+            wfp.ResetLocals();
 
             // DEBUG: Check if after Begin
             for (int i = 0; i < lexemes.Count; i++)

@@ -30,7 +30,7 @@ if State and sfDragging = 0 then Color := GetColor(1);
 
 <ifStatement> := Begin if <logicalExpression> then <assignmentStatement>
 
-<logicalExpression> := <boolExpression> { <logicalOperator> <boolExpression> }
+<logicalExpression> := <boolExpression> { <logicalOperator> <logicalExpression> }
 <boolExpression> := <assignableValue> [ <boolOperator> <assignableValue> ]
 
 <logicalOperator> := and | or
@@ -48,21 +48,7 @@ if State and sfDragging = 0 then Color := GetColor(1);
 * Приложение 3.
 Целью работы является создание программного продукта, интегрирующего результаты лабораторных работ No1 и No2:  
 Разработка внутренней формы представления для разбираемого фрагмента в виде троек, четверок и т.д.; то есть построение семантических процедур. Рекомендуется применение четверок как вида ВФП.  
-
-```
-if State and sfDragging = 0 then Color := GetColor(1);
-
-(1) BLOCK
-(2) BE, 3, State, TRUE
-(3) :=, TRUE, , T1
-(4) BE, 5, sfDragging, 0
-(5) :=, TRUE, , T2
-(6) BE, 7, T1, T2
-(7) PAR, , , 1
-(8) CALL, GetColor, , T3
-(7) :=, Color, , T3
-(8) BLOCKEND
-```
+  
 
 * Программный фрагмент
 ```pascal
