@@ -26,13 +26,13 @@
 * [Logical Programming (Prolog): Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/III.%20Third%20Year/prolog-logical-programming)
 
 ### IV. Fourth Year (2018-2019)
-* Numerical Methods in Computer Calculations: Homework (TBI)
+* [Numerical Methods in Computer Calculations: Homework](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-numerical)
 * [Numerical Methods in Computer Calculations: Laboratory @External Repo](https://github.com/DV1X3R/tti-numerical-lw)
 * [Development in .Net environment: Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/net-dotnet-development)
 * [Software Engineering (C#): Coursework @External Repo](https://github.com/Ary0n-Z/SmartPong)
 * [Compiler Construction (C#): Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-compiler-construction)
 * [Algorithmic Means of Computer Graphics (C++): Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics)
-* [Web Application Development Tools](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/web-application-development-tools)
+* [Web Application Development Tools: Assignments](https://github.com/DV1X3R/tti-computer-science/tree/master/IV.%20Fourth%20Year/web-application-development-tools)
   
 
 [Joe Esposito You're The Best Around](https://www.youtube.com/watch?v=E-WHW-QNswE)
