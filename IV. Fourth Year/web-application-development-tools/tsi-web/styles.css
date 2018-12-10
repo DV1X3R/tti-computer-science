@@ -40,7 +40,8 @@ header ul {
 
 header li {
     display: inline-block;
-    padding-right: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 header a {
@@ -76,7 +77,7 @@ header a:hover {
 }
 
 #section-introduction aside {
-    float: right; 
+    float: right;
     margin-top: 50px;
 }
 
@@ -85,8 +86,9 @@ header a:hover {
 }
 
 #section-products .box {
-    float: left;
-    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    width: 28%;
     padding: 10px;
 }
 
@@ -107,4 +109,36 @@ header a:hover {
 #section-feedback form {
     float: right;
     margin-top: 5px;
+}
+
+@media(max-width: 980px) {
+    header #header-title,
+    header nav,
+    #section-introduction #introduction-data,
+    #section-introduction aside,
+    #section-feedback h2,
+    #section-feedback form {
+        float: none;
+        width: 100%;
+        text-align: center;
+        margin: auto;
+    }
+
+    #section-feedback h2 {
+        font-size: 15px;
+    }
+
+}
+
+@media(max-width: 500px) {
+    #section-products .box {
+        display: block;
+        width: 100%;
+        padding: 0;
+    }
+
+    #section-products .box img {
+        width: 50%;
+    }
+
 }
