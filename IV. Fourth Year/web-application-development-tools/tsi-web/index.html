@@ -9,6 +9,7 @@
     <meta name="author" content="https://github.com/dv1x3r">
     <title>Acme Warehouse | Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="calculator.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="./styles.css" />
     <style>
         body {
@@ -40,16 +41,17 @@
         </header>
 
         <section id="section-introduction">
+            <h2>Company Making Everything</h2>
             <div class="container">
-                <div id="introduction-data">
-                    <h2>Company Making Everything</h2>
+                <article>
+                    <h3>About us</h3>
                     <p>The Acme Corporation is a fictional corporation that features prominently in the Road
                         Runner/Wile E.
                         Coyote animated shorts as a running gag featuring outlandish products that fail or backfire
                         catastrophically at the worst possible times. The name is also used as a generic title in many
                         cartoons, especially those made by Warner Bros., and films, TV series, commercials and comic
                         strips.</p>
-                </div>
+                </article>
 
                 <aside>
                     <table style="border: 1px solid black; width: 250px; margin: auto;">
@@ -112,6 +114,29 @@
                         runner's
                         heads.</p>
                 </div>
+            </div>
+        </section>
+
+        <section id="section-utils">
+            <div class="box">
+                <h2>JS Calculator</h2>
+                <input id="calculator-out" type="text"><br>
+                <div id="calculator-keys">
+                    <button>1</button> <button>2</button> <button>3</button> <button>+</button><br>
+                    <button>4</button> <button>5</button> <button>6</button> <button>-</button><br>
+                    <button>7</button> <button>8</button> <button>9</button> <button>*</button><br>
+                    <button>C</button> <button>0</button> <button>=</button> <button>/</button>
+                </div>
+            </div>
+            <div class="box">
+                <h2>Regex form</h2>
+                <form method="GET">
+                    Username *: <input type="text" pattern="[a-zA-Z]+" title="Username should only contain letters" required><br>
+                    Password *: <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contain at least 8 symbols, uppercase and lowercase letter and digit" required><br>
+                    Date *: <input type="text" pattern="[0-3][0-9]/[0-1][0-9]/(19|20)[0-9][0-9]" title="Date should be in dd/mm/yyyy format and only 19xx or 20xx years" required><br>
+                    Email *: <input type="text" pattern="[\S]+@[\S]+\.[\S]+" title="Email should contain @ and ." required><br>
+                    <input type="submit"><br>
+                </form>
             </div>
         </section>
 

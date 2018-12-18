@@ -71,14 +71,17 @@ header a:hover {
     text-align: center;
 }
 
-#section-introduction #introduction-data {
-    float: left;
+#section-introduction article {
+    display: inline-block;
+    vertical-align: top;
     width: 70%;
 }
 
 #section-introduction aside {
-    float: right;
-    margin-top: 50px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #section-products {
@@ -94,6 +97,36 @@ header a:hover {
 
 #section-products .box img {
     width: 80%;
+}
+
+#section-utils {
+    text-align: center;
+}
+
+#section-utils .box {
+    display: inline-block;
+    vertical-align: top;
+    width: 28%;
+    padding: 10px;
+    text-align: right;
+}
+
+#section-utils #calculator-out {
+    width: 200px;
+    font-size: 18px;
+}
+
+#section-utils button {
+    width: 50px;
+    font-size: 14px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#section-regform {
+    text-align: center;
+    display: inline-block;
+    width: 70%;
 }
 
 #section-feedback {
@@ -114,11 +147,10 @@ header a:hover {
 @media(max-width: 980px) {
     header #header-title,
     header nav,
-    #section-introduction #introduction-data,
+    #section-introduction article,
     #section-introduction aside,
     #section-feedback h2,
     #section-feedback form {
-        float: none;
         width: 100%;
         text-align: center;
         margin: auto;
@@ -130,10 +162,11 @@ header a:hover {
 
 }
 
-@media(max-width: 500px) {
-    #section-products .box {
+@media(max-width: 780px) {
+    #section-products .box, #section-utils .box {
         display: block;
         width: 100%;
+        text-align: center;
         padding: 0;
     }
 
