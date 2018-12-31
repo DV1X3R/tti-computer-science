@@ -1,4 +1,6 @@
-$(document).ready(function () {
+//$(document).ready(function () {
+$(function () {
+    // Clock dials
     for (let i = 1; i < 13; i++) {
         $(document.createElementNS('http://www.w3.org/2000/svg', 'line')).attr({
             x1: '50%', y1: '18%',
@@ -14,6 +16,7 @@ $(document).ready(function () {
         stroke: 'black', 'stroke-width': 3, fill: 'none',
     }).appendTo("#section-jquery svg");
 
+    // Arrows
     $(document.createElementNS('http://www.w3.org/2000/svg', 'line')).attr({
         id: 'clock-h',
         x1: '50%', y1: '50%',
@@ -41,6 +44,7 @@ $(document).ready(function () {
         style: 'stroke:red; stroke-width:2',
     }).appendTo("#section-jquery svg");
 
+    // Center
     $(document.createElementNS('http://www.w3.org/2000/svg', 'circle')).attr({
         cx: '50%', cy: '50%', r: '2%',
         stroke: 'black', 'stroke-width': 2, fill: 'red',
@@ -50,11 +54,12 @@ $(document).ready(function () {
 });
 
 function tick() {
-    let date = new Date();
+    let date = new Date(); // Calculate
     let hd = (date.getHours() / 12) * 360 + (date.getMinutes() / 2);
     let md = (date.getMinutes() / 60) * 360 + (date.getSeconds() / 10);
     let sd = (date.getSeconds() / 60) * 360; //+ (date.getMilliseconds() / 160);
 
+    // Rotate
     $('#clock-h').attr('transform', `rotate(${hd})`);
     $('#clock-m').attr('transform', `rotate(${md})`);
     $('#clock-s').attr('transform', `rotate(${sd})`);

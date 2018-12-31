@@ -13,6 +13,7 @@
         crossorigin="anonymous"></script>
     <script src="calculator.js"></script>
     <script src="clock.js"></script>
+    <script src="vform.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="./styles.css" />
     <style>
         body {
@@ -134,14 +135,16 @@
             <div class="box">
                 <h2>Regex form</h2>
                 <form method="GET">
-                    Username *: <input type="text" pattern="[a-zA-Z]+" title="Username should only contain letters"
+                    <label>Username *:</label>
+                    <input type="text" pattern="[a-zA-Z]+" title="Username should only contain letters" required><br>
+                    <label>Password *: </label>
+                    <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contain at least 8 symbols, uppercase and lowercase letter and digit"
                         required><br>
-                    Password *: <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contain at least 8 symbols, uppercase and lowercase letter and digit"
+                    <label>Date *: </label>
+                    <input type="text" pattern="[0-3][0-9]/[0-1][0-9]/(19|20)[0-9][0-9]" title="Date should be in dd/mm/yyyy format and only 19xx or 20xx years"
                         required><br>
-                    Date *: <input type="text" pattern="[0-3][0-9]/[0-1][0-9]/(19|20)[0-9][0-9]" title="Date should be in dd/mm/yyyy format and only 19xx or 20xx years"
-                        required><br>
-                    Email *: <input type="text" pattern="[\S]+@[\S]+\.[\S]+" title="Email should contain @ and ."
-                        required><br>
+                    <label>Email *:</label>
+                    <input type="text" pattern="[\S]+@[\S]+\.[\S]+" title="Email should contain @ and ." required><br>
                     <input type="submit"><br>
                 </form>
             </div>
@@ -154,6 +157,15 @@
             </div>
             <div class="box">
                 <h2>jQuery Form</h2>
+                <form class="jq-form" method="GET">
+                    <label for="client-name">Your name *:</label>
+                    <input id="client-name" class="field-required" type="text"><br>
+                    <label for="client-email">Your email *:</label>
+                    <input id="client-email" class="field-required" type="text"><br>
+                    <label for="client-message">Your message *:</label>
+                    <input id="client-message" class="field-required" type="text"><br>
+                    <input class="button-submit" type="submit"><br>
+                </form>
             </div>
             <div class="box">
                 <h2>jQuery Images</h2>

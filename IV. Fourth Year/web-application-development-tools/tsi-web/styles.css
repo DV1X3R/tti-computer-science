@@ -84,31 +84,19 @@ header a:hover {
     margin-right: 10px;
 }
 
-#section-products {
+#section-products, #section-utils, #section-jquery {
     text-align: center;
-}
-
-#section-products .box {
-    display: inline-block;
-    vertical-align: top;
-    width: 28%;
-    padding: 10px;
 }
 
 #section-products .box img {
     width: 80%;
 }
 
-#section-utils {
-    text-align: center;
-}
-
-#section-utils .box {
+.box {
     display: inline-block;
     vertical-align: top;
     width: 28%;
     padding: 10px;
-    text-align: right;
 }
 
 #section-utils #calculator-out {
@@ -121,17 +109,6 @@ header a:hover {
     font-size: 14px;
     margin-top: 2px;
     margin-bottom: 2px;
-}
-
-#section-jquery {
-    text-align: center;
-}
-
-#section-jquery .box {
-    display: inline-block;
-    vertical-align: top;
-    width: 28%;
-    padding: 10px;
 }
 
 #section-feedback {
@@ -168,18 +145,14 @@ header a:hover {
 }
 
 @media(max-width: 780px) {
-    #section-products .box, #section-utils .box, #section-jquery .box {
+    .box {
         display: block;
         width: 100%;
         text-align: center;
         padding: 0;
     }
 
-    #section-products .box img {
-        width: 50%;
-    }
-
-    #section-utils #calculator-out, #section-jquery .box svg {
+    #section-products .box img, #section-jquery .box svg {
         width: 50%;
         height: 50%;
     }
