@@ -123,10 +123,15 @@ header a:hover {
     margin-bottom: 2px;
 }
 
-#section-regform {
+#section-jquery {
     text-align: center;
+}
+
+#section-jquery .box {
     display: inline-block;
-    width: 70%;
+    vertical-align: top;
+    width: 28%;
+    padding: 10px;
 }
 
 #section-feedback {
