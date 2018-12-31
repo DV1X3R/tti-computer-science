@@ -168,7 +168,7 @@ header a:hover {
 }
 
 @media(max-width: 780px) {
-    #section-products .box, #section-utils .box {
+    #section-products .box, #section-utils .box, #section-jquery .box {
         display: block;
         width: 100%;
         text-align: center;
@@ -177,6 +177,11 @@ header a:hover {
 
     #section-products .box img {
         width: 50%;
+    }
+
+    #section-utils #calculator-out, #section-jquery .box svg {
+        width: 50%;
+        height: 50%;
     }
 
 }
