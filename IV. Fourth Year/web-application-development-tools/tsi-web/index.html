@@ -9,8 +9,12 @@
     <meta name="author" content="https://github.com/dv1x3r">
     <title>Acme Warehouse | Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- EXTERNAL -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js"></script>
+    <!-- LOCAL -->
     <script src="calculator.js"></script>
     <script src="clock.js"></script>
     <script src="vform.js"></script>
@@ -39,6 +43,7 @@
                         <li><a href="index.html" class="highlight">Home</a></li>
                         <li><a href="https://en.wikipedia.org/wiki/Acme_Corporation" target="_blank">Wiki</a></li>
                         <li><a href="https://fringefocus.com/products/acme-inventory-series" target="_blank">Posters</a></li>
+                        <li><a href="https://www.ranker.com/list/best-looney-tunes-characters/ranker-tv" target="_blank">Characters</a></li>
                     </ul>
                 </nav>
             </div>
@@ -123,7 +128,7 @@
 
         <section id="section-utils">
             <div class="box">
-                <h2>JS Calculator</h2>
+                <h2>Calculate something</h2>
                 <input id="calculator-out" type="text"><br>
                 <div id="calculator-keys">
                     <button>1</button> <button>2</button> <button>3</button> <button>+</button><br>
@@ -133,7 +138,7 @@
                 </div>
             </div>
             <div class="box">
-                <h2>Regex form</h2>
+                <h2>Register</h2>
                 <form method="GET">
                     <label>Username *:</label>
                     <input type="text" pattern="[a-zA-Z]+" title="Username should only contain letters" required><br>
@@ -152,11 +157,11 @@
 
         <section id="section-jquery">
             <div class="box">
-                <h2>jQuery Clock</h2>
+                <h2>What time is it?</h2>
                 <svg width="200" height="200" />
             </div>
             <div class="box">
-                <h2>jQuery Form</h2>
+                <h2>Feedback</h2>
                 <form class="jq-form" method="GET">
                     <label for="client-name">Your name *:</label>
                     <input id="client-name" class="field-required" type="text"><br>
@@ -168,7 +173,34 @@
                 </form>
             </div>
             <div class="box">
-                <h2>jQuery Images</h2>
+                <h2>Our Employees</h2>
+                <script>
+                    $(document).ready(function () {
+                        $("#light-slider").lightSlider();
+                    });
+                </script>
+                <ul id="light-slider">
+                    <li>
+                        <h3>Daffy Duck</h3>
+                        <img src="https://bit.ly/2VthTcC" alt="Daffy Duck Demo">
+                    </li>
+                    <li>
+                        <h3>Bugs Bunny</h3>
+                        <img src="https://bit.ly/2CGYXiW" alt="Bugs Bunny Demo">
+                    </li>
+                    <li>
+                        <h3>Wile E. Coyote</h3>
+                        <img src="https://bit.ly/2EYnqCP" alt="Wile E. Coyote Demo">
+                    </li>
+                    <li>
+                        <h3>Sylvester</h3>
+                        <img src="https://bit.ly/2LHHPga" alt="Sylvester Demo">
+                    </li>
+                    <li>
+                        <h3>Tasmanian Devil</h3>
+                        <img src="https://bit.ly/2AkYrpd" alt="Tasmanian Devil Demo">
+                    </li>
+                </ul>
             </div>
         </section>
 
