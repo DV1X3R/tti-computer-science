@@ -4,3 +4,6 @@
 [submodule "IV. Fourth Year/cs-numerical/laboratory"]
 	path = IV. Fourth Year/cs-numerical/laboratory
 	url = https://DV1X3R@github.com/DV1X3R/tti-numerical-lw.git
+[submodule "bachelors-thesis"]
+	path = bachelors-thesis
+	url = https://gitlab.com/dv1x3r/chatbi-bt
