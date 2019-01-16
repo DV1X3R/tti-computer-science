@@ -92,4 +92,4 @@ Cоставьте консольную программу расчета зна�
 1. Написать код программы
   
 ## But how does it look?
-![Oops. Image was here](https://raw.githubusercontent.com/DV1X3R/tti-computer-science/master/I.%20First%20Year/cpp-programming/screenshot.png)
+![Oops. Image was here](https://gitlab.com/dv1x3r/tti-computer-science/raw/master/I.%20First%20Year/cpp-programming/screenshot.png)

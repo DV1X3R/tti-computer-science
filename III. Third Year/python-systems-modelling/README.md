@@ -21,7 +21,7 @@
   
 ## But how does it look?
 * Test
-![Oops. Image was here](https://raw.githubusercontent.com/DV1X3R/tti-computer-science/master/III.%20Third%20Year/python-systems-modelling/screenshot.test.png)  
+![Oops. Image was here](https://gitlab.com/dv1x3r/tti-computer-science/raw/master/III.%20Third%20Year/python-systems-modelling/screenshot.test.png)  
   
 * Model
-![Oops. Image was here](https://raw.githubusercontent.com/DV1X3R/tti-computer-science/master/III.%20Third%20Year/python-systems-modelling/screenshot.model.png)
+![Oops. Image was here](https://gitlab.com/dv1x3r/tti-computer-science/raw/master/III.%20Third%20Year/python-systems-modelling/screenshot.model.png)
