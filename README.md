@@ -33,6 +33,7 @@
 * [Compiler Construction (C#): Assignments](https://gitlab.com/dv1x3r/tti-computer-science/tree/master/IV.%20Fourth%20Year/cs-compiler-construction)
 * [Algorithmic Means of Computer Graphics (C++): Assignments](https://gitlab.com/dv1x3r/tti-computer-science/tree/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics)
 * [Web Application Development Tools: Assignments](https://gitlab.com/dv1x3r/tti-computer-science/tree/master/IV.%20Fourth%20Year/web-application-development-tools)
-  
+* [Introduction to Intelligence Systems (Python): Assignments](https://gitlab.com/dv1x3r/tti-computer-science/tree/master/IV.%20Fourth%20Year/python-intelligence-systems)
+
 
 [Joe Esposito You're The Best Around](https://www.youtube.com/watch?v=E-WHW-QNswE)

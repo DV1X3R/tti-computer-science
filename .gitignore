@@ -13,3 +13,4 @@ packages/
 *.out*
 node_modules/
 *.exe
+.ipynb_checkpoints
