@@ -41,7 +41,7 @@ class _KMeans:
                 # calculated distances and probabilities (max dist -> larger prob)
                 d = [self._calculate_distance(self.centroids[-1], x[i][1])
                      for i in range(len(x))]
-                p = d / sum(d)
+                p = d / sum(np.power(d, 2))
 
                 # picking best centroid
                 centroid = random.choices(x, p)[0]
