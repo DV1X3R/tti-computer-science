@@ -1,5 +1,9 @@
 import random
 import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
 
 
 class _KMeans:
@@ -15,7 +19,7 @@ class _KMeans:
     def fit(self, x):
         self.x = np.array(x)
         self._init_centroids()  # Step 0
-        while np.array_equal(self.centroids_old, self.centroids) == False:
+        while not np.array_equal(self.centroids_old, self.centroids):
             self.centroids_old = self.centroids.copy()
             self._calculate_labels()  # Step 1
             self._calculate_centroids()  # Step 2
@@ -65,3 +69,21 @@ class _KMeans:
         return np.sqrt(sum(  # Euclidean distance
             [np.power(x1[j] - x2[j], 2) for j in range(len(x1))]
         ))
+
+
+X = pd.DataFrame({
+    'x': [1, 2, 1, 3, 5, 4],
+    'y': [5, 5, 4, 2, 2, 1]
+})
+X['k'] = _KMeans(n_clusters=2).fit(X).labels_
+sns.scatterplot(x=X['x'], y=X['y'], hue=X['k'])
+
+X = pd.read_csv('iris.data.csv')
+X['k'] = _KMeans(n_clusters=3).fit(
+    X[['sepal length', 'sepal width', 'petal length', 'petal width']]).labels_
+sns.pairplot(X, vars=['sepal length', 'sepal width',
+                      'petal length', 'petal width'], hue='k')
+# sns.pairplot(X, vars=['sepal length', 'sepal width', 'petal length', 'petal width'], hue='class')
+
+plt.show()
+# plt.figure()
