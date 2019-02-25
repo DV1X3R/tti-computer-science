@@ -13,18 +13,16 @@ class _KMeans:
         self.n_clusters = n_clusters
         self.init = init
         self.max_iter = max_iter
-        self.x = None
         self.cluster_centers_ = None
-        self.cluster_centers_old_ = None
         self.labels_ = None
 
     def fit(self, x):
         iter = 0
-        self.x = np.array(x)
+        x = np.array(x)
 
         # Step 0
         if self.init == 'k-means++':
-            x_pool = self.x.copy()  # init pool of centroids
+            x_pool = x.copy()  # init pool of centroids
             c = np.random.randint(len(x_pool))  # first random index
             self.cluster_centers_ = np.array([x_pool[c]])  # assign centroid
             x_pool = np.delete(x_pool, c, axis=0) # remove that centroid from the pool
@@ -46,26 +44,26 @@ class _KMeans:
                     range(len(self.x)), self.n_clusters)])
 
         # K-Means
-
-        while not np.array_equal(self.cluster_centers_old_, self.cluster_centers_) and iter < self.max_iter:
-            self.cluster_centers_old_ = self.cluster_centers_.copy()
-            print('Iteration: ' + str(iter + 1) + '; ', *self.cluster_centers_)
+        cluster_centers_old_ = None
+        while not np.array_equal(cluster_centers_old_, self.cluster_centers_) and iter < self.max_iter:
+            cluster_centers_old_ = self.cluster_centers_.copy()
+            # print('Iteration: ' + str(iter + 1) + '; ', *self.cluster_centers_)
             iter += 1
 
             # Step 1
             # squared distance -> sum x dimensions and centroids -> transpose (clusters in row)
             # d = [[np.sqrt(sum(np.power(i - c, 2))) for c in self.cluster_centers_] for i in self.x]
-            d = np.sqrt(((self.x - self.cluster_centers_[:, np.newaxis]) ** 2).sum(2).T)
+            d = np.sqrt(((x - self.cluster_centers_[:, np.newaxis]) ** 2).sum(2).T)
             # indexes of min values (grouped by column)
             self.labels_ = np.argmin(d, axis=1)
 
             # Step 2
-            centroids = []
+            x_centers = []
             for c in range(self.n_clusters):
-                x = np.array([self.x[li] for li, lc in enumerate(self.labels_) if lc == c])
-                # centroids.append([sum(i) / len(i) for i in x.T])
-                centroids.append(x.mean(0)) # calculate mean for each cluster x's
-            self.cluster_centers_ = np.array(centroids)
+                xc = np.array([x[li] for li, lc in enumerate(self.labels_) if lc == c])
+                # x_centers.append([sum(i) / len(i) for i in x.T])
+                x_centers.append(xc.mean(0)) # calculate mean for each cluster x's
+            self.cluster_centers_ = np.array(x_centers)
 
         return self
 
