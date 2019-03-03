@@ -1,6 +1,9 @@
 # Introduction to Intelligence Systems (4 year / 2 semester)
 
 ## Exercise 1 - Кластеризация методом 𝒌 средних
+* /KMeans.ipynb
+* [sklearn.cluster.KMeans](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
+
 Минимум:
 * реализация, работающая на наборе данных «цветы ириса»
 * подсчет доли верно определенных классов (accuracy)  
@@ -11,6 +14,19 @@
 * \*\*векторизованная реализация (и сравнение с циклической реализацией),
 * инициализация 𝑘 средних++,
 * \*векторизованная инициализация 𝑘 средних++.
+
+## Exercise 2 - Перцептрон
+* /Perceptron.ipynb
+* [sklearn.linear_model.Perceptron](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html)
+
+Минимум:
+* реализация, работающая на наборе данных «цветы ириса» (линейно разделимые классы: Iris-setosa, Iris-versicolor),
+* подбор коэффициента обучения 𝛼,
+* подсчет доли верно определенных классов (accuracy) на обучающей (80% данных) и валидационной (20% данных) выборках.  
+
+Улучшения:
+* векторизованная реализация,
+* визуализация результатов.
 
 ## Notes
 
@@ -38,7 +54,6 @@ jupyter notebook
 * [Использование точечных диаграмм для визуализации данных 'habr.com'](https://habr.com/ru/post/440674/)
 * [Data Science в Visual Studio Code с использованием Neuron 'habr.com'](https://habr.com/ru/company/microsoft/blog/428738/)
 * [Loading A CSV Into pandas](https://chrisalbon.com/python/data_wrangling/pandas_dataframe_importing_csv/)
-* [sklearn.cluster.KMeans](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
 * [NumPy - Broadcasting](https://www.tutorialspoint.com/numpy/numpy_broadcasting.htm)
 * [SciPy - Broadcasting](https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html)
 * [SciPy - Indexing](https://docs.scipy.org/doc/numpy-1.13.0/reference/arrays.indexing.html)
