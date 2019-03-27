@@ -114,3 +114,5 @@ jupyter notebook
 * [Single-Layer Neural Networks and Gradient Descent](https://sebastianraschka.com/Articles/2015_singlelayer_neurons.html)
 * [What is the difference between a Perceptron, Adaline, and neural network model?](https://sebastianraschka.com/faq/docs/diff-perceptron-adaline-neuralnet.html)
 * [Лекции по Big Data 'youtube.com'](https://www.youtube.com/playlist?list=PLDCK7Cej1W41qOk-XRRVNELkr_ouOxxzI)
+* [Machine Learning — Andrew Ng, Stanford University [FULL COURSE] 'youtube.com'](https://www.youtube.com/watch?v=PPLop4L2eGk&list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN)
+* [playground.tensorflow.org](https://playground.tensorflow.org/)
