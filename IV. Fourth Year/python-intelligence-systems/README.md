@@ -135,3 +135,6 @@ jupyter notebook
 * [Лекции по Big Data 'youtube.com'](https://www.youtube.com/playlist?list=PLDCK7Cej1W41qOk-XRRVNELkr_ouOxxzI)
 * [Machine Learning — Andrew Ng, Stanford University [FULL COURSE] 'youtube.com'](https://www.youtube.com/watch?v=PPLop4L2eGk&list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN)
 * [playground.tensorflow.org](https://playground.tensorflow.org/)
+* [Softmax function 'wikipedia.org'](https://en.wikipedia.org/wiki/Softmax_function)
+* [Это нужно знать: Ключевые рекомендации по глубокому обучению (Часть 1)](http://datareview.info/article/eto-nuzhno-znat-klyuchevyie-rekomendatsii-po-glubokomu-obucheniyu-chast-1/)
+* [Это нужно знать: Ключевые рекомендации по глубокому обучению (Часть 2)](http://datareview.info/article/eto-nuzhno-znat-klyuchevyie-rekomendatsii-po-glubokomu-obucheniyu-chast-2/)
