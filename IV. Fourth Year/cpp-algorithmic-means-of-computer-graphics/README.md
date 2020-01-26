@@ -75,7 +75,7 @@ PG DN – вращение объектов против часовой стре
 Измените текст программы таким образом, что бы отображаемая проекция объекта была центральной. Сравните полученный результат работы программы с предыдущими запусками.
   
 ## But how does it look?
-![Oops. Image was here](https://gitlab.com/dv1x3r/tti-computer-science/raw/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics/screenshot.png)
+![Oops. Image was here](https://github.com/dv1x3r/tti-computer-science/raw/master/IV.%20Fourth%20Year/cpp-algorithmic-means-of-computer-graphics/screenshot.png)
   
 ## Notes
 glutInitDisplayMode

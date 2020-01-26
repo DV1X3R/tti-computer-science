@@ -107,4 +107,4 @@ mas[ 1 ] = 456;
 1. По завершении записи каждой очередной структуры на экран надо вывести в одну строку значения индекса структуры, текущее число переданных страниц физической памяти, значения *charVal* и последнего элемента массива *intVal*, адрес начала структуры и адрес начала массива *intVal.*
   
 ## But how does it look?
-![Oops. Image was here](https://gitlab.com/dv1x3r/tti-computer-science/raw/master/III.%20Third%20Year/cpp-system-programming/screenshot.png)
+![Oops. Image was here](https://github.com/dv1x3r/tti-computer-science/raw/master/III.%20Third%20Year/cpp-system-programming/screenshot.png)

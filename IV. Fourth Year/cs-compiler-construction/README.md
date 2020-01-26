@@ -70,4 +70,4 @@ End;
 ```
   
 ## But how does it look?
-![Oops. Image was here](https://gitlab.com/dv1x3r/tti-computer-science/raw/master/IV.%20Fourth%20Year/cs-compiler-construction/screenshot.png)
+![Oops. Image was here](https://github.com/dv1x3r/tti-computer-science/raw/master/IV.%20Fourth%20Year/cs-compiler-construction/screenshot.png)
